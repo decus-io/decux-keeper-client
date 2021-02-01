@@ -1,0 +1,6 @@
+network: testnet
+keeper:
+  # can be query by interface
+  id: 1
+coordinator:
+  url: 'http://localhost:5000/api/'
