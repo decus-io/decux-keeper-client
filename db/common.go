@@ -23,6 +23,7 @@ func ConnectDatabase() error {
 	db.AutoMigrate(
 		&dao.Group{},
 		&dao.GroupKeeper{},
+		&dao.Withdraw{},
 	)
 
 	return nil

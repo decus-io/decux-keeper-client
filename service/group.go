@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -75,7 +74,6 @@ func (s *Group) SyncGroup() error {
 	}
 
 	for _, group := range groups.Data {
-		fmt.Println(group)
 		if err := s.Create(group); err != nil {
 			return nil
 		}

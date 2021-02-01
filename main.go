@@ -20,4 +20,14 @@ func main() {
 	if err := groupService.SyncGroup(); err != nil {
 		log.Fatalf("sync group error: %v", err)
 	}
+
+	withdrawService := service.NewWithdraw()
+	go func() {
+		if err := withdrawService.CheckNewWithdraw(); err != nil {
+			log.Fatalf("check withdraw error: %v", err)
+		}
+	}()
+
+	forever := make(chan bool)
+	<-forever
 }
