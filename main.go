@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 
 	"github.com/decus-io/decus-keeper-client/config"
 	"github.com/decus-io/decus-keeper-client/db"
@@ -21,10 +22,23 @@ func main() {
 		log.Fatalf("sync group error: %v", err)
 	}
 
+	keeperService := service.NewKeeper()
+	go func() {
+		for {
+			if err := keeperService.Heartbeat(); err != nil {
+				log.Printf("send heart error: %v", err)
+			}
+			time.Sleep(time.Minute)
+		}
+	}()
+
 	withdrawService := service.NewWithdraw()
 	go func() {
-		if err := withdrawService.CheckNewWithdraw(); err != nil {
-			log.Fatalf("check withdraw error: %v", err)
+		for {
+			if err := withdrawService.CheckNewWithdraw(); err != nil {
+				log.Printf("check withdraw error: %v", err)
+			}
+			time.Sleep(time.Minute)
 		}
 	}()
 
