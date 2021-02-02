@@ -127,7 +127,7 @@ func (s *Withdraw) ProcessWithdraw(withdraw *message.Withdraw) error {
 		}
 
 		client := &http.Client{}
-		req, err := http.NewRequest("POST", config.C.Coordinator.Url+"/operation", bytes.NewReader(data))
+		req, err := http.NewRequest("POST", config.C.Coordinator.Url+"operation", bytes.NewReader(data))
 		if err != nil {
 			return err
 		}

@@ -42,7 +42,7 @@ func (*Keeper) Heartbeat() error {
 		}
 
 		client := &http.Client{}
-		req, err := http.NewRequest("POST", config.C.Coordinator.Url+"/operation", bytes.NewReader(data))
+		req, err := http.NewRequest("POST", config.C.Coordinator.Url+"operation", bytes.NewReader(data))
 		if err != nil {
 			log.Printf("new post request error: %v", err)
 		}
