@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/decus-io/decus-keeper-client/dao"
+	"github.com/decus-io/decus-keeper-client/db/dao"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

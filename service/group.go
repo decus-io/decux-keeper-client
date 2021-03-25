@@ -2,22 +2,26 @@ package service
 
 import (
 	"context"
-	"io/ioutil"
-	"net/http"
+	"log"
+	"math/big"
 
 	"github.com/decus-io/decus-keeper-client/config"
-	"github.com/decus-io/decus-keeper-client/dao"
 	"github.com/decus-io/decus-keeper-client/db"
+	"github.com/decus-io/decus-keeper-client/db/dao"
+	"github.com/decus-io/decus-keeper-client/eth/contract"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
-	"github.com/golang/protobuf/proto"
 	"gorm.io/gorm"
 )
 
 type Group struct {
+	Groups        []*big.Int
+	nextSyncIndex *big.Int
 }
 
 func NewGroup() *Group {
-	return &Group{}
+	return &Group{
+		nextSyncIndex: big.NewInt(0),
+	}
 }
 
 func (*Group) Create(groupMessage *message.Group) error {
@@ -52,31 +56,32 @@ func (*Group) Create(groupMessage *message.Group) error {
 	})
 }
 
-func (s *Group) SyncGroup() error {
-	client := &http.Client{}
-	req, err := http.NewRequest("GET", config.C.Coordinator.Url+"groups", nil)
-	if err != nil {
-		return err
-	}
-	resp, err := client.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+func (s *Group) SyncGroups() error {
+	nGroups, err := contract.GroupRegistry.NGroups(nil)
 	if err != nil {
 		return err
 	}
 
-	var groups message.Groups
-	if err := proto.Unmarshal(body, &groups); err != nil {
-		return err
-	}
-
-	for _, group := range groups.Data {
-		if err := s.Create(group); err != nil {
-			return nil
+	updated := false
+	for s.nextSyncIndex.Cmp(nGroups) < 0 {
+		grp, err := contract.GroupRegistry.GetKeeperGroups(nil, config.C.Keeper.Id, s.nextSyncIndex)
+		if err != nil {
+			return err
 		}
+		for i := 0; i < grp.BitLen(); i++ {
+			if grp.Bit(i) != 0 {
+				s.Groups = append(s.Groups, big.NewInt(0).Add(s.nextSyncIndex, big.NewInt(int64(i+1))))
+				updated = true
+			}
+		}
+		s.nextSyncIndex.Add(s.nextSyncIndex, big.NewInt(256))
+	}
+
+	if s.nextSyncIndex.Cmp(nGroups) > 0 {
+		s.nextSyncIndex = nGroups
+	}
+	if updated {
+		log.Print("groups updated: ", s.Groups)
 	}
 
 	return nil

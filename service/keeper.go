@@ -1,14 +1,9 @@
 package service
 
 import (
-	"bytes"
-	"net/http"
-	"time"
-
 	"github.com/decus-io/decus-keeper-client/config"
+	"github.com/decus-io/decus-keeper-client/coordinator"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
-	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/ptypes/timestamp"
 )
 
 type Keeper struct {
@@ -18,33 +13,25 @@ func NewKeeper() *Keeper {
 	return &Keeper{}
 }
 
-func (*Keeper) Heartbeat() error {
-	op := message.Operation{
-		Id:        1,
-		Nonce:     1,
-		PubKey:    config.C.Keeper.Key.PubKey().SerializeCompressed(),
-		Signature: []byte{1},
-		Timestamp: &timestamp.Timestamp{
-			Seconds: time.Now().Unix(),
+func (s *Keeper) Init() error {
+	op := &message.Operation{
+		Operation: &message.Operation_Init{
+			Init: &message.Init{
+				BtcPubKey: config.C.Keeper.BtcKey.PubKey().SerializeCompressed(),
+				Signature: []byte{1},
+			},
 		},
+	}
+	return coordinator.SendOperation(op, nil)
+}
+
+func (*Keeper) Heartbeat() error {
+	op := &message.Operation{
 		Operation: &message.Operation_Heartbeat{
 			Heartbeat: &message.Heartbeat{
 				Payload: []byte{2},
 			},
 		},
 	}
-
-	data, err := proto.Marshal(&op)
-	if err != nil {
-		return err
-	}
-
-	client := &http.Client{}
-	req, err := http.NewRequest("POST", config.C.Coordinator.Url+"operation", bytes.NewReader(data))
-	if err != nil {
-		return err
-	}
-	req.Header.Add("Content-Type", "application/x-protobuf")
-	_, err = client.Do(req)
-	return err
+	return coordinator.SendOperation(op, nil)
 }
