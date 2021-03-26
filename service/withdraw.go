@@ -28,13 +28,17 @@ func (s *Withdraw) ProcessWithdraw(groupId *big.Int, receiptId *big.Int) error {
 	if err != nil {
 		return err
 	}
+	receiptInfo, err := contract.ReceiptController.GetReceiptInfo(nil, receiptId)
+	if err != nil {
+		return err
+	}
 
 	op := &message.Operation{
 		Operation: &message.Operation_WithdrawRequest{
 			WithdrawRequest: &message.WithdrawRequest{
 				GroupId:   int32(groupId.Int64()),
 				ReceiptId: int32(receiptId.Int64()),
-				Recipient: "", // TODO
+				Recipient: receiptInfo.BtcAddress,
 				Amount:    amount.Uint64(),
 			},
 		},

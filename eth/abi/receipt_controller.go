@@ -26,8 +26,21 @@ var (
 	_ = event.NewSubscription
 )
 
+// ReceiptLibReceipt is an auto generated low-level Go binding around an user-defined struct.
+type ReceiptLibReceipt struct {
+	Id              *big.Int
+	User            common.Address
+	GroupId         *big.Int
+	AmountInSatoshi *big.Int
+	CreateTimestamp *big.Int
+	TxId            [32]byte
+	Height          *big.Int
+	Status          uint8
+	BtcAddress      string
+}
+
 // ReceiptControllerABI is the input ABI used to generate the binding from.
-const ReceiptControllerABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"admin\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"DepositReceived\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"groupId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"DepositRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"revoker\",\"type\":\"address\"}],\"name\":\"DepositRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"WithdrawCompleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"WithdrawRequested\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"RECEIPT_FACTORY_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_receiptId\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"_txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_height\",\"type\":\"uint256\"}],\"name\":\"depositReceived\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_groupId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_amountInSatoshi\",\"type\":\"uint256\"}],\"name\":\"depositRequest\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getAmountInSatoshi\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getCreateTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getGroupId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getReceiptStatus\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getUserAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"groupId\",\"type\":\"uint256\"}],\"name\":\"getWorkingReceiptId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"groupId\",\"type\":\"uint256\"}],\"name\":\"isGroupAvailable\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"isStale\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_receiptId\",\"type\":\"uint256\"}],\"name\":\"revokeRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_receiptId\",\"type\":\"uint256\"}],\"name\":\"withdrawCompleted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_receiptId\",\"type\":\"uint256\"}],\"name\":\"withdrawRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const ReceiptControllerABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"DepositReceived\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"groupId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"DepositRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"revoker\",\"type\":\"address\"}],\"name\":\"DepositRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"WithdrawCompleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"WithdrawRequested\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"RECEIPT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_receiptId\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"_txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_height\",\"type\":\"uint256\"}],\"name\":\"depositReceived\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_groupId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_amountInSatoshi\",\"type\":\"uint256\"}],\"name\":\"depositRequest\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getAmountInSatoshi\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getCreateTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getGroupId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getReceiptInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"groupId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"createTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"},{\"internalType\":\"enumReceiptLib.Status\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"internalType\":\"structReceiptLib.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getReceiptStatus\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"getUserAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"groupId\",\"type\":\"uint256\"}],\"name\":\"getWorkingReceiptId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"groupId\",\"type\":\"uint256\"}],\"name\":\"isGroupAvailable\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"}],\"name\":\"isStale\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_receiptId\",\"type\":\"uint256\"}],\"name\":\"revokeRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_receiptId\",\"type\":\"uint256\"}],\"name\":\"withdrawCompleted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"receiptId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"withdrawRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // ReceiptController is an auto generated Go binding around an Ethereum contract.
 type ReceiptController struct {
@@ -233,12 +246,12 @@ func (_ReceiptController *ReceiptControllerCallerSession) MINTREQUESTGRACEPERIOD
 	return _ReceiptController.Contract.MINTREQUESTGRACEPERIOD(&_ReceiptController.CallOpts)
 }
 
-// RECEIPTFACTORYADMINROLE is a free data retrieval call binding the contract method 0x37ea7f1d.
+// RECEIPTADMINROLE is a free data retrieval call binding the contract method 0xa8c3b5e6.
 //
-// Solidity: function RECEIPT_FACTORY_ADMIN_ROLE() view returns(bytes32)
-func (_ReceiptController *ReceiptControllerCaller) RECEIPTFACTORYADMINROLE(opts *bind.CallOpts) ([32]byte, error) {
+// Solidity: function RECEIPT_ADMIN_ROLE() view returns(bytes32)
+func (_ReceiptController *ReceiptControllerCaller) RECEIPTADMINROLE(opts *bind.CallOpts) ([32]byte, error) {
 	var out []interface{}
-	err := _ReceiptController.contract.Call(opts, &out, "RECEIPT_FACTORY_ADMIN_ROLE")
+	err := _ReceiptController.contract.Call(opts, &out, "RECEIPT_ADMIN_ROLE")
 
 	if err != nil {
 		return *new([32]byte), err
@@ -250,18 +263,18 @@ func (_ReceiptController *ReceiptControllerCaller) RECEIPTFACTORYADMINROLE(opts 
 
 }
 
-// RECEIPTFACTORYADMINROLE is a free data retrieval call binding the contract method 0x37ea7f1d.
+// RECEIPTADMINROLE is a free data retrieval call binding the contract method 0xa8c3b5e6.
 //
-// Solidity: function RECEIPT_FACTORY_ADMIN_ROLE() view returns(bytes32)
-func (_ReceiptController *ReceiptControllerSession) RECEIPTFACTORYADMINROLE() ([32]byte, error) {
-	return _ReceiptController.Contract.RECEIPTFACTORYADMINROLE(&_ReceiptController.CallOpts)
+// Solidity: function RECEIPT_ADMIN_ROLE() view returns(bytes32)
+func (_ReceiptController *ReceiptControllerSession) RECEIPTADMINROLE() ([32]byte, error) {
+	return _ReceiptController.Contract.RECEIPTADMINROLE(&_ReceiptController.CallOpts)
 }
 
-// RECEIPTFACTORYADMINROLE is a free data retrieval call binding the contract method 0x37ea7f1d.
+// RECEIPTADMINROLE is a free data retrieval call binding the contract method 0xa8c3b5e6.
 //
-// Solidity: function RECEIPT_FACTORY_ADMIN_ROLE() view returns(bytes32)
-func (_ReceiptController *ReceiptControllerCallerSession) RECEIPTFACTORYADMINROLE() ([32]byte, error) {
-	return _ReceiptController.Contract.RECEIPTFACTORYADMINROLE(&_ReceiptController.CallOpts)
+// Solidity: function RECEIPT_ADMIN_ROLE() view returns(bytes32)
+func (_ReceiptController *ReceiptControllerCallerSession) RECEIPTADMINROLE() ([32]byte, error) {
+	return _ReceiptController.Contract.RECEIPTADMINROLE(&_ReceiptController.CallOpts)
 }
 
 // GetAmountInSatoshi is a free data retrieval call binding the contract method 0xe6927c3b.
@@ -355,6 +368,37 @@ func (_ReceiptController *ReceiptControllerSession) GetGroupId(receiptId *big.In
 // Solidity: function getGroupId(uint256 receiptId) view returns(uint256)
 func (_ReceiptController *ReceiptControllerCallerSession) GetGroupId(receiptId *big.Int) (*big.Int, error) {
 	return _ReceiptController.Contract.GetGroupId(&_ReceiptController.CallOpts, receiptId)
+}
+
+// GetReceiptInfo is a free data retrieval call binding the contract method 0xb97912ff.
+//
+// Solidity: function getReceiptInfo(uint256 receiptId) view returns((uint256,address,uint256,uint256,uint256,bytes32,uint256,uint8,string))
+func (_ReceiptController *ReceiptControllerCaller) GetReceiptInfo(opts *bind.CallOpts, receiptId *big.Int) (ReceiptLibReceipt, error) {
+	var out []interface{}
+	err := _ReceiptController.contract.Call(opts, &out, "getReceiptInfo", receiptId)
+
+	if err != nil {
+		return *new(ReceiptLibReceipt), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(ReceiptLibReceipt)).(*ReceiptLibReceipt)
+
+	return out0, err
+
+}
+
+// GetReceiptInfo is a free data retrieval call binding the contract method 0xb97912ff.
+//
+// Solidity: function getReceiptInfo(uint256 receiptId) view returns((uint256,address,uint256,uint256,uint256,bytes32,uint256,uint8,string))
+func (_ReceiptController *ReceiptControllerSession) GetReceiptInfo(receiptId *big.Int) (ReceiptLibReceipt, error) {
+	return _ReceiptController.Contract.GetReceiptInfo(&_ReceiptController.CallOpts, receiptId)
+}
+
+// GetReceiptInfo is a free data retrieval call binding the contract method 0xb97912ff.
+//
+// Solidity: function getReceiptInfo(uint256 receiptId) view returns((uint256,address,uint256,uint256,uint256,bytes32,uint256,uint8,string))
+func (_ReceiptController *ReceiptControllerCallerSession) GetReceiptInfo(receiptId *big.Int) (ReceiptLibReceipt, error) {
+	return _ReceiptController.Contract.GetReceiptInfo(&_ReceiptController.CallOpts, receiptId)
 }
 
 // GetReceiptStatus is a free data retrieval call binding the contract method 0x5fd7c24a.
@@ -783,25 +827,25 @@ func (_ReceiptController *ReceiptControllerTransactorSession) WithdrawCompleted(
 	return _ReceiptController.Contract.WithdrawCompleted(&_ReceiptController.TransactOpts, _receiptId)
 }
 
-// WithdrawRequest is a paid mutator transaction binding the contract method 0x74899a7e.
+// WithdrawRequest is a paid mutator transaction binding the contract method 0x395faadb.
 //
-// Solidity: function withdrawRequest(uint256 _receiptId) returns()
-func (_ReceiptController *ReceiptControllerTransactor) WithdrawRequest(opts *bind.TransactOpts, _receiptId *big.Int) (*types.Transaction, error) {
-	return _ReceiptController.contract.Transact(opts, "withdrawRequest", _receiptId)
+// Solidity: function withdrawRequest(uint256 receiptId, string btcAddress) returns()
+func (_ReceiptController *ReceiptControllerTransactor) WithdrawRequest(opts *bind.TransactOpts, receiptId *big.Int, btcAddress string) (*types.Transaction, error) {
+	return _ReceiptController.contract.Transact(opts, "withdrawRequest", receiptId, btcAddress)
 }
 
-// WithdrawRequest is a paid mutator transaction binding the contract method 0x74899a7e.
+// WithdrawRequest is a paid mutator transaction binding the contract method 0x395faadb.
 //
-// Solidity: function withdrawRequest(uint256 _receiptId) returns()
-func (_ReceiptController *ReceiptControllerSession) WithdrawRequest(_receiptId *big.Int) (*types.Transaction, error) {
-	return _ReceiptController.Contract.WithdrawRequest(&_ReceiptController.TransactOpts, _receiptId)
+// Solidity: function withdrawRequest(uint256 receiptId, string btcAddress) returns()
+func (_ReceiptController *ReceiptControllerSession) WithdrawRequest(receiptId *big.Int, btcAddress string) (*types.Transaction, error) {
+	return _ReceiptController.Contract.WithdrawRequest(&_ReceiptController.TransactOpts, receiptId, btcAddress)
 }
 
-// WithdrawRequest is a paid mutator transaction binding the contract method 0x74899a7e.
+// WithdrawRequest is a paid mutator transaction binding the contract method 0x395faadb.
 //
-// Solidity: function withdrawRequest(uint256 _receiptId) returns()
-func (_ReceiptController *ReceiptControllerTransactorSession) WithdrawRequest(_receiptId *big.Int) (*types.Transaction, error) {
-	return _ReceiptController.Contract.WithdrawRequest(&_ReceiptController.TransactOpts, _receiptId)
+// Solidity: function withdrawRequest(uint256 receiptId, string btcAddress) returns()
+func (_ReceiptController *ReceiptControllerTransactorSession) WithdrawRequest(receiptId *big.Int, btcAddress string) (*types.Transaction, error) {
+	return _ReceiptController.Contract.WithdrawRequest(&_ReceiptController.TransactOpts, receiptId, btcAddress)
 }
 
 // ReceiptControllerDepositReceivedIterator is returned from FilterDepositReceived and is used to iterate over the raw logs and unpacked data for DepositReceived events raised by the ReceiptController contract.
@@ -1963,13 +2007,14 @@ func (it *ReceiptControllerWithdrawRequestedIterator) Close() error {
 
 // ReceiptControllerWithdrawRequested represents a WithdrawRequested event raised by the ReceiptController contract.
 type ReceiptControllerWithdrawRequested struct {
-	ReceiptId *big.Int
-	Raw       types.Log // Blockchain specific contextual infos
+	ReceiptId  *big.Int
+	BtcAddress string
+	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterWithdrawRequested is a free log retrieval operation binding the contract event 0xb24fa2ccf40fcc5e98e7ebeec74e79a5342b6d8c36c77a80c461646108c4456e.
+// FilterWithdrawRequested is a free log retrieval operation binding the contract event 0x16164b38adc054b584fc6ddb4a7aecbb14802344b2881b11d728d39200bbaff2.
 //
-// Solidity: event WithdrawRequested(uint256 indexed receiptId)
+// Solidity: event WithdrawRequested(uint256 indexed receiptId, string btcAddress)
 func (_ReceiptController *ReceiptControllerFilterer) FilterWithdrawRequested(opts *bind.FilterOpts, receiptId []*big.Int) (*ReceiptControllerWithdrawRequestedIterator, error) {
 
 	var receiptIdRule []interface{}
@@ -1984,9 +2029,9 @@ func (_ReceiptController *ReceiptControllerFilterer) FilterWithdrawRequested(opt
 	return &ReceiptControllerWithdrawRequestedIterator{contract: _ReceiptController.contract, event: "WithdrawRequested", logs: logs, sub: sub}, nil
 }
 
-// WatchWithdrawRequested is a free log subscription operation binding the contract event 0xb24fa2ccf40fcc5e98e7ebeec74e79a5342b6d8c36c77a80c461646108c4456e.
+// WatchWithdrawRequested is a free log subscription operation binding the contract event 0x16164b38adc054b584fc6ddb4a7aecbb14802344b2881b11d728d39200bbaff2.
 //
-// Solidity: event WithdrawRequested(uint256 indexed receiptId)
+// Solidity: event WithdrawRequested(uint256 indexed receiptId, string btcAddress)
 func (_ReceiptController *ReceiptControllerFilterer) WatchWithdrawRequested(opts *bind.WatchOpts, sink chan<- *ReceiptControllerWithdrawRequested, receiptId []*big.Int) (event.Subscription, error) {
 
 	var receiptIdRule []interface{}
@@ -2026,9 +2071,9 @@ func (_ReceiptController *ReceiptControllerFilterer) WatchWithdrawRequested(opts
 	}), nil
 }
 
-// ParseWithdrawRequested is a log parse operation binding the contract event 0xb24fa2ccf40fcc5e98e7ebeec74e79a5342b6d8c36c77a80c461646108c4456e.
+// ParseWithdrawRequested is a log parse operation binding the contract event 0x16164b38adc054b584fc6ddb4a7aecbb14802344b2881b11d728d39200bbaff2.
 //
-// Solidity: event WithdrawRequested(uint256 indexed receiptId)
+// Solidity: event WithdrawRequested(uint256 indexed receiptId, string btcAddress)
 func (_ReceiptController *ReceiptControllerFilterer) ParseWithdrawRequested(log types.Log) (*ReceiptControllerWithdrawRequested, error) {
 	event := new(ReceiptControllerWithdrawRequested)
 	if err := _ReceiptController.contract.UnpackLog(event, "WithdrawRequested", log); err != nil {

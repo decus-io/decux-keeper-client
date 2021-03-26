@@ -26,8 +26,18 @@ var (
 	_ = event.NewSubscription
 )
 
+// GroupLibGroup is an auto generated low-level Go binding around an user-defined struct.
+type GroupLibGroup struct {
+	Id          *big.Int
+	Required    *big.Int
+	MaxSatoshi  *big.Int
+	CurrSatoshi *big.Int
+	BtcAddress  string
+	Keepers     []common.Address
+}
+
 // GroupRegistryABI is the input ABI used to generate the binding from.
-const GroupRegistryABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"group_admin\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_keepers\",\"type\":\"address[]\"},{\"internalType\":\"string\",\"name\":\"_btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_maxSatoshi\",\"type\":\"uint256\"}],\"name\":\"addGroup\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_amountInSatoshi\",\"type\":\"uint256\"}],\"name\":\"depositReceived\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"exist\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getGroupAllowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_btcAddress\",\"type\":\"string\"}],\"name\":\"getGroupId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getGroupInfo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastWithdrawTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getGroupKeepers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_keeper\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_start\",\"type\":\"uint256\"}],\"name\":\"getKeeperGroups\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_keeper\",\"type\":\"address\"}],\"name\":\"isGroupKeeper\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nGroups\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_amountInSatoshi\",\"type\":\"uint256\"}],\"name\":\"withdrawRequested\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const GroupRegistryABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_btcAddress\",\"type\":\"string\"},{\"internalType\":\"address[]\",\"name\":\"_keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_amountInSatoshi\",\"type\":\"uint256\"}],\"name\":\"depositReceived\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"exist\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getGroupAllowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_btcAddress\",\"type\":\"string\"}],\"name\":\"getGroupId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getGroupInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"internalType\":\"structGroupLib.Group\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getGroupKeepers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getGroupRequired\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_keeper\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_start\",\"type\":\"uint256\"}],\"name\":\"getKeeperGroups\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_keeper\",\"type\":\"address\"}],\"name\":\"isGroupKeeper\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nGroups\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_amountInSatoshi\",\"type\":\"uint256\"}],\"name\":\"withdrawRequested\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // GroupRegistry is an auto generated Go binding around an Ethereum contract.
 type GroupRegistry struct {
@@ -328,61 +338,32 @@ func (_GroupRegistry *GroupRegistryCallerSession) GetGroupId(_btcAddress string)
 
 // GetGroupInfo is a free data retrieval call binding the contract method 0x99d4360f.
 //
-// Solidity: function getGroupInfo(uint256 _id) view returns(uint256 maxSatoshi, uint256 currSatoshi, uint256 lastWithdrawTimestamp, string btcAddress, address[] keepers)
-func (_GroupRegistry *GroupRegistryCaller) GetGroupInfo(opts *bind.CallOpts, _id *big.Int) (struct {
-	MaxSatoshi            *big.Int
-	CurrSatoshi           *big.Int
-	LastWithdrawTimestamp *big.Int
-	BtcAddress            string
-	Keepers               []common.Address
-}, error) {
+// Solidity: function getGroupInfo(uint256 _id) view returns((uint256,uint256,uint256,uint256,string,address[]))
+func (_GroupRegistry *GroupRegistryCaller) GetGroupInfo(opts *bind.CallOpts, _id *big.Int) (GroupLibGroup, error) {
 	var out []interface{}
 	err := _GroupRegistry.contract.Call(opts, &out, "getGroupInfo", _id)
 
-	outstruct := new(struct {
-		MaxSatoshi            *big.Int
-		CurrSatoshi           *big.Int
-		LastWithdrawTimestamp *big.Int
-		BtcAddress            string
-		Keepers               []common.Address
-	})
 	if err != nil {
-		return *outstruct, err
+		return *new(GroupLibGroup), err
 	}
 
-	outstruct.MaxSatoshi = *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
-	outstruct.CurrSatoshi = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
-	outstruct.LastWithdrawTimestamp = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
-	outstruct.BtcAddress = *abi.ConvertType(out[3], new(string)).(*string)
-	outstruct.Keepers = *abi.ConvertType(out[4], new([]common.Address)).(*[]common.Address)
+	out0 := *abi.ConvertType(out[0], new(GroupLibGroup)).(*GroupLibGroup)
 
-	return *outstruct, err
+	return out0, err
 
 }
 
 // GetGroupInfo is a free data retrieval call binding the contract method 0x99d4360f.
 //
-// Solidity: function getGroupInfo(uint256 _id) view returns(uint256 maxSatoshi, uint256 currSatoshi, uint256 lastWithdrawTimestamp, string btcAddress, address[] keepers)
-func (_GroupRegistry *GroupRegistrySession) GetGroupInfo(_id *big.Int) (struct {
-	MaxSatoshi            *big.Int
-	CurrSatoshi           *big.Int
-	LastWithdrawTimestamp *big.Int
-	BtcAddress            string
-	Keepers               []common.Address
-}, error) {
+// Solidity: function getGroupInfo(uint256 _id) view returns((uint256,uint256,uint256,uint256,string,address[]))
+func (_GroupRegistry *GroupRegistrySession) GetGroupInfo(_id *big.Int) (GroupLibGroup, error) {
 	return _GroupRegistry.Contract.GetGroupInfo(&_GroupRegistry.CallOpts, _id)
 }
 
 // GetGroupInfo is a free data retrieval call binding the contract method 0x99d4360f.
 //
-// Solidity: function getGroupInfo(uint256 _id) view returns(uint256 maxSatoshi, uint256 currSatoshi, uint256 lastWithdrawTimestamp, string btcAddress, address[] keepers)
-func (_GroupRegistry *GroupRegistryCallerSession) GetGroupInfo(_id *big.Int) (struct {
-	MaxSatoshi            *big.Int
-	CurrSatoshi           *big.Int
-	LastWithdrawTimestamp *big.Int
-	BtcAddress            string
-	Keepers               []common.Address
-}, error) {
+// Solidity: function getGroupInfo(uint256 _id) view returns((uint256,uint256,uint256,uint256,string,address[]))
+func (_GroupRegistry *GroupRegistryCallerSession) GetGroupInfo(_id *big.Int) (GroupLibGroup, error) {
 	return _GroupRegistry.Contract.GetGroupInfo(&_GroupRegistry.CallOpts, _id)
 }
 
@@ -415,6 +396,37 @@ func (_GroupRegistry *GroupRegistrySession) GetGroupKeepers(_id *big.Int) ([]com
 // Solidity: function getGroupKeepers(uint256 _id) view returns(address[])
 func (_GroupRegistry *GroupRegistryCallerSession) GetGroupKeepers(_id *big.Int) ([]common.Address, error) {
 	return _GroupRegistry.Contract.GetGroupKeepers(&_GroupRegistry.CallOpts, _id)
+}
+
+// GetGroupRequired is a free data retrieval call binding the contract method 0x90f6142e.
+//
+// Solidity: function getGroupRequired(uint256 _id) view returns(uint256)
+func (_GroupRegistry *GroupRegistryCaller) GetGroupRequired(opts *bind.CallOpts, _id *big.Int) (*big.Int, error) {
+	var out []interface{}
+	err := _GroupRegistry.contract.Call(opts, &out, "getGroupRequired", _id)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GetGroupRequired is a free data retrieval call binding the contract method 0x90f6142e.
+//
+// Solidity: function getGroupRequired(uint256 _id) view returns(uint256)
+func (_GroupRegistry *GroupRegistrySession) GetGroupRequired(_id *big.Int) (*big.Int, error) {
+	return _GroupRegistry.Contract.GetGroupRequired(&_GroupRegistry.CallOpts, _id)
+}
+
+// GetGroupRequired is a free data retrieval call binding the contract method 0x90f6142e.
+//
+// Solidity: function getGroupRequired(uint256 _id) view returns(uint256)
+func (_GroupRegistry *GroupRegistryCallerSession) GetGroupRequired(_id *big.Int) (*big.Int, error) {
+	return _GroupRegistry.Contract.GetGroupRequired(&_GroupRegistry.CallOpts, _id)
 }
 
 // GetKeeperGroups is a free data retrieval call binding the contract method 0x297dd2c8.
@@ -634,25 +646,25 @@ func (_GroupRegistry *GroupRegistryCallerSession) NGroups() (*big.Int, error) {
 	return _GroupRegistry.Contract.NGroups(&_GroupRegistry.CallOpts)
 }
 
-// AddGroup is a paid mutator transaction binding the contract method 0x2504b714.
+// AddGroup is a paid mutator transaction binding the contract method 0xa586d383.
 //
-// Solidity: function addGroup(address[] _keepers, string _btcAddress, uint256 _maxSatoshi) returns(uint256)
-func (_GroupRegistry *GroupRegistryTransactor) AddGroup(opts *bind.TransactOpts, _keepers []common.Address, _btcAddress string, _maxSatoshi *big.Int) (*types.Transaction, error) {
-	return _GroupRegistry.contract.Transact(opts, "addGroup", _keepers, _btcAddress, _maxSatoshi)
+// Solidity: function addGroup(uint256 _required, uint256 _maxSatoshi, string _btcAddress, address[] _keepers) returns(uint256)
+func (_GroupRegistry *GroupRegistryTransactor) AddGroup(opts *bind.TransactOpts, _required *big.Int, _maxSatoshi *big.Int, _btcAddress string, _keepers []common.Address) (*types.Transaction, error) {
+	return _GroupRegistry.contract.Transact(opts, "addGroup", _required, _maxSatoshi, _btcAddress, _keepers)
 }
 
-// AddGroup is a paid mutator transaction binding the contract method 0x2504b714.
+// AddGroup is a paid mutator transaction binding the contract method 0xa586d383.
 //
-// Solidity: function addGroup(address[] _keepers, string _btcAddress, uint256 _maxSatoshi) returns(uint256)
-func (_GroupRegistry *GroupRegistrySession) AddGroup(_keepers []common.Address, _btcAddress string, _maxSatoshi *big.Int) (*types.Transaction, error) {
-	return _GroupRegistry.Contract.AddGroup(&_GroupRegistry.TransactOpts, _keepers, _btcAddress, _maxSatoshi)
+// Solidity: function addGroup(uint256 _required, uint256 _maxSatoshi, string _btcAddress, address[] _keepers) returns(uint256)
+func (_GroupRegistry *GroupRegistrySession) AddGroup(_required *big.Int, _maxSatoshi *big.Int, _btcAddress string, _keepers []common.Address) (*types.Transaction, error) {
+	return _GroupRegistry.Contract.AddGroup(&_GroupRegistry.TransactOpts, _required, _maxSatoshi, _btcAddress, _keepers)
 }
 
-// AddGroup is a paid mutator transaction binding the contract method 0x2504b714.
+// AddGroup is a paid mutator transaction binding the contract method 0xa586d383.
 //
-// Solidity: function addGroup(address[] _keepers, string _btcAddress, uint256 _maxSatoshi) returns(uint256)
-func (_GroupRegistry *GroupRegistryTransactorSession) AddGroup(_keepers []common.Address, _btcAddress string, _maxSatoshi *big.Int) (*types.Transaction, error) {
-	return _GroupRegistry.Contract.AddGroup(&_GroupRegistry.TransactOpts, _keepers, _btcAddress, _maxSatoshi)
+// Solidity: function addGroup(uint256 _required, uint256 _maxSatoshi, string _btcAddress, address[] _keepers) returns(uint256)
+func (_GroupRegistry *GroupRegistryTransactorSession) AddGroup(_required *big.Int, _maxSatoshi *big.Int, _btcAddress string, _keepers []common.Address) (*types.Transaction, error) {
+	return _GroupRegistry.Contract.AddGroup(&_GroupRegistry.TransactOpts, _required, _maxSatoshi, _btcAddress, _keepers)
 }
 
 // DeleteGroup is a paid mutator transaction binding the contract method 0x45d88d2d.
@@ -851,15 +863,16 @@ func (it *GroupRegistryGroupAddedIterator) Close() error {
 // GroupRegistryGroupAdded represents a GroupAdded event raised by the GroupRegistry contract.
 type GroupRegistryGroupAdded struct {
 	Id         *big.Int
-	Keepers    []common.Address
-	BtcAddress string
+	Required   *big.Int
 	MaxSatoshi *big.Int
+	BtcAddress string
+	Keepers    []common.Address
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterGroupAdded is a free log retrieval operation binding the contract event 0x2b5b732b9ed4435d138142fcaf77d4f418c7ff1d03c7860899b26365ea62c392.
+// FilterGroupAdded is a free log retrieval operation binding the contract event 0xd2afaf852b38ffdf3ba5a9f05715cd0cd73ef4f986a5eadad46bb8a50e9185d4.
 //
-// Solidity: event GroupAdded(uint256 indexed id, address[] keepers, string btcAddress, uint256 maxSatoshi)
+// Solidity: event GroupAdded(uint256 indexed id, uint256 required, uint256 maxSatoshi, string btcAddress, address[] keepers)
 func (_GroupRegistry *GroupRegistryFilterer) FilterGroupAdded(opts *bind.FilterOpts, id []*big.Int) (*GroupRegistryGroupAddedIterator, error) {
 
 	var idRule []interface{}
@@ -874,9 +887,9 @@ func (_GroupRegistry *GroupRegistryFilterer) FilterGroupAdded(opts *bind.FilterO
 	return &GroupRegistryGroupAddedIterator{contract: _GroupRegistry.contract, event: "GroupAdded", logs: logs, sub: sub}, nil
 }
 
-// WatchGroupAdded is a free log subscription operation binding the contract event 0x2b5b732b9ed4435d138142fcaf77d4f418c7ff1d03c7860899b26365ea62c392.
+// WatchGroupAdded is a free log subscription operation binding the contract event 0xd2afaf852b38ffdf3ba5a9f05715cd0cd73ef4f986a5eadad46bb8a50e9185d4.
 //
-// Solidity: event GroupAdded(uint256 indexed id, address[] keepers, string btcAddress, uint256 maxSatoshi)
+// Solidity: event GroupAdded(uint256 indexed id, uint256 required, uint256 maxSatoshi, string btcAddress, address[] keepers)
 func (_GroupRegistry *GroupRegistryFilterer) WatchGroupAdded(opts *bind.WatchOpts, sink chan<- *GroupRegistryGroupAdded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -916,9 +929,9 @@ func (_GroupRegistry *GroupRegistryFilterer) WatchGroupAdded(opts *bind.WatchOpt
 	}), nil
 }
 
-// ParseGroupAdded is a log parse operation binding the contract event 0x2b5b732b9ed4435d138142fcaf77d4f418c7ff1d03c7860899b26365ea62c392.
+// ParseGroupAdded is a log parse operation binding the contract event 0xd2afaf852b38ffdf3ba5a9f05715cd0cd73ef4f986a5eadad46bb8a50e9185d4.
 //
-// Solidity: event GroupAdded(uint256 indexed id, address[] keepers, string btcAddress, uint256 maxSatoshi)
+// Solidity: event GroupAdded(uint256 indexed id, uint256 required, uint256 maxSatoshi, string btcAddress, address[] keepers)
 func (_GroupRegistry *GroupRegistryFilterer) ParseGroupAdded(log types.Log) (*GroupRegistryGroupAdded, error) {
 	event := new(GroupRegistryGroupAdded)
 	if err := _GroupRegistry.contract.UnpackLog(event, "GroupAdded", log); err != nil {

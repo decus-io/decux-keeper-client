@@ -4,6 +4,7 @@ import (
 	"crypto/ecdsa"
 	"errors"
 	"io/ioutil"
+	"log"
 
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcutil"
@@ -33,10 +34,10 @@ type Config struct {
 		Url string `yaml:"url"`
 	} `yaml:"btcesplora"`
 	Contract struct {
-		GroupRegistry      string `yaml:"group_registry"`
-		KeeperRegistry     string `yaml:"keeper_registry"`
-		ReceiptController  string `yaml:"receipt_controller"`
-		SignatureValidator string `yaml:"signature_validator"`
+		DeCusSystem       string `yaml:"decus_system"`
+		GroupRegistry     string `yaml:"group_registry"`
+		KeeperRegistry    string `yaml:"keeper_registry"`
+		ReceiptController string `yaml:"receipt_controller"`
 	} `yaml:"contract"`
 }
 
@@ -66,6 +67,7 @@ func Init() error {
 		return errors.New("error getting eth pubkey")
 	}
 	C.Keeper.Id = crypto.PubkeyToAddress(*ethPubkey)
+	log.Print("keeper id: ", C.Keeper.Id.Hex())
 
 	return nil
 }

@@ -52,7 +52,7 @@ func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Byt
 		},
 		"MintRequest": {
 			{Name: "recipient", Type: "address"},
-			{Name: "nonce", Type: "uint256"},
+			{Name: "receiptId", Type: "uint256"},
 			{Name: "amount", Type: "uint256"},
 			{Name: "txId", Type: "bytes32"},
 			{Name: "height", Type: "uint256"},
@@ -62,12 +62,12 @@ func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Byt
 		Name:              "DeCus",
 		Version:           "1.0",
 		ChainId:           math.NewHexOrDecimal256(contract.ChainID),
-		VerifyingContract: config.C.Contract.SignatureValidator,
+		VerifyingContract: config.C.Contract.DeCusSystem,
 		Salt:              "",
 	}
 	messageStandard := map[string]interface{}{
 		"recipient": recipient,
-		"nonce":     receiptId,
+		"receiptId": receiptId,
 		"amount":    amount,
 		"txId":      txId,
 		"height":    height,

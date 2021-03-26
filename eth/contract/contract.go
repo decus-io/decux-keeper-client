@@ -2,6 +2,7 @@ package contract
 
 import (
 	"context"
+	"log"
 
 	"github.com/decus-io/decus-keeper-client/config"
 	"github.com/decus-io/decus-keeper-client/eth/abi"
@@ -42,6 +43,7 @@ func initContracts() error {
 		return err
 	}
 	ChainID = id.Int64()
+	log.Print("chain id: ", ChainID)
 
 	return nil
 }
@@ -51,6 +53,8 @@ func subscribeEvents() error {
 	if err != nil {
 		return err
 	}
+
+	// client.SubscribeFilterLogs()
 
 	defer client.Close()
 
