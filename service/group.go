@@ -10,6 +10,7 @@ import (
 	"github.com/decus-io/decus-keeper-client/db/dao"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"gorm.io/gorm"
 )
 
@@ -56,15 +57,15 @@ func (*Group) Create(groupMessage *message.Group) error {
 	})
 }
 
-func (s *Group) SyncGroups() error {
-	nGroups, err := contract.GroupRegistry.NGroups(nil)
+func (s *Group) SyncGroups(opts *bind.CallOpts) error {
+	nGroups, err := contract.GroupRegistry.NGroups(opts)
 	if err != nil {
 		return err
 	}
 
 	updated := false
 	for s.nextSyncIndex.Cmp(nGroups) < 0 {
-		grp, err := contract.GroupRegistry.GetKeeperGroups(nil, config.C.Keeper.Id, s.nextSyncIndex)
+		grp, err := contract.GroupRegistry.GetKeeperGroups(opts, config.C.Keeper.Id, s.nextSyncIndex)
 		if err != nil {
 			return err
 		}

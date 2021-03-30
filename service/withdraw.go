@@ -13,22 +13,30 @@ import (
 	"github.com/decus-io/decus-keeper-client/db"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"gorm.io/gorm"
 )
 
 type Withdraw struct {
+	signed map[int64]bool
 }
 
 func NewWithdraw() *Withdraw {
-	return &Withdraw{}
+	return &Withdraw{
+		signed: map[int64]bool{},
+	}
 }
 
-func (s *Withdraw) ProcessWithdraw(groupId *big.Int, receiptId *big.Int) error {
-	amount, err := contract.ReceiptController.GetAmountInSatoshi(nil, receiptId)
+func (s *Withdraw) ProcessWithdraw(opts *bind.CallOpts, groupId *big.Int, receiptId *big.Int) error {
+	if s.signed[receiptId.Int64()] {
+		return nil
+	}
+
+	amount, err := contract.ReceiptController.GetAmountInSatoshi(opts, receiptId)
 	if err != nil {
 		return err
 	}
-	receiptInfo, err := contract.ReceiptController.GetReceiptInfo(nil, receiptId)
+	receiptInfo, err := contract.ReceiptController.GetReceiptInfo(opts, receiptId)
 	if err != nil {
 		return err
 	}
@@ -44,10 +52,16 @@ func (s *Withdraw) ProcessWithdraw(groupId *big.Int, receiptId *big.Int) error {
 		},
 	}
 	var withdraw message.Withdraw
-	if err = coordinator.SendOperation(op, &withdraw); err != nil {
+	if err := coordinator.SendOperation(op, &withdraw); err != nil {
 		return err
 	}
-	return s.processWithdrawImpl(&withdraw)
+	if err := s.processWithdrawImpl(&withdraw); err != nil {
+		return err
+	}
+
+	s.signed[receiptId.Int64()] = true
+	log.Print("withdraw signed: ", receiptId)
+	return nil
 }
 
 func (s *Withdraw) processWithdrawImpl(withdraw *message.Withdraw) error {

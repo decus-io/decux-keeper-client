@@ -27,7 +27,6 @@ type Config struct {
 		Url string `yaml:"url"`
 	} `yaml:"coordinator"`
 	EthClient struct {
-		HttpUrl string `yaml:"http_url"`
 		WssUrl  string `yaml:"wss_url"`
 	} `yaml:"ethclient"`
 	BtcEsplora struct {

@@ -1,12 +1,14 @@
 package service
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"math/big"
 	"time"
 
 	"github.com/decus-io/decus-keeper-client/eth/contract"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 
 type System struct {
@@ -32,21 +34,38 @@ func (s *System) Init() error {
 	return nil
 }
 
+func (s *System) makeCallOpts() (*bind.CallOpts, context.CancelFunc) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	return &bind.CallOpts{Context: ctx}, cancel
+}
+
+func (s *System) syncGroups() {
+	opts, cancel := s.makeCallOpts()
+	defer cancel()
+
+	if err := s.groupService.SyncGroups(opts); err != nil {
+		log.Print("sync groups error: ", err)
+	}
+}
+
 func (s *System) checkReceipt(groupId *big.Int) error {
-	receiptId, err := contract.ReceiptController.GetWorkingReceiptId(nil, groupId)
+	opts, cancel := s.makeCallOpts()
+	defer cancel()
+
+	receiptId, err := contract.ReceiptController.GetWorkingReceiptId(opts, groupId)
 	if err != nil {
 		return err
 	}
-	receiptStatus, err := contract.ReceiptController.GetReceiptStatus(nil, receiptId)
+	receiptStatus, err := contract.ReceiptController.GetReceiptStatus(opts, receiptId)
 	if err != nil {
 		return err
 	}
 
 	status := int(receiptStatus.Int64())
 	if status == DepositRequested {
-		return s.depositService.ProcessDeposit(groupId, receiptId)
+		return s.depositService.ProcessDeposit(opts, groupId, receiptId)
 	} else if status == WithdrawRequested {
-		return s.withdrawService.ProcessWithdraw(groupId, receiptId)
+		return s.withdrawService.ProcessWithdraw(opts, groupId, receiptId)
 	}
 
 	return nil
@@ -55,7 +74,7 @@ func (s *System) checkReceipt(groupId *big.Int) error {
 func (s *System) checkAllReceipt() {
 	for _, groupId := range s.groupService.Groups {
 		if err := s.checkReceipt(groupId); err != nil {
-			log.Print("check receipt err: ", err)
+			log.Print("check receipt error: ", err)
 		}
 	}
 }
@@ -65,6 +84,8 @@ func (s *System) Run() {
 	syncGroupTicker := time.NewTicker(time.Minute * 10)
 	checkReceiptTicker := time.NewTicker(time.Minute * 10)
 
+	s.syncGroups()
+
 	for {
 		select {
 		case <-heartbeatTicker.C:
@@ -72,10 +93,14 @@ func (s *System) Run() {
 				log.Print("send heart error: ", err) // TODO: use level based logging
 			}
 		case <-syncGroupTicker.C:
-			if err := s.groupService.SyncGroups(); err != nil {
-				log.Print("sync groups error: ", err)
-			}
+			s.syncGroups()
 		case <-checkReceiptTicker.C:
+			s.checkAllReceipt()
+		case groupAdded := <-contract.GroupAdded:
+			log.Print("event GroupAdded: ", groupAdded.Id)
+			s.syncGroups()
+		case withdrawReqeusted := <-contract.WithdrawRequested:
+			log.Print("event WithdrawRequested: ", withdrawReqeusted.ReceiptId)
 			s.checkAllReceipt()
 		}
 	}

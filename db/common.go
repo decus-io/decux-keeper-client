@@ -20,13 +20,11 @@ func ConnectDatabase() error {
 	if err != nil {
 		return fmt.Errorf("open database error: %v", err)
 	}
-	db.AutoMigrate(
+	return db.AutoMigrate(
 		&dao.Group{},
 		&dao.GroupKeeper{},
 		&dao.Withdraw{},
 	)
-
-	return nil
 }
 
 func GetDB(ctx context.Context) *gorm.DB {

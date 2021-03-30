@@ -25,21 +25,12 @@ type commonReply struct {
 }
 
 func handleResponse(resp *http.Response, result proto.Message) error {
-	/*
-		if result != nil {
-			body, err := ioutil.ReadAll(resp.Body)
-			if err == nil {
-				fmt.Print(string(body))
-			}
-		}
-	*/
-
 	var reply commonReply
 	if err := json.NewDecoder(resp.Body).Decode(&reply); err != nil {
 		return err
 	}
 	if !reply.Success {
-		return errors.New("request err: " + reply.Message)
+		return errors.New("request error: " + reply.Message)
 	}
 	if result != nil {
 		if err := proto.Unmarshal(reply.Data, result); err != nil {

@@ -3,27 +3,28 @@ package contract
 import (
 	"context"
 	"log"
+	"time"
 
 	"github.com/decus-io/decus-keeper-client/config"
 	"github.com/decus-io/decus-keeper-client/eth/abi"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/ethereum/go-ethereum/event"
 )
 
-var GroupRegistry *abi.GroupRegistryCaller
+var (
+	GroupRegistry     *abi.GroupRegistryCaller
+	KeeperRegistry    *abi.KeeperRegistryCaller
+	ReceiptController *abi.ReceiptControllerCaller
 
-var KeeperRegistry *abi.KeeperRegistryCaller
+	ChainID int64
 
-var ReceiptController *abi.ReceiptControllerCaller
+	GroupAdded        = make(chan *abi.GroupRegistryGroupAdded)
+	WithdrawRequested = make(chan *abi.ReceiptControllerWithdrawRequested)
+)
 
-var ChainID int64
-
-func initContracts() error {
-	client, err := ethclient.Dial(config.C.EthClient.HttpUrl)
-	if err != nil {
-		return err
-	}
-
+func initContracts(client *ethclient.Client) error {
+	var err error
 	GroupRegistry, err = abi.NewGroupRegistryCaller(common.HexToAddress(config.C.Contract.GroupRegistry), client)
 	if err != nil {
 		return err
@@ -48,22 +49,45 @@ func initContracts() error {
 	return nil
 }
 
-func subscribeEvents() error {
+func subscribe(createFn func() (event.Subscription, error)) {
+	for {
+		sub, err := createFn()
+		if err != nil {
+			log.Print(err)
+		} else {
+			err = <-sub.Err()
+			sub.Unsubscribe()
+			log.Print("subscription error: ", err)
+		}
+		time.Sleep(time.Second * 10)
+	}
+}
+
+func subscribeEvents(client *ethclient.Client) {
+	go subscribe(func() (event.Subscription, error) {
+		filter, err := abi.NewReceiptControllerFilterer(common.HexToAddress(config.C.Contract.ReceiptController), client)
+		if err != nil {
+			return nil, err
+		}
+		return filter.WatchWithdrawRequested(nil, WithdrawRequested, nil)
+	})
+	go subscribe(func() (event.Subscription, error) {
+		filter, err := abi.NewGroupRegistryFilterer(common.HexToAddress(config.C.Contract.GroupRegistry), client)
+		if err != nil {
+			return nil, err
+		}
+		return filter.WatchGroupAdded(nil, GroupAdded, nil)
+	})
+}
+
+func Init() error {
 	client, err := ethclient.Dial(config.C.EthClient.WssUrl)
 	if err != nil {
 		return err
 	}
-
-	// client.SubscribeFilterLogs()
-
-	defer client.Close()
-
-	return nil
-}
-
-func Init() error {
-	if err := initContracts(); err != nil {
+	if err := initContracts(client); err != nil {
 		return err
 	}
-	return subscribeEvents()
+	subscribeEvents(client)
+	return nil
 }
