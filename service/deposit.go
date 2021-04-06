@@ -3,6 +3,7 @@ package service
 import (
 	"log"
 	"math/big"
+	"sort"
 	"strconv"
 
 	"github.com/decus-io/decus-keeper-client/btc"
@@ -65,6 +66,12 @@ func (s *Deposit) ProcessDeposit(opts *bind.CallOpts, groupId *big.Int, receiptI
 	if err != nil {
 		return err
 	}
+	// reduce the chance that different keepers select different utxo
+	// (normally there won't be multiple utxo)
+	sort.Slice(utxo, func(i, j int) bool {
+		return utxo[i].Status.Block_Height < utxo[j].Status.Block_Height
+	})
+
 	amount, err := contract.ReceiptController.GetAmountInSatoshi(opts, receiptId)
 	if err != nil {
 		return err
@@ -75,7 +82,7 @@ func (s *Deposit) ProcessDeposit(opts *bind.CallOpts, groupId *big.Int, receiptI
 				return err
 			}
 			s.signed[receiptId.Int64()] = true
-			log.Print("deposit signed: ", receiptId)
+			log.Print("deposit signed: ", receiptId, " txid: ", v.Txid)
 			return nil
 		}
 	}
