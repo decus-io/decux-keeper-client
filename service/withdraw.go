@@ -66,44 +66,6 @@ func (s *Withdraw) ProcessWithdraw(opts *bind.CallOpts, groupId *big.Int, receip
 
 func (s *Withdraw) processWithdrawImpl(withdraw *message.Withdraw) error {
 	return db.Transaction(context.Background(), func(ctx context.Context, db *gorm.DB) error {
-		/*
-				gkd, err := dao.NewGroupKeeperDao(db)
-				if err != nil {
-					return err
-				}
-				inGroup, err := gkd.CheckInGroup(uint(withdraw.GroupId), config.C.Keeper.Id)
-				if err != nil {
-					return err
-				}
-				if !inGroup {
-					return nil
-				}
-
-			wd, err := dao.NewWithdrawDao(db)
-			if err != nil {
-				return err
-			}
-			inWithdraw, err := wd.Get(uint(withdraw.ReceiptId))
-			if err != nil {
-				if err != gorm.ErrRecordNotFound {
-					return err
-				}
-			}
-			if inWithdraw != nil {
-				return nil
-			}
-
-			gd, err := dao.NewGroupDao(db)
-			if err != nil {
-				return err
-			}
-			group, err := gd.Get(uint(withdraw.GroupId))
-			if err != nil {
-				return err
-			}
-			redeemScript, _ := hex.DecodeString(group.RedeemScript)
-		*/
-
 		// TODO: need verification ?
 		paymentRaw, err := hex.DecodeString(withdraw.PaymentRaw)
 		if err != nil {
@@ -134,15 +96,5 @@ func (s *Withdraw) processWithdrawImpl(withdraw *message.Withdraw) error {
 			},
 		}
 		return coordinator.SendOperation(op, nil)
-
-		/*
-			_, err = wd.Create(&dao.Withdraw{
-				Common:    dao.Common{Id: uint(withdraw.ReceiptId)},
-				GroupId:   uint(withdraw.GroupId),
-				Recipient: withdraw.Recipient,
-				Amount:    withdraw.Amount,
-			})
-			return err
-		*/
 	})
 }
