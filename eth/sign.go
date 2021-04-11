@@ -61,7 +61,7 @@ func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Byt
 	domainStandard := core.TypedDataDomain{
 		Name:              "DeCus",
 		Version:           "1.0",
-		ChainId:           math.NewHexOrDecimal256(contract.ChainID),
+		ChainId:           math.NewHexOrDecimal256(contract.ChainId),
 		VerifyingContract: config.C.Contract.DeCusSystem,
 		Salt:              "",
 	}

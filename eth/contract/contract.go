@@ -17,7 +17,7 @@ var (
 	KeeperRegistry    *abi.KeeperRegistryCaller
 	ReceiptController *abi.ReceiptControllerCaller
 
-	ChainID int64
+	ChainId int64
 
 	GroupAdded        = make(chan *abi.GroupRegistryGroupAdded)
 	WithdrawRequested = make(chan *abi.ReceiptControllerWithdrawRequested)
@@ -38,13 +38,6 @@ func initContracts(client *ethclient.Client) error {
 	if err != nil {
 		return err
 	}
-
-	id, err := client.NetworkID(context.Background())
-	if err != nil {
-		return err
-	}
-	ChainID = id.Int64()
-	log.Print("chain id: ", ChainID)
 
 	return nil
 }
@@ -85,6 +78,14 @@ func Init() error {
 	if err != nil {
 		return err
 	}
+
+	id, err := client.NetworkID(context.Background())
+	if err != nil {
+		return err
+	}
+	ChainId = id.Int64()
+	log.Print("chain id: ", ChainId)
+
 	if err := initContracts(client); err != nil {
 		return err
 	}

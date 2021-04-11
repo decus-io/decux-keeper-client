@@ -27,7 +27,7 @@ type Config struct {
 		Url string `yaml:"url"`
 	} `yaml:"coordinator"`
 	EthClient struct {
-		WssUrl  string `yaml:"wss_url"`
+		WssUrl string `yaml:"wss_url"`
 	} `yaml:"ethclient"`
 	BtcEsplora struct {
 		Url string `yaml:"url"`
@@ -46,7 +46,7 @@ func Init() error {
 		return err
 	}
 
-	if err := yaml.Unmarshal(fb, &C); err != nil {
+	if err := yaml.UnmarshalStrict(fb, &C); err != nil {
 		return err
 	}
 
