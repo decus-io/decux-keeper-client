@@ -12,6 +12,7 @@ import (
 	"github.com/decus-io/decus-keeper-client/coordinator"
 	"github.com/decus-io/decus-keeper-client/db"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
+	"github.com/decus-io/decus-keeper-client/service/helper"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"gorm.io/gorm"
@@ -29,6 +30,16 @@ func NewWithdraw() *Withdraw {
 
 func (s *Withdraw) ProcessWithdraw(opts *bind.CallOpts, groupId *big.Int, receiptId *big.Int) error {
 	if s.signed[receiptId.Int64()] {
+		return nil
+	}
+
+	utxo, err := helper.FindUtxo(opts, groupId, receiptId)
+	if err != nil {
+		return err
+	}
+	if utxo == nil {
+		s.signed[receiptId.Int64()] = true
+		log.Print("withdrawing should have been finished for uxto not found: ", receiptId)
 		return nil
 	}
 

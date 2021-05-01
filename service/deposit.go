@@ -3,13 +3,13 @@ package service
 import (
 	"log"
 	"math/big"
-	"sort"
 	"strconv"
 
 	"github.com/decus-io/decus-keeper-client/btc"
 	"github.com/decus-io/decus-keeper-client/coordinator"
 	"github.com/decus-io/decus-keeper-client/eth"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
+	"github.com/decus-io/decus-keeper-client/service/helper"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
@@ -57,35 +57,16 @@ func (s *Deposit) ProcessDeposit(opts *bind.CallOpts, groupId *big.Int, receiptI
 		return nil
 	}
 
-	// TODO: cache the address
-	groupInfo, err := contract.GroupRegistry.GetGroupInfo(opts, groupId)
+	utxo, err := helper.FindUtxo(opts, groupId, receiptId)
 	if err != nil {
 		return err
 	}
-	utxo, err := btc.QueryUtxo(groupInfo.BtcAddress)
-	if err != nil {
-		return err
-	}
-	// reduce the chance that different keepers select different utxo
-	// (normally there won't be multiple utxo)
-	sort.Slice(utxo, func(i, j int) bool {
-		return utxo[i].Status.Block_Height < utxo[j].Status.Block_Height
-	})
 
-	amount, err := contract.ReceiptController.GetAmountInSatoshi(opts, receiptId)
-	if err != nil {
+	if err := s.signDeposit(opts, groupId, receiptId, utxo); err != nil {
 		return err
 	}
-	for _, v := range utxo {
-		if v.Status.Confirmed && v.Value == amount.Uint64() {
-			if err := s.signDeposit(opts, groupId, receiptId, &v); err != nil {
-				return err
-			}
-			s.signed[receiptId.Int64()] = true
-			log.Print("deposit signed: ", receiptId, " txid: ", v.Txid)
-			return nil
-		}
-	}
+	s.signed[receiptId.Int64()] = true
+	log.Print("deposit signed: ", receiptId, " txid: ", utxo.Txid)
 
 	return nil
 }

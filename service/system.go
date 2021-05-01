@@ -7,6 +7,8 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/decus-io/decus-keeper-client/config"
+	"github.com/decus-io/decus-keeper-client/eth/abi"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
@@ -79,10 +81,21 @@ func (s *System) checkAllReceipt() {
 	}
 }
 
+func (s *System) onGroupAdded(event *abi.GroupRegistryGroupAdded) {
+	log.Print("event GroupAdded: ", event.Id)
+
+	for _, keeperId := range event.Keepers {
+		if keeperId == config.C.Keeper.Id {
+			s.syncGroups()
+			return
+		}
+	}
+}
+
 func (s *System) Run() {
 	heartbeatTicker := time.NewTicker(time.Minute * 2)
 	syncGroupTicker := time.NewTicker(time.Minute * 10)
-	checkReceiptTicker := time.NewTicker(time.Minute * 10)
+	checkReceiptTicker := time.NewTicker(time.Minute * 5)
 
 	s.syncGroups()
 
@@ -90,17 +103,17 @@ func (s *System) Run() {
 		select {
 		case <-heartbeatTicker.C:
 			if err := s.keeperService.Heartbeat(); err != nil {
-				log.Print("send heart error: ", err) // TODO: use level based logging
+				log.Print("send heartbeat error: ", err) // TODO: use level based logging
 			}
 		case <-syncGroupTicker.C:
 			s.syncGroups()
 		case <-checkReceiptTicker.C:
 			s.checkAllReceipt()
-		case groupAdded := <-contract.GroupAdded:
-			log.Print("event GroupAdded: ", groupAdded.Id)
-			s.syncGroups()
-		case withdrawReqeusted := <-contract.WithdrawRequested:
-			log.Print("event WithdrawRequested: ", withdrawReqeusted.ReceiptId)
+		case event := <-contract.GroupAdded:
+			s.onGroupAdded(event)
+		// TODO: WithdrawRequested should provide GroupId
+		case event := <-contract.WithdrawRequested:
+			log.Print("event WithdrawRequested: ", event.ReceiptId)
 			s.checkAllReceipt()
 		}
 	}
