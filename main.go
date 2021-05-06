@@ -5,7 +5,6 @@ import (
 	"log"
 
 	"github.com/decus-io/decus-keeper-client/config"
-	"github.com/decus-io/decus-keeper-client/db"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
 	"github.com/decus-io/decus-keeper-client/service"
 )
@@ -13,9 +12,6 @@ import (
 func run() error {
 	if err := config.Init(); err != nil {
 		return fmt.Errorf("init config error: %v", err)
-	}
-	if err := db.ConnectDatabase(); err != nil {
-		return fmt.Errorf("connect database error: %v", err)
 	}
 	if err := contract.Init(); err != nil {
 		return fmt.Errorf("init contract error: %v", err)
@@ -30,19 +26,6 @@ func run() error {
 
 	system.Run()
 	return nil
-
-	/*
-		withdrawService := service.NewWithdraw()
-		go func() {
-			for {
-				if err := withdrawService.CheckNewWithdraw(); err != nil {
-					log.Printf("check withdraw error: %v", err)
-				}
-				time.Sleep(time.Minute)
-			}
-		}()
-	*/
-
 }
 
 func main() {
