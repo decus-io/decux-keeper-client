@@ -2,6 +2,7 @@ package contract
 
 import (
 	"context"
+	"errors"
 	"log"
 	"time"
 
@@ -89,6 +90,15 @@ func Init() error {
 	if err := initContracts(client); err != nil {
 		return err
 	}
+
+	exist, err := KeeperRegistry.Exist(nil, config.C.Keeper.Id)
+	if err != nil {
+		return err
+	}
+	if !exist {
+		return errors.New("keeper not exist: " + config.C.Keeper.Id.Hex())
+	}
+
 	subscribeEvents(client)
 	return nil
 }
