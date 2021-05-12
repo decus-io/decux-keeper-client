@@ -1,21 +1,14 @@
 package helper
 
 import (
-	"math/big"
 	"sort"
 
 	"github.com/decus-io/decus-keeper-client/btc"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 
-func FindUtxo(opts *bind.CallOpts, groupId *big.Int, receiptId *big.Int) (*btc.Utxo, error) {
-	// TODO: cache the address
-	groupInfo, err := contract.GroupRegistry.GetGroupInfo(opts, groupId)
-	if err != nil {
-		return nil, err
-	}
-	utxo, err := btc.QueryUtxo(groupInfo.BtcAddress)
+func FindUtxo(receipt *contract.Receipt) (*btc.Utxo, error) {
+	utxo, err := btc.QueryUtxo(receipt.GroupBtcAddress)
 	if err != nil {
 		return nil, err
 	}
@@ -25,12 +18,10 @@ func FindUtxo(opts *bind.CallOpts, groupId *big.Int, receiptId *big.Int) (*btc.U
 		return utxo[i].Status.Block_Height < utxo[j].Status.Block_Height
 	})
 
-	amount, err := contract.ReceiptController.GetAmountInSatoshi(opts, receiptId)
-	if err != nil {
-		return nil, err
-	}
 	for _, v := range utxo {
-		if v.Status.Confirmed && v.Value == amount.Uint64() {
+		if v.Status.Confirmed &&
+			v.Value == receipt.AmountInSatoshi.Uint64() &&
+			v.Status.Block_Time > receipt.CreateTimestamp.Uint64() {
 			return &v, nil
 		}
 	}

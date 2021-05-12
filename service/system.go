@@ -2,12 +2,11 @@ package service
 
 import (
 	"context"
+	"encoding/hex"
 	"fmt"
 	"log"
-	"math/big"
 	"time"
 
-	"github.com/decus-io/decus-keeper-client/config"
 	"github.com/decus-io/decus-keeper-client/eth/abi"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
@@ -41,80 +40,78 @@ func (s *System) makeCallOpts() (*bind.CallOpts, context.CancelFunc) {
 	return &bind.CallOpts{Context: ctx}, cancel
 }
 
-func (s *System) syncGroups() {
-	opts, cancel := s.makeCallOpts()
-	defer cancel()
-
-	if err := s.groupService.SyncGroups(opts); err != nil {
-		log.Print("sync groups error: ", err)
-	}
+func (s *System) receiptIdToString(receiptId [32]byte) string {
+	return "0x" + hex.EncodeToString(receiptId[:])
 }
 
-func (s *System) checkReceipt(groupId *big.Int) error {
+func (s *System) checkReceipt(groupId string) error {
 	opts, cancel := s.makeCallOpts()
 	defer cancel()
 
-	receiptId, err := contract.ReceiptController.GetWorkingReceiptId(opts, groupId)
+	_, _, _, receiptId, err := contract.DeCusSystem.GetGroup(opts, groupId)
 	if err != nil {
 		return err
 	}
-	receiptStatus, err := contract.ReceiptController.GetReceiptStatus(opts, receiptId)
-	if err != nil {
+	if receiptId == [32]byte{} {
+		return nil
+	}
+	receipt := contract.Receipt{ReceiptId: s.receiptIdToString(receiptId)}
+	if receipt.IDeCusSystemReceipt, err = contract.DeCusSystem.GetReceipt(opts, receiptId); err != nil {
 		return err
 	}
 
-	status := int(receiptStatus.Int64())
-	if status == DepositRequested {
-		return s.depositService.ProcessDeposit(opts, groupId, receiptId)
-	} else if status == WithdrawRequested {
-		return s.withdrawService.ProcessWithdraw(opts, groupId, receiptId)
+	if receipt.Status == contract.DepositRequested {
+		return s.depositService.ProcessDeposit(&receipt)
+	} else if receipt.Status == contract.WithdrawRequested {
+		return s.withdrawService.ProcessWithdraw(&receipt)
 	}
 
 	return nil
 }
 
 func (s *System) checkAllReceipt() {
-	for _, groupId := range s.groupService.Groups {
+	for groupId := range s.groupService.Groups {
 		if err := s.checkReceipt(groupId); err != nil {
 			log.Print("check receipt error: ", err)
 		}
 	}
 }
 
-func (s *System) onGroupAdded(event *abi.GroupRegistryGroupAdded) {
-	log.Print("event GroupAdded: ", event.Id)
+func (s *System) onBurnRequested(event *abi.DeCusSystemBurnRequested) error {
+	opts, cancel := s.makeCallOpts()
+	defer cancel()
 
-	for _, keeperId := range event.Keepers {
-		if keeperId == config.C.Keeper.Id {
-			s.syncGroups()
-			return
-		}
+	receipt, err := contract.DeCusSystem.GetReceipt(opts, event.ReceiptId)
+	if err != nil {
+		return err
 	}
+	if s.groupService.Groups[receipt.GroupBtcAddress] {
+		log.Print("event BurnRequested: ", s.receiptIdToString(event.ReceiptId))
+		return s.checkReceipt(receipt.GroupBtcAddress)
+	}
+	return nil
 }
 
 func (s *System) Run() {
 	heartbeatTicker := time.NewTicker(time.Minute * 2)
-	syncGroupTicker := time.NewTicker(time.Minute * 10)
 	checkReceiptTicker := time.NewTicker(time.Minute * 5)
-
-	s.syncGroups()
 
 	for {
 		select {
 		case <-heartbeatTicker.C:
 			if err := s.keeperService.Heartbeat(); err != nil {
-				log.Print("send heartbeat error: ", err) // TODO: use level based logging
+				log.Print("error sending heartbeat: ", err)
 			}
-		case <-syncGroupTicker.C:
-			s.syncGroups()
 		case <-checkReceiptTicker.C:
 			s.checkAllReceipt()
 		case event := <-contract.GroupAdded:
-			s.onGroupAdded(event)
-		// TODO: WithdrawRequested should provide GroupId
-		case event := <-contract.WithdrawRequested:
-			log.Print("event WithdrawRequested: ", event.ReceiptId)
-			s.checkAllReceipt()
+			s.groupService.OnGroupAdded(event)
+		case event := <-contract.GroupDeleted:
+			s.groupService.OnGroupDeleted(event)
+		case event := <-contract.BurnRequested:
+			if err := s.onBurnRequested(event); err != nil {
+				log.Print("error handling BurnRequested: ", err)
+			}
 		}
 	}
 }

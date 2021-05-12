@@ -27,7 +27,7 @@ var (
 )
 
 // KeeperRegistryABI is the input ABI used to generate the binding from.
-const KeeperRegistryABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"meta\",\"type\":\"address\"}],\"name\":\"DependenciesSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"btc\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"amount\",\"type\":\"uint256[]\"}],\"name\":\"KeeperAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"KeeperDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"assets\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"keeper_amounts\",\"type\":\"uint256[]\"}],\"name\":\"KeeperImported\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_keeper\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"_assets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_amounts\",\"type\":\"uint256[]\"}],\"name\":\"addKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"asset_meta\",\"outputs\":[{\"internalType\":\"contractAssetMeta\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_keeper\",\"type\":\"address\"}],\"name\":\"deleteKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_keeper\",\"type\":\"address\"}],\"name\":\"exist\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"_assets\",\"type\":\"address[]\"},{\"internalType\":\"address[]\",\"name\":\"_keepers\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_keeper_amounts\",\"type\":\"uint256[]\"}],\"name\":\"importKeepers\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractAssetMeta\",\"name\":\"_meta\",\"type\":\"address\"}],\"name\":\"setDependencies\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const KeeperRegistryABI = "[{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_assets\",\"type\":\"address[]\"},{\"internalType\":\"address\",\"name\":\"_eBTC\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"AssetAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"treasury\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Confiscated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"KeeperAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"KeeperDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"assets\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256[][]\",\"name\":\"keeperAmounts\",\"type\":\"uint256[][]\"}],\"name\":\"KeeperImported\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousTreasury\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newTreasury\",\"type\":\"address\"}],\"name\":\"TreasuryTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"addAsset\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"addKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"collaterals\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"assets\",\"type\":\"address[]\"}],\"name\":\"confiscate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"confiscations\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"deleteKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eBTC\",\"outputs\":[{\"internalType\":\"contractIEBTC\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCollateralValue\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"ebtcAmount\",\"type\":\"uint256\"}],\"name\":\"offsetOverissue\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"overissuedTotal\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"perUserCollateral\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"uint256\",\"name\":\"overissuedAmount\",\"type\":\"uint256\"}],\"name\":\"punishKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"treasury\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newTreasury\",\"type\":\"address\"}],\"name\":\"updateTreasury\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // KeeperRegistry is an auto generated Go binding around an Ethereum contract.
 type KeeperRegistry struct {
@@ -171,198 +171,12 @@ func (_KeeperRegistry *KeeperRegistryTransactorRaw) Transact(opts *bind.Transact
 	return _KeeperRegistry.Contract.contract.Transact(opts, method, params...)
 }
 
-// DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
+// Collaterals is a free data retrieval call binding the contract method 0xe51e119e.
 //
-// Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistryCaller) DEFAULTADMINROLE(opts *bind.CallOpts) ([32]byte, error) {
+// Solidity: function collaterals(address , address ) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistryCaller) Collaterals(opts *bind.CallOpts, arg0 common.Address, arg1 common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "DEFAULT_ADMIN_ROLE")
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
-//
-// Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistrySession) DEFAULTADMINROLE() ([32]byte, error) {
-	return _KeeperRegistry.Contract.DEFAULTADMINROLE(&_KeeperRegistry.CallOpts)
-}
-
-// DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
-//
-// Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistryCallerSession) DEFAULTADMINROLE() ([32]byte, error) {
-	return _KeeperRegistry.Contract.DEFAULTADMINROLE(&_KeeperRegistry.CallOpts)
-}
-
-// KEEPERADMINROLE is a free data retrieval call binding the contract method 0xf419c26d.
-//
-// Solidity: function KEEPER_ADMIN_ROLE() view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistryCaller) KEEPERADMINROLE(opts *bind.CallOpts) ([32]byte, error) {
-	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "KEEPER_ADMIN_ROLE")
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// KEEPERADMINROLE is a free data retrieval call binding the contract method 0xf419c26d.
-//
-// Solidity: function KEEPER_ADMIN_ROLE() view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistrySession) KEEPERADMINROLE() ([32]byte, error) {
-	return _KeeperRegistry.Contract.KEEPERADMINROLE(&_KeeperRegistry.CallOpts)
-}
-
-// KEEPERADMINROLE is a free data retrieval call binding the contract method 0xf419c26d.
-//
-// Solidity: function KEEPER_ADMIN_ROLE() view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistryCallerSession) KEEPERADMINROLE() ([32]byte, error) {
-	return _KeeperRegistry.Contract.KEEPERADMINROLE(&_KeeperRegistry.CallOpts)
-}
-
-// AssetMeta is a free data retrieval call binding the contract method 0xfe2b3de1.
-//
-// Solidity: function asset_meta() view returns(address)
-func (_KeeperRegistry *KeeperRegistryCaller) AssetMeta(opts *bind.CallOpts) (common.Address, error) {
-	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "asset_meta")
-
-	if err != nil {
-		return *new(common.Address), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-
-	return out0, err
-
-}
-
-// AssetMeta is a free data retrieval call binding the contract method 0xfe2b3de1.
-//
-// Solidity: function asset_meta() view returns(address)
-func (_KeeperRegistry *KeeperRegistrySession) AssetMeta() (common.Address, error) {
-	return _KeeperRegistry.Contract.AssetMeta(&_KeeperRegistry.CallOpts)
-}
-
-// AssetMeta is a free data retrieval call binding the contract method 0xfe2b3de1.
-//
-// Solidity: function asset_meta() view returns(address)
-func (_KeeperRegistry *KeeperRegistryCallerSession) AssetMeta() (common.Address, error) {
-	return _KeeperRegistry.Contract.AssetMeta(&_KeeperRegistry.CallOpts)
-}
-
-// Exist is a free data retrieval call binding the contract method 0x4dfefc4b.
-//
-// Solidity: function exist(address _keeper) view returns(bool)
-func (_KeeperRegistry *KeeperRegistryCaller) Exist(opts *bind.CallOpts, _keeper common.Address) (bool, error) {
-	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "exist", _keeper)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// Exist is a free data retrieval call binding the contract method 0x4dfefc4b.
-//
-// Solidity: function exist(address _keeper) view returns(bool)
-func (_KeeperRegistry *KeeperRegistrySession) Exist(_keeper common.Address) (bool, error) {
-	return _KeeperRegistry.Contract.Exist(&_KeeperRegistry.CallOpts, _keeper)
-}
-
-// Exist is a free data retrieval call binding the contract method 0x4dfefc4b.
-//
-// Solidity: function exist(address _keeper) view returns(bool)
-func (_KeeperRegistry *KeeperRegistryCallerSession) Exist(_keeper common.Address) (bool, error) {
-	return _KeeperRegistry.Contract.Exist(&_KeeperRegistry.CallOpts, _keeper)
-}
-
-// GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
-//
-// Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistryCaller) GetRoleAdmin(opts *bind.CallOpts, role [32]byte) ([32]byte, error) {
-	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "getRoleAdmin", role)
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
-//
-// Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistrySession) GetRoleAdmin(role [32]byte) ([32]byte, error) {
-	return _KeeperRegistry.Contract.GetRoleAdmin(&_KeeperRegistry.CallOpts, role)
-}
-
-// GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
-//
-// Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
-func (_KeeperRegistry *KeeperRegistryCallerSession) GetRoleAdmin(role [32]byte) ([32]byte, error) {
-	return _KeeperRegistry.Contract.GetRoleAdmin(&_KeeperRegistry.CallOpts, role)
-}
-
-// GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
-//
-// Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
-func (_KeeperRegistry *KeeperRegistryCaller) GetRoleMember(opts *bind.CallOpts, role [32]byte, index *big.Int) (common.Address, error) {
-	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "getRoleMember", role, index)
-
-	if err != nil {
-		return *new(common.Address), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-
-	return out0, err
-
-}
-
-// GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
-//
-// Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
-func (_KeeperRegistry *KeeperRegistrySession) GetRoleMember(role [32]byte, index *big.Int) (common.Address, error) {
-	return _KeeperRegistry.Contract.GetRoleMember(&_KeeperRegistry.CallOpts, role, index)
-}
-
-// GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
-//
-// Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
-func (_KeeperRegistry *KeeperRegistryCallerSession) GetRoleMember(role [32]byte, index *big.Int) (common.Address, error) {
-	return _KeeperRegistry.Contract.GetRoleMember(&_KeeperRegistry.CallOpts, role, index)
-}
-
-// GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
-//
-// Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
-func (_KeeperRegistry *KeeperRegistryCaller) GetRoleMemberCount(opts *bind.CallOpts, role [32]byte) (*big.Int, error) {
-	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "getRoleMemberCount", role)
+	err := _KeeperRegistry.contract.Call(opts, &out, "collaterals", arg0, arg1)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -374,201 +188,429 @@ func (_KeeperRegistry *KeeperRegistryCaller) GetRoleMemberCount(opts *bind.CallO
 
 }
 
-// GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
+// Collaterals is a free data retrieval call binding the contract method 0xe51e119e.
 //
-// Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
-func (_KeeperRegistry *KeeperRegistrySession) GetRoleMemberCount(role [32]byte) (*big.Int, error) {
-	return _KeeperRegistry.Contract.GetRoleMemberCount(&_KeeperRegistry.CallOpts, role)
+// Solidity: function collaterals(address , address ) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistrySession) Collaterals(arg0 common.Address, arg1 common.Address) (*big.Int, error) {
+	return _KeeperRegistry.Contract.Collaterals(&_KeeperRegistry.CallOpts, arg0, arg1)
 }
 
-// GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
+// Collaterals is a free data retrieval call binding the contract method 0xe51e119e.
 //
-// Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
-func (_KeeperRegistry *KeeperRegistryCallerSession) GetRoleMemberCount(role [32]byte) (*big.Int, error) {
-	return _KeeperRegistry.Contract.GetRoleMemberCount(&_KeeperRegistry.CallOpts, role)
+// Solidity: function collaterals(address , address ) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistryCallerSession) Collaterals(arg0 common.Address, arg1 common.Address) (*big.Int, error) {
+	return _KeeperRegistry.Contract.Collaterals(&_KeeperRegistry.CallOpts, arg0, arg1)
 }
 
-// HasRole is a free data retrieval call binding the contract method 0x91d14854.
+// Confiscations is a free data retrieval call binding the contract method 0x1df398a2.
 //
-// Solidity: function hasRole(bytes32 role, address account) view returns(bool)
-func (_KeeperRegistry *KeeperRegistryCaller) HasRole(opts *bind.CallOpts, role [32]byte, account common.Address) (bool, error) {
+// Solidity: function confiscations(address ) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistryCaller) Confiscations(opts *bind.CallOpts, arg0 common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "hasRole", role, account)
+	err := _KeeperRegistry.contract.Call(opts, &out, "confiscations", arg0)
 
 	if err != nil {
-		return *new(bool), err
+		return *new(*big.Int), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
 
 	return out0, err
 
 }
 
-// HasRole is a free data retrieval call binding the contract method 0x91d14854.
+// Confiscations is a free data retrieval call binding the contract method 0x1df398a2.
 //
-// Solidity: function hasRole(bytes32 role, address account) view returns(bool)
-func (_KeeperRegistry *KeeperRegistrySession) HasRole(role [32]byte, account common.Address) (bool, error) {
-	return _KeeperRegistry.Contract.HasRole(&_KeeperRegistry.CallOpts, role, account)
+// Solidity: function confiscations(address ) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistrySession) Confiscations(arg0 common.Address) (*big.Int, error) {
+	return _KeeperRegistry.Contract.Confiscations(&_KeeperRegistry.CallOpts, arg0)
 }
 
-// HasRole is a free data retrieval call binding the contract method 0x91d14854.
+// Confiscations is a free data retrieval call binding the contract method 0x1df398a2.
 //
-// Solidity: function hasRole(bytes32 role, address account) view returns(bool)
-func (_KeeperRegistry *KeeperRegistryCallerSession) HasRole(role [32]byte, account common.Address) (bool, error) {
-	return _KeeperRegistry.Contract.HasRole(&_KeeperRegistry.CallOpts, role, account)
+// Solidity: function confiscations(address ) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistryCallerSession) Confiscations(arg0 common.Address) (*big.Int, error) {
+	return _KeeperRegistry.Contract.Confiscations(&_KeeperRegistry.CallOpts, arg0)
 }
 
-// AddKeeper is a paid mutator transaction binding the contract method 0x4842c7a1.
+// EBTC is a free data retrieval call binding the contract method 0x5f447e04.
 //
-// Solidity: function addKeeper(address _keeper, address[] _assets, uint256[] _amounts) returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) AddKeeper(opts *bind.TransactOpts, _keeper common.Address, _assets []common.Address, _amounts []*big.Int) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "addKeeper", _keeper, _assets, _amounts)
+// Solidity: function eBTC() view returns(address)
+func (_KeeperRegistry *KeeperRegistryCaller) EBTC(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _KeeperRegistry.contract.Call(opts, &out, "eBTC")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
-// AddKeeper is a paid mutator transaction binding the contract method 0x4842c7a1.
+// EBTC is a free data retrieval call binding the contract method 0x5f447e04.
 //
-// Solidity: function addKeeper(address _keeper, address[] _assets, uint256[] _amounts) returns()
-func (_KeeperRegistry *KeeperRegistrySession) AddKeeper(_keeper common.Address, _assets []common.Address, _amounts []*big.Int) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.AddKeeper(&_KeeperRegistry.TransactOpts, _keeper, _assets, _amounts)
+// Solidity: function eBTC() view returns(address)
+func (_KeeperRegistry *KeeperRegistrySession) EBTC() (common.Address, error) {
+	return _KeeperRegistry.Contract.EBTC(&_KeeperRegistry.CallOpts)
 }
 
-// AddKeeper is a paid mutator transaction binding the contract method 0x4842c7a1.
+// EBTC is a free data retrieval call binding the contract method 0x5f447e04.
 //
-// Solidity: function addKeeper(address _keeper, address[] _assets, uint256[] _amounts) returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) AddKeeper(_keeper common.Address, _assets []common.Address, _amounts []*big.Int) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.AddKeeper(&_KeeperRegistry.TransactOpts, _keeper, _assets, _amounts)
+// Solidity: function eBTC() view returns(address)
+func (_KeeperRegistry *KeeperRegistryCallerSession) EBTC() (common.Address, error) {
+	return _KeeperRegistry.Contract.EBTC(&_KeeperRegistry.CallOpts)
+}
+
+// GetCollateralValue is a free data retrieval call binding the contract method 0x97904e42.
+//
+// Solidity: function getCollateralValue(address keeper) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistryCaller) GetCollateralValue(opts *bind.CallOpts, keeper common.Address) (*big.Int, error) {
+	var out []interface{}
+	err := _KeeperRegistry.contract.Call(opts, &out, "getCollateralValue", keeper)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GetCollateralValue is a free data retrieval call binding the contract method 0x97904e42.
+//
+// Solidity: function getCollateralValue(address keeper) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistrySession) GetCollateralValue(keeper common.Address) (*big.Int, error) {
+	return _KeeperRegistry.Contract.GetCollateralValue(&_KeeperRegistry.CallOpts, keeper)
+}
+
+// GetCollateralValue is a free data retrieval call binding the contract method 0x97904e42.
+//
+// Solidity: function getCollateralValue(address keeper) view returns(uint256)
+func (_KeeperRegistry *KeeperRegistryCallerSession) GetCollateralValue(keeper common.Address) (*big.Int, error) {
+	return _KeeperRegistry.Contract.GetCollateralValue(&_KeeperRegistry.CallOpts, keeper)
+}
+
+// OverissuedTotal is a free data retrieval call binding the contract method 0xda3f6c24.
+//
+// Solidity: function overissuedTotal() view returns(uint256)
+func (_KeeperRegistry *KeeperRegistryCaller) OverissuedTotal(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _KeeperRegistry.contract.Call(opts, &out, "overissuedTotal")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// OverissuedTotal is a free data retrieval call binding the contract method 0xda3f6c24.
+//
+// Solidity: function overissuedTotal() view returns(uint256)
+func (_KeeperRegistry *KeeperRegistrySession) OverissuedTotal() (*big.Int, error) {
+	return _KeeperRegistry.Contract.OverissuedTotal(&_KeeperRegistry.CallOpts)
+}
+
+// OverissuedTotal is a free data retrieval call binding the contract method 0xda3f6c24.
+//
+// Solidity: function overissuedTotal() view returns(uint256)
+func (_KeeperRegistry *KeeperRegistryCallerSession) OverissuedTotal() (*big.Int, error) {
+	return _KeeperRegistry.Contract.OverissuedTotal(&_KeeperRegistry.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_KeeperRegistry *KeeperRegistryCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _KeeperRegistry.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_KeeperRegistry *KeeperRegistrySession) Owner() (common.Address, error) {
+	return _KeeperRegistry.Contract.Owner(&_KeeperRegistry.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_KeeperRegistry *KeeperRegistryCallerSession) Owner() (common.Address, error) {
+	return _KeeperRegistry.Contract.Owner(&_KeeperRegistry.CallOpts)
+}
+
+// PerUserCollateral is a free data retrieval call binding the contract method 0xd209793b.
+//
+// Solidity: function perUserCollateral(address ) view returns(address)
+func (_KeeperRegistry *KeeperRegistryCaller) PerUserCollateral(opts *bind.CallOpts, arg0 common.Address) (common.Address, error) {
+	var out []interface{}
+	err := _KeeperRegistry.contract.Call(opts, &out, "perUserCollateral", arg0)
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// PerUserCollateral is a free data retrieval call binding the contract method 0xd209793b.
+//
+// Solidity: function perUserCollateral(address ) view returns(address)
+func (_KeeperRegistry *KeeperRegistrySession) PerUserCollateral(arg0 common.Address) (common.Address, error) {
+	return _KeeperRegistry.Contract.PerUserCollateral(&_KeeperRegistry.CallOpts, arg0)
+}
+
+// PerUserCollateral is a free data retrieval call binding the contract method 0xd209793b.
+//
+// Solidity: function perUserCollateral(address ) view returns(address)
+func (_KeeperRegistry *KeeperRegistryCallerSession) PerUserCollateral(arg0 common.Address) (common.Address, error) {
+	return _KeeperRegistry.Contract.PerUserCollateral(&_KeeperRegistry.CallOpts, arg0)
+}
+
+// Treasury is a free data retrieval call binding the contract method 0x61d027b3.
+//
+// Solidity: function treasury() view returns(address)
+func (_KeeperRegistry *KeeperRegistryCaller) Treasury(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _KeeperRegistry.contract.Call(opts, &out, "treasury")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Treasury is a free data retrieval call binding the contract method 0x61d027b3.
+//
+// Solidity: function treasury() view returns(address)
+func (_KeeperRegistry *KeeperRegistrySession) Treasury() (common.Address, error) {
+	return _KeeperRegistry.Contract.Treasury(&_KeeperRegistry.CallOpts)
+}
+
+// Treasury is a free data retrieval call binding the contract method 0x61d027b3.
+//
+// Solidity: function treasury() view returns(address)
+func (_KeeperRegistry *KeeperRegistryCallerSession) Treasury() (common.Address, error) {
+	return _KeeperRegistry.Contract.Treasury(&_KeeperRegistry.CallOpts)
+}
+
+// AddAsset is a paid mutator transaction binding the contract method 0x298410e5.
+//
+// Solidity: function addAsset(address asset) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) AddAsset(opts *bind.TransactOpts, asset common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "addAsset", asset)
+}
+
+// AddAsset is a paid mutator transaction binding the contract method 0x298410e5.
+//
+// Solidity: function addAsset(address asset) returns()
+func (_KeeperRegistry *KeeperRegistrySession) AddAsset(asset common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.AddAsset(&_KeeperRegistry.TransactOpts, asset)
+}
+
+// AddAsset is a paid mutator transaction binding the contract method 0x298410e5.
+//
+// Solidity: function addAsset(address asset) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) AddAsset(asset common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.AddAsset(&_KeeperRegistry.TransactOpts, asset)
+}
+
+// AddKeeper is a paid mutator transaction binding the contract method 0x5e63edde.
+//
+// Solidity: function addKeeper(address asset, uint256 amount) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) AddKeeper(opts *bind.TransactOpts, asset common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "addKeeper", asset, amount)
+}
+
+// AddKeeper is a paid mutator transaction binding the contract method 0x5e63edde.
+//
+// Solidity: function addKeeper(address asset, uint256 amount) returns()
+func (_KeeperRegistry *KeeperRegistrySession) AddKeeper(asset common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.AddKeeper(&_KeeperRegistry.TransactOpts, asset, amount)
+}
+
+// AddKeeper is a paid mutator transaction binding the contract method 0x5e63edde.
+//
+// Solidity: function addKeeper(address asset, uint256 amount) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) AddKeeper(asset common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.AddKeeper(&_KeeperRegistry.TransactOpts, asset, amount)
+}
+
+// Confiscate is a paid mutator transaction binding the contract method 0x3e7a6823.
+//
+// Solidity: function confiscate(address[] assets) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) Confiscate(opts *bind.TransactOpts, assets []common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "confiscate", assets)
+}
+
+// Confiscate is a paid mutator transaction binding the contract method 0x3e7a6823.
+//
+// Solidity: function confiscate(address[] assets) returns()
+func (_KeeperRegistry *KeeperRegistrySession) Confiscate(assets []common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.Confiscate(&_KeeperRegistry.TransactOpts, assets)
+}
+
+// Confiscate is a paid mutator transaction binding the contract method 0x3e7a6823.
+//
+// Solidity: function confiscate(address[] assets) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) Confiscate(assets []common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.Confiscate(&_KeeperRegistry.TransactOpts, assets)
 }
 
 // DeleteKeeper is a paid mutator transaction binding the contract method 0x71101871.
 //
-// Solidity: function deleteKeeper(address _keeper) returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) DeleteKeeper(opts *bind.TransactOpts, _keeper common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "deleteKeeper", _keeper)
+// Solidity: function deleteKeeper(address keeper) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) DeleteKeeper(opts *bind.TransactOpts, keeper common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "deleteKeeper", keeper)
 }
 
 // DeleteKeeper is a paid mutator transaction binding the contract method 0x71101871.
 //
-// Solidity: function deleteKeeper(address _keeper) returns()
-func (_KeeperRegistry *KeeperRegistrySession) DeleteKeeper(_keeper common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.DeleteKeeper(&_KeeperRegistry.TransactOpts, _keeper)
+// Solidity: function deleteKeeper(address keeper) returns()
+func (_KeeperRegistry *KeeperRegistrySession) DeleteKeeper(keeper common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.DeleteKeeper(&_KeeperRegistry.TransactOpts, keeper)
 }
 
 // DeleteKeeper is a paid mutator transaction binding the contract method 0x71101871.
 //
-// Solidity: function deleteKeeper(address _keeper) returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) DeleteKeeper(_keeper common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.DeleteKeeper(&_KeeperRegistry.TransactOpts, _keeper)
+// Solidity: function deleteKeeper(address keeper) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) DeleteKeeper(keeper common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.DeleteKeeper(&_KeeperRegistry.TransactOpts, keeper)
 }
 
-// GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
+// OffsetOverissue is a paid mutator transaction binding the contract method 0xee529bff.
 //
-// Solidity: function grantRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) GrantRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "grantRole", role, account)
+// Solidity: function offsetOverissue(uint256 ebtcAmount) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) OffsetOverissue(opts *bind.TransactOpts, ebtcAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "offsetOverissue", ebtcAmount)
 }
 
-// GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
+// OffsetOverissue is a paid mutator transaction binding the contract method 0xee529bff.
 //
-// Solidity: function grantRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistrySession) GrantRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.GrantRole(&_KeeperRegistry.TransactOpts, role, account)
+// Solidity: function offsetOverissue(uint256 ebtcAmount) returns()
+func (_KeeperRegistry *KeeperRegistrySession) OffsetOverissue(ebtcAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.OffsetOverissue(&_KeeperRegistry.TransactOpts, ebtcAmount)
 }
 
-// GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
+// OffsetOverissue is a paid mutator transaction binding the contract method 0xee529bff.
 //
-// Solidity: function grantRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) GrantRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.GrantRole(&_KeeperRegistry.TransactOpts, role, account)
+// Solidity: function offsetOverissue(uint256 ebtcAmount) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) OffsetOverissue(ebtcAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.OffsetOverissue(&_KeeperRegistry.TransactOpts, ebtcAmount)
 }
 
-// ImportKeepers is a paid mutator transaction binding the contract method 0x4bffed06.
+// PunishKeeper is a paid mutator transaction binding the contract method 0x68dcc499.
 //
-// Solidity: function importKeepers(address _from, address[] _assets, address[] _keepers, uint256[] _keeper_amounts) returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) ImportKeepers(opts *bind.TransactOpts, _from common.Address, _assets []common.Address, _keepers []common.Address, _keeper_amounts []*big.Int) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "importKeepers", _from, _assets, _keepers, _keeper_amounts)
+// Solidity: function punishKeeper(address[] keepers, uint256 overissuedAmount) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) PunishKeeper(opts *bind.TransactOpts, keepers []common.Address, overissuedAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "punishKeeper", keepers, overissuedAmount)
 }
 
-// ImportKeepers is a paid mutator transaction binding the contract method 0x4bffed06.
+// PunishKeeper is a paid mutator transaction binding the contract method 0x68dcc499.
 //
-// Solidity: function importKeepers(address _from, address[] _assets, address[] _keepers, uint256[] _keeper_amounts) returns()
-func (_KeeperRegistry *KeeperRegistrySession) ImportKeepers(_from common.Address, _assets []common.Address, _keepers []common.Address, _keeper_amounts []*big.Int) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.ImportKeepers(&_KeeperRegistry.TransactOpts, _from, _assets, _keepers, _keeper_amounts)
+// Solidity: function punishKeeper(address[] keepers, uint256 overissuedAmount) returns()
+func (_KeeperRegistry *KeeperRegistrySession) PunishKeeper(keepers []common.Address, overissuedAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.PunishKeeper(&_KeeperRegistry.TransactOpts, keepers, overissuedAmount)
 }
 
-// ImportKeepers is a paid mutator transaction binding the contract method 0x4bffed06.
+// PunishKeeper is a paid mutator transaction binding the contract method 0x68dcc499.
 //
-// Solidity: function importKeepers(address _from, address[] _assets, address[] _keepers, uint256[] _keeper_amounts) returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) ImportKeepers(_from common.Address, _assets []common.Address, _keepers []common.Address, _keeper_amounts []*big.Int) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.ImportKeepers(&_KeeperRegistry.TransactOpts, _from, _assets, _keepers, _keeper_amounts)
+// Solidity: function punishKeeper(address[] keepers, uint256 overissuedAmount) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) PunishKeeper(keepers []common.Address, overissuedAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.PunishKeeper(&_KeeperRegistry.TransactOpts, keepers, overissuedAmount)
 }
 
-// RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
 //
-// Solidity: function renounceRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) RenounceRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "renounceRole", role, account)
+// Solidity: function renounceOwnership() returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "renounceOwnership")
 }
 
-// RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
 //
-// Solidity: function renounceRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistrySession) RenounceRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.RenounceRole(&_KeeperRegistry.TransactOpts, role, account)
+// Solidity: function renounceOwnership() returns()
+func (_KeeperRegistry *KeeperRegistrySession) RenounceOwnership() (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.RenounceOwnership(&_KeeperRegistry.TransactOpts)
 }
 
-// RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
 //
-// Solidity: function renounceRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) RenounceRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.RenounceRole(&_KeeperRegistry.TransactOpts, role, account)
+// Solidity: function renounceOwnership() returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) RenounceOwnership() (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.RenounceOwnership(&_KeeperRegistry.TransactOpts)
 }
 
-// RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
-// Solidity: function revokeRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) RevokeRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "revokeRole", role, account)
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "transferOwnership", newOwner)
 }
 
-// RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
-// Solidity: function revokeRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistrySession) RevokeRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.RevokeRole(&_KeeperRegistry.TransactOpts, role, account)
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_KeeperRegistry *KeeperRegistrySession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.TransferOwnership(&_KeeperRegistry.TransactOpts, newOwner)
 }
 
-// RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
-// Solidity: function revokeRole(bytes32 role, address account) returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) RevokeRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.RevokeRole(&_KeeperRegistry.TransactOpts, role, account)
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.TransferOwnership(&_KeeperRegistry.TransactOpts, newOwner)
 }
 
-// SetDependencies is a paid mutator transaction binding the contract method 0x8389cb18.
+// UpdateTreasury is a paid mutator transaction binding the contract method 0x7f51bb1f.
 //
-// Solidity: function setDependencies(address _meta) returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) SetDependencies(opts *bind.TransactOpts, _meta common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "setDependencies", _meta)
+// Solidity: function updateTreasury(address newTreasury) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) UpdateTreasury(opts *bind.TransactOpts, newTreasury common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "updateTreasury", newTreasury)
 }
 
-// SetDependencies is a paid mutator transaction binding the contract method 0x8389cb18.
+// UpdateTreasury is a paid mutator transaction binding the contract method 0x7f51bb1f.
 //
-// Solidity: function setDependencies(address _meta) returns()
-func (_KeeperRegistry *KeeperRegistrySession) SetDependencies(_meta common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.SetDependencies(&_KeeperRegistry.TransactOpts, _meta)
+// Solidity: function updateTreasury(address newTreasury) returns()
+func (_KeeperRegistry *KeeperRegistrySession) UpdateTreasury(newTreasury common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.UpdateTreasury(&_KeeperRegistry.TransactOpts, newTreasury)
 }
 
-// SetDependencies is a paid mutator transaction binding the contract method 0x8389cb18.
+// UpdateTreasury is a paid mutator transaction binding the contract method 0x7f51bb1f.
 //
-// Solidity: function setDependencies(address _meta) returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) SetDependencies(_meta common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.SetDependencies(&_KeeperRegistry.TransactOpts, _meta)
+// Solidity: function updateTreasury(address newTreasury) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) UpdateTreasury(newTreasury common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.UpdateTreasury(&_KeeperRegistry.TransactOpts, newTreasury)
 }
 
-// KeeperRegistryDependenciesSetIterator is returned from FilterDependenciesSet and is used to iterate over the raw logs and unpacked data for DependenciesSet events raised by the KeeperRegistry contract.
-type KeeperRegistryDependenciesSetIterator struct {
-	Event *KeeperRegistryDependenciesSet // Event containing the contract specifics and raw log
+// KeeperRegistryAssetAddedIterator is returned from FilterAssetAdded and is used to iterate over the raw logs and unpacked data for AssetAdded events raised by the KeeperRegistry contract.
+type KeeperRegistryAssetAddedIterator struct {
+	Event *KeeperRegistryAssetAdded // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -582,7 +624,7 @@ type KeeperRegistryDependenciesSetIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *KeeperRegistryDependenciesSetIterator) Next() bool {
+func (it *KeeperRegistryAssetAddedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -591,7 +633,7 @@ func (it *KeeperRegistryDependenciesSetIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(KeeperRegistryDependenciesSet)
+			it.Event = new(KeeperRegistryAssetAdded)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -606,7 +648,7 @@ func (it *KeeperRegistryDependenciesSetIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(KeeperRegistryDependenciesSet)
+		it.Event = new(KeeperRegistryAssetAdded)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -622,51 +664,51 @@ func (it *KeeperRegistryDependenciesSetIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *KeeperRegistryDependenciesSetIterator) Error() error {
+func (it *KeeperRegistryAssetAddedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *KeeperRegistryDependenciesSetIterator) Close() error {
+func (it *KeeperRegistryAssetAddedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// KeeperRegistryDependenciesSet represents a DependenciesSet event raised by the KeeperRegistry contract.
-type KeeperRegistryDependenciesSet struct {
-	Meta common.Address
-	Raw  types.Log // Blockchain specific contextual infos
+// KeeperRegistryAssetAdded represents a AssetAdded event raised by the KeeperRegistry contract.
+type KeeperRegistryAssetAdded struct {
+	Asset common.Address
+	Raw   types.Log // Blockchain specific contextual infos
 }
 
-// FilterDependenciesSet is a free log retrieval operation binding the contract event 0x08752c0c302e35153e80e86bf52b2744b55f0d92384008e0ce53f7390cc2cd18.
+// FilterAssetAdded is a free log retrieval operation binding the contract event 0x0e3c58ebfb2e7465fbb1c32e6b4f40c3c4f5ca77e8218a386aff8617831260d7.
 //
-// Solidity: event DependenciesSet(address indexed meta)
-func (_KeeperRegistry *KeeperRegistryFilterer) FilterDependenciesSet(opts *bind.FilterOpts, meta []common.Address) (*KeeperRegistryDependenciesSetIterator, error) {
+// Solidity: event AssetAdded(address indexed asset)
+func (_KeeperRegistry *KeeperRegistryFilterer) FilterAssetAdded(opts *bind.FilterOpts, asset []common.Address) (*KeeperRegistryAssetAddedIterator, error) {
 
-	var metaRule []interface{}
-	for _, metaItem := range meta {
-		metaRule = append(metaRule, metaItem)
+	var assetRule []interface{}
+	for _, assetItem := range asset {
+		assetRule = append(assetRule, assetItem)
 	}
 
-	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "DependenciesSet", metaRule)
+	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "AssetAdded", assetRule)
 	if err != nil {
 		return nil, err
 	}
-	return &KeeperRegistryDependenciesSetIterator{contract: _KeeperRegistry.contract, event: "DependenciesSet", logs: logs, sub: sub}, nil
+	return &KeeperRegistryAssetAddedIterator{contract: _KeeperRegistry.contract, event: "AssetAdded", logs: logs, sub: sub}, nil
 }
 
-// WatchDependenciesSet is a free log subscription operation binding the contract event 0x08752c0c302e35153e80e86bf52b2744b55f0d92384008e0ce53f7390cc2cd18.
+// WatchAssetAdded is a free log subscription operation binding the contract event 0x0e3c58ebfb2e7465fbb1c32e6b4f40c3c4f5ca77e8218a386aff8617831260d7.
 //
-// Solidity: event DependenciesSet(address indexed meta)
-func (_KeeperRegistry *KeeperRegistryFilterer) WatchDependenciesSet(opts *bind.WatchOpts, sink chan<- *KeeperRegistryDependenciesSet, meta []common.Address) (event.Subscription, error) {
+// Solidity: event AssetAdded(address indexed asset)
+func (_KeeperRegistry *KeeperRegistryFilterer) WatchAssetAdded(opts *bind.WatchOpts, sink chan<- *KeeperRegistryAssetAdded, asset []common.Address) (event.Subscription, error) {
 
-	var metaRule []interface{}
-	for _, metaItem := range meta {
-		metaRule = append(metaRule, metaItem)
+	var assetRule []interface{}
+	for _, assetItem := range asset {
+		assetRule = append(assetRule, assetItem)
 	}
 
-	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "DependenciesSet", metaRule)
+	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "AssetAdded", assetRule)
 	if err != nil {
 		return nil, err
 	}
@@ -676,8 +718,8 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchDependenciesSet(opts *bind.W
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(KeeperRegistryDependenciesSet)
-				if err := _KeeperRegistry.contract.UnpackLog(event, "DependenciesSet", log); err != nil {
+				event := new(KeeperRegistryAssetAdded)
+				if err := _KeeperRegistry.contract.UnpackLog(event, "AssetAdded", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -698,12 +740,158 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchDependenciesSet(opts *bind.W
 	}), nil
 }
 
-// ParseDependenciesSet is a log parse operation binding the contract event 0x08752c0c302e35153e80e86bf52b2744b55f0d92384008e0ce53f7390cc2cd18.
+// ParseAssetAdded is a log parse operation binding the contract event 0x0e3c58ebfb2e7465fbb1c32e6b4f40c3c4f5ca77e8218a386aff8617831260d7.
 //
-// Solidity: event DependenciesSet(address indexed meta)
-func (_KeeperRegistry *KeeperRegistryFilterer) ParseDependenciesSet(log types.Log) (*KeeperRegistryDependenciesSet, error) {
-	event := new(KeeperRegistryDependenciesSet)
-	if err := _KeeperRegistry.contract.UnpackLog(event, "DependenciesSet", log); err != nil {
+// Solidity: event AssetAdded(address indexed asset)
+func (_KeeperRegistry *KeeperRegistryFilterer) ParseAssetAdded(log types.Log) (*KeeperRegistryAssetAdded, error) {
+	event := new(KeeperRegistryAssetAdded)
+	if err := _KeeperRegistry.contract.UnpackLog(event, "AssetAdded", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// KeeperRegistryConfiscatedIterator is returned from FilterConfiscated and is used to iterate over the raw logs and unpacked data for Confiscated events raised by the KeeperRegistry contract.
+type KeeperRegistryConfiscatedIterator struct {
+	Event *KeeperRegistryConfiscated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *KeeperRegistryConfiscatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(KeeperRegistryConfiscated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(KeeperRegistryConfiscated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *KeeperRegistryConfiscatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *KeeperRegistryConfiscatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// KeeperRegistryConfiscated represents a Confiscated event raised by the KeeperRegistry contract.
+type KeeperRegistryConfiscated struct {
+	Treasury common.Address
+	Asset    common.Address
+	Amount   *big.Int
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterConfiscated is a free log retrieval operation binding the contract event 0x1d47c187095aefccfdebc8a872d270e98511c7814959be6a804c25428d7fff79.
+//
+// Solidity: event Confiscated(address indexed treasury, address asset, uint256 amount)
+func (_KeeperRegistry *KeeperRegistryFilterer) FilterConfiscated(opts *bind.FilterOpts, treasury []common.Address) (*KeeperRegistryConfiscatedIterator, error) {
+
+	var treasuryRule []interface{}
+	for _, treasuryItem := range treasury {
+		treasuryRule = append(treasuryRule, treasuryItem)
+	}
+
+	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "Confiscated", treasuryRule)
+	if err != nil {
+		return nil, err
+	}
+	return &KeeperRegistryConfiscatedIterator{contract: _KeeperRegistry.contract, event: "Confiscated", logs: logs, sub: sub}, nil
+}
+
+// WatchConfiscated is a free log subscription operation binding the contract event 0x1d47c187095aefccfdebc8a872d270e98511c7814959be6a804c25428d7fff79.
+//
+// Solidity: event Confiscated(address indexed treasury, address asset, uint256 amount)
+func (_KeeperRegistry *KeeperRegistryFilterer) WatchConfiscated(opts *bind.WatchOpts, sink chan<- *KeeperRegistryConfiscated, treasury []common.Address) (event.Subscription, error) {
+
+	var treasuryRule []interface{}
+	for _, treasuryItem := range treasury {
+		treasuryRule = append(treasuryRule, treasuryItem)
+	}
+
+	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "Confiscated", treasuryRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(KeeperRegistryConfiscated)
+				if err := _KeeperRegistry.contract.UnpackLog(event, "Confiscated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseConfiscated is a log parse operation binding the contract event 0x1d47c187095aefccfdebc8a872d270e98511c7814959be6a804c25428d7fff79.
+//
+// Solidity: event Confiscated(address indexed treasury, address asset, uint256 amount)
+func (_KeeperRegistry *KeeperRegistryFilterer) ParseConfiscated(log types.Log) (*KeeperRegistryConfiscated, error) {
+	event := new(KeeperRegistryConfiscated)
+	if err := _KeeperRegistry.contract.UnpackLog(event, "Confiscated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -780,14 +968,14 @@ func (it *KeeperRegistryKeeperAddedIterator) Close() error {
 // KeeperRegistryKeeperAdded represents a KeeperAdded event raised by the KeeperRegistry contract.
 type KeeperRegistryKeeperAdded struct {
 	Keeper common.Address
-	Btc    []common.Address
-	Amount []*big.Int
+	Asset  common.Address
+	Amount *big.Int
 	Raw    types.Log // Blockchain specific contextual infos
 }
 
-// FilterKeeperAdded is a free log retrieval operation binding the contract event 0x252451adfc7fb43897515e5893ed5bb7b4be14d82d690bbacf315f275e419048.
+// FilterKeeperAdded is a free log retrieval operation binding the contract event 0x9cb76b51144d46005efa8364e8e73c13bed396c03ba2a905e9817b4a1011614f.
 //
-// Solidity: event KeeperAdded(address indexed keeper, address[] btc, uint256[] amount)
+// Solidity: event KeeperAdded(address indexed keeper, address asset, uint256 amount)
 func (_KeeperRegistry *KeeperRegistryFilterer) FilterKeeperAdded(opts *bind.FilterOpts, keeper []common.Address) (*KeeperRegistryKeeperAddedIterator, error) {
 
 	var keeperRule []interface{}
@@ -802,9 +990,9 @@ func (_KeeperRegistry *KeeperRegistryFilterer) FilterKeeperAdded(opts *bind.Filt
 	return &KeeperRegistryKeeperAddedIterator{contract: _KeeperRegistry.contract, event: "KeeperAdded", logs: logs, sub: sub}, nil
 }
 
-// WatchKeeperAdded is a free log subscription operation binding the contract event 0x252451adfc7fb43897515e5893ed5bb7b4be14d82d690bbacf315f275e419048.
+// WatchKeeperAdded is a free log subscription operation binding the contract event 0x9cb76b51144d46005efa8364e8e73c13bed396c03ba2a905e9817b4a1011614f.
 //
-// Solidity: event KeeperAdded(address indexed keeper, address[] btc, uint256[] amount)
+// Solidity: event KeeperAdded(address indexed keeper, address asset, uint256 amount)
 func (_KeeperRegistry *KeeperRegistryFilterer) WatchKeeperAdded(opts *bind.WatchOpts, sink chan<- *KeeperRegistryKeeperAdded, keeper []common.Address) (event.Subscription, error) {
 
 	var keeperRule []interface{}
@@ -844,9 +1032,9 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchKeeperAdded(opts *bind.Watch
 	}), nil
 }
 
-// ParseKeeperAdded is a log parse operation binding the contract event 0x252451adfc7fb43897515e5893ed5bb7b4be14d82d690bbacf315f275e419048.
+// ParseKeeperAdded is a log parse operation binding the contract event 0x9cb76b51144d46005efa8364e8e73c13bed396c03ba2a905e9817b4a1011614f.
 //
-// Solidity: event KeeperAdded(address indexed keeper, address[] btc, uint256[] amount)
+// Solidity: event KeeperAdded(address indexed keeper, address asset, uint256 amount)
 func (_KeeperRegistry *KeeperRegistryFilterer) ParseKeeperAdded(log types.Log) (*KeeperRegistryKeeperAdded, error) {
 	event := new(KeeperRegistryKeeperAdded)
 	if err := _KeeperRegistry.contract.UnpackLog(event, "KeeperAdded", log); err != nil {
@@ -1071,15 +1259,14 @@ func (it *KeeperRegistryKeeperImportedIterator) Close() error {
 type KeeperRegistryKeeperImported struct {
 	From          common.Address
 	Assets        []common.Address
-	Amounts       []*big.Int
 	Keepers       []common.Address
-	KeeperAmounts []*big.Int
+	KeeperAmounts [][]*big.Int
 	Raw           types.Log // Blockchain specific contextual infos
 }
 
-// FilterKeeperImported is a free log retrieval operation binding the contract event 0x2a88002dff9b0894e3b41ae1f9b3248bbbc422ad67edfe308806ca948ee49964.
+// FilterKeeperImported is a free log retrieval operation binding the contract event 0xfede295b36d1e0bf215f4c6fe12408d45367e9af7f106ed43df3e495dd774bcb.
 //
-// Solidity: event KeeperImported(address indexed from, address[] assets, uint256[] amounts, address[] keepers, uint256[] keeper_amounts)
+// Solidity: event KeeperImported(address indexed from, address[] assets, address[] keepers, uint256[][] keeperAmounts)
 func (_KeeperRegistry *KeeperRegistryFilterer) FilterKeeperImported(opts *bind.FilterOpts, from []common.Address) (*KeeperRegistryKeeperImportedIterator, error) {
 
 	var fromRule []interface{}
@@ -1094,9 +1281,9 @@ func (_KeeperRegistry *KeeperRegistryFilterer) FilterKeeperImported(opts *bind.F
 	return &KeeperRegistryKeeperImportedIterator{contract: _KeeperRegistry.contract, event: "KeeperImported", logs: logs, sub: sub}, nil
 }
 
-// WatchKeeperImported is a free log subscription operation binding the contract event 0x2a88002dff9b0894e3b41ae1f9b3248bbbc422ad67edfe308806ca948ee49964.
+// WatchKeeperImported is a free log subscription operation binding the contract event 0xfede295b36d1e0bf215f4c6fe12408d45367e9af7f106ed43df3e495dd774bcb.
 //
-// Solidity: event KeeperImported(address indexed from, address[] assets, uint256[] amounts, address[] keepers, uint256[] keeper_amounts)
+// Solidity: event KeeperImported(address indexed from, address[] assets, address[] keepers, uint256[][] keeperAmounts)
 func (_KeeperRegistry *KeeperRegistryFilterer) WatchKeeperImported(opts *bind.WatchOpts, sink chan<- *KeeperRegistryKeeperImported, from []common.Address) (event.Subscription, error) {
 
 	var fromRule []interface{}
@@ -1136,9 +1323,9 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchKeeperImported(opts *bind.Wa
 	}), nil
 }
 
-// ParseKeeperImported is a log parse operation binding the contract event 0x2a88002dff9b0894e3b41ae1f9b3248bbbc422ad67edfe308806ca948ee49964.
+// ParseKeeperImported is a log parse operation binding the contract event 0xfede295b36d1e0bf215f4c6fe12408d45367e9af7f106ed43df3e495dd774bcb.
 //
-// Solidity: event KeeperImported(address indexed from, address[] assets, uint256[] amounts, address[] keepers, uint256[] keeper_amounts)
+// Solidity: event KeeperImported(address indexed from, address[] assets, address[] keepers, uint256[][] keeperAmounts)
 func (_KeeperRegistry *KeeperRegistryFilterer) ParseKeeperImported(log types.Log) (*KeeperRegistryKeeperImported, error) {
 	event := new(KeeperRegistryKeeperImported)
 	if err := _KeeperRegistry.contract.UnpackLog(event, "KeeperImported", log); err != nil {
@@ -1148,9 +1335,9 @@ func (_KeeperRegistry *KeeperRegistryFilterer) ParseKeeperImported(log types.Log
 	return event, nil
 }
 
-// KeeperRegistryRoleAdminChangedIterator is returned from FilterRoleAdminChanged and is used to iterate over the raw logs and unpacked data for RoleAdminChanged events raised by the KeeperRegistry contract.
-type KeeperRegistryRoleAdminChangedIterator struct {
-	Event *KeeperRegistryRoleAdminChanged // Event containing the contract specifics and raw log
+// KeeperRegistryOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the KeeperRegistry contract.
+type KeeperRegistryOwnershipTransferredIterator struct {
+	Event *KeeperRegistryOwnershipTransferred // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1164,7 +1351,7 @@ type KeeperRegistryRoleAdminChangedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *KeeperRegistryRoleAdminChangedIterator) Next() bool {
+func (it *KeeperRegistryOwnershipTransferredIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1173,7 +1360,7 @@ func (it *KeeperRegistryRoleAdminChangedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(KeeperRegistryRoleAdminChanged)
+			it.Event = new(KeeperRegistryOwnershipTransferred)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1188,7 +1375,7 @@ func (it *KeeperRegistryRoleAdminChangedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(KeeperRegistryRoleAdminChanged)
+		it.Event = new(KeeperRegistryOwnershipTransferred)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1204,69 +1391,60 @@ func (it *KeeperRegistryRoleAdminChangedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *KeeperRegistryRoleAdminChangedIterator) Error() error {
+func (it *KeeperRegistryOwnershipTransferredIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *KeeperRegistryRoleAdminChangedIterator) Close() error {
+func (it *KeeperRegistryOwnershipTransferredIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// KeeperRegistryRoleAdminChanged represents a RoleAdminChanged event raised by the KeeperRegistry contract.
-type KeeperRegistryRoleAdminChanged struct {
-	Role              [32]byte
-	PreviousAdminRole [32]byte
-	NewAdminRole      [32]byte
-	Raw               types.Log // Blockchain specific contextual infos
+// KeeperRegistryOwnershipTransferred represents a OwnershipTransferred event raised by the KeeperRegistry contract.
+type KeeperRegistryOwnershipTransferred struct {
+	PreviousOwner common.Address
+	NewOwner      common.Address
+	Raw           types.Log // Blockchain specific contextual infos
 }
 
-// FilterRoleAdminChanged is a free log retrieval operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
+// FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
-// Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
-func (_KeeperRegistry *KeeperRegistryFilterer) FilterRoleAdminChanged(opts *bind.FilterOpts, role [][32]byte, previousAdminRole [][32]byte, newAdminRole [][32]byte) (*KeeperRegistryRoleAdminChangedIterator, error) {
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_KeeperRegistry *KeeperRegistryFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*KeeperRegistryOwnershipTransferredIterator, error) {
 
-	var roleRule []interface{}
-	for _, roleItem := range role {
-		roleRule = append(roleRule, roleItem)
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
 	}
-	var previousAdminRoleRule []interface{}
-	for _, previousAdminRoleItem := range previousAdminRole {
-		previousAdminRoleRule = append(previousAdminRoleRule, previousAdminRoleItem)
-	}
-	var newAdminRoleRule []interface{}
-	for _, newAdminRoleItem := range newAdminRole {
-		newAdminRoleRule = append(newAdminRoleRule, newAdminRoleItem)
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
 	}
 
-	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "RoleAdminChanged", roleRule, previousAdminRoleRule, newAdminRoleRule)
+	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &KeeperRegistryRoleAdminChangedIterator{contract: _KeeperRegistry.contract, event: "RoleAdminChanged", logs: logs, sub: sub}, nil
+	return &KeeperRegistryOwnershipTransferredIterator{contract: _KeeperRegistry.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
 }
 
-// WatchRoleAdminChanged is a free log subscription operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
+// WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
-// Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
-func (_KeeperRegistry *KeeperRegistryFilterer) WatchRoleAdminChanged(opts *bind.WatchOpts, sink chan<- *KeeperRegistryRoleAdminChanged, role [][32]byte, previousAdminRole [][32]byte, newAdminRole [][32]byte) (event.Subscription, error) {
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_KeeperRegistry *KeeperRegistryFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *KeeperRegistryOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
 
-	var roleRule []interface{}
-	for _, roleItem := range role {
-		roleRule = append(roleRule, roleItem)
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
 	}
-	var previousAdminRoleRule []interface{}
-	for _, previousAdminRoleItem := range previousAdminRole {
-		previousAdminRoleRule = append(previousAdminRoleRule, previousAdminRoleItem)
-	}
-	var newAdminRoleRule []interface{}
-	for _, newAdminRoleItem := range newAdminRole {
-		newAdminRoleRule = append(newAdminRoleRule, newAdminRoleItem)
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
 	}
 
-	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "RoleAdminChanged", roleRule, previousAdminRoleRule, newAdminRoleRule)
+	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1276,8 +1454,8 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchRoleAdminChanged(opts *bind.
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(KeeperRegistryRoleAdminChanged)
-				if err := _KeeperRegistry.contract.UnpackLog(event, "RoleAdminChanged", log); err != nil {
+				event := new(KeeperRegistryOwnershipTransferred)
+				if err := _KeeperRegistry.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1298,21 +1476,21 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchRoleAdminChanged(opts *bind.
 	}), nil
 }
 
-// ParseRoleAdminChanged is a log parse operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
+// ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
-// Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
-func (_KeeperRegistry *KeeperRegistryFilterer) ParseRoleAdminChanged(log types.Log) (*KeeperRegistryRoleAdminChanged, error) {
-	event := new(KeeperRegistryRoleAdminChanged)
-	if err := _KeeperRegistry.contract.UnpackLog(event, "RoleAdminChanged", log); err != nil {
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_KeeperRegistry *KeeperRegistryFilterer) ParseOwnershipTransferred(log types.Log) (*KeeperRegistryOwnershipTransferred, error) {
+	event := new(KeeperRegistryOwnershipTransferred)
+	if err := _KeeperRegistry.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// KeeperRegistryRoleGrantedIterator is returned from FilterRoleGranted and is used to iterate over the raw logs and unpacked data for RoleGranted events raised by the KeeperRegistry contract.
-type KeeperRegistryRoleGrantedIterator struct {
-	Event *KeeperRegistryRoleGranted // Event containing the contract specifics and raw log
+// KeeperRegistryTreasuryTransferredIterator is returned from FilterTreasuryTransferred and is used to iterate over the raw logs and unpacked data for TreasuryTransferred events raised by the KeeperRegistry contract.
+type KeeperRegistryTreasuryTransferredIterator struct {
+	Event *KeeperRegistryTreasuryTransferred // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1326,7 +1504,7 @@ type KeeperRegistryRoleGrantedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *KeeperRegistryRoleGrantedIterator) Next() bool {
+func (it *KeeperRegistryTreasuryTransferredIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1335,7 +1513,7 @@ func (it *KeeperRegistryRoleGrantedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(KeeperRegistryRoleGranted)
+			it.Event = new(KeeperRegistryTreasuryTransferred)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1350,7 +1528,7 @@ func (it *KeeperRegistryRoleGrantedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(KeeperRegistryRoleGranted)
+		it.Event = new(KeeperRegistryTreasuryTransferred)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1366,69 +1544,60 @@ func (it *KeeperRegistryRoleGrantedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *KeeperRegistryRoleGrantedIterator) Error() error {
+func (it *KeeperRegistryTreasuryTransferredIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *KeeperRegistryRoleGrantedIterator) Close() error {
+func (it *KeeperRegistryTreasuryTransferredIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// KeeperRegistryRoleGranted represents a RoleGranted event raised by the KeeperRegistry contract.
-type KeeperRegistryRoleGranted struct {
-	Role    [32]byte
-	Account common.Address
-	Sender  common.Address
-	Raw     types.Log // Blockchain specific contextual infos
+// KeeperRegistryTreasuryTransferred represents a TreasuryTransferred event raised by the KeeperRegistry contract.
+type KeeperRegistryTreasuryTransferred struct {
+	PreviousTreasury common.Address
+	NewTreasury      common.Address
+	Raw              types.Log // Blockchain specific contextual infos
 }
 
-// FilterRoleGranted is a free log retrieval operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
+// FilterTreasuryTransferred is a free log retrieval operation binding the contract event 0xebebcc22237fa047dcfebf54b185ec126c9b24d45f4bd2a18e4fa02e07308c40.
 //
-// Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
-func (_KeeperRegistry *KeeperRegistryFilterer) FilterRoleGranted(opts *bind.FilterOpts, role [][32]byte, account []common.Address, sender []common.Address) (*KeeperRegistryRoleGrantedIterator, error) {
+// Solidity: event TreasuryTransferred(address indexed previousTreasury, address indexed newTreasury)
+func (_KeeperRegistry *KeeperRegistryFilterer) FilterTreasuryTransferred(opts *bind.FilterOpts, previousTreasury []common.Address, newTreasury []common.Address) (*KeeperRegistryTreasuryTransferredIterator, error) {
 
-	var roleRule []interface{}
-	for _, roleItem := range role {
-		roleRule = append(roleRule, roleItem)
+	var previousTreasuryRule []interface{}
+	for _, previousTreasuryItem := range previousTreasury {
+		previousTreasuryRule = append(previousTreasuryRule, previousTreasuryItem)
 	}
-	var accountRule []interface{}
-	for _, accountItem := range account {
-		accountRule = append(accountRule, accountItem)
-	}
-	var senderRule []interface{}
-	for _, senderItem := range sender {
-		senderRule = append(senderRule, senderItem)
+	var newTreasuryRule []interface{}
+	for _, newTreasuryItem := range newTreasury {
+		newTreasuryRule = append(newTreasuryRule, newTreasuryItem)
 	}
 
-	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "RoleGranted", roleRule, accountRule, senderRule)
+	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "TreasuryTransferred", previousTreasuryRule, newTreasuryRule)
 	if err != nil {
 		return nil, err
 	}
-	return &KeeperRegistryRoleGrantedIterator{contract: _KeeperRegistry.contract, event: "RoleGranted", logs: logs, sub: sub}, nil
+	return &KeeperRegistryTreasuryTransferredIterator{contract: _KeeperRegistry.contract, event: "TreasuryTransferred", logs: logs, sub: sub}, nil
 }
 
-// WatchRoleGranted is a free log subscription operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
+// WatchTreasuryTransferred is a free log subscription operation binding the contract event 0xebebcc22237fa047dcfebf54b185ec126c9b24d45f4bd2a18e4fa02e07308c40.
 //
-// Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
-func (_KeeperRegistry *KeeperRegistryFilterer) WatchRoleGranted(opts *bind.WatchOpts, sink chan<- *KeeperRegistryRoleGranted, role [][32]byte, account []common.Address, sender []common.Address) (event.Subscription, error) {
+// Solidity: event TreasuryTransferred(address indexed previousTreasury, address indexed newTreasury)
+func (_KeeperRegistry *KeeperRegistryFilterer) WatchTreasuryTransferred(opts *bind.WatchOpts, sink chan<- *KeeperRegistryTreasuryTransferred, previousTreasury []common.Address, newTreasury []common.Address) (event.Subscription, error) {
 
-	var roleRule []interface{}
-	for _, roleItem := range role {
-		roleRule = append(roleRule, roleItem)
+	var previousTreasuryRule []interface{}
+	for _, previousTreasuryItem := range previousTreasury {
+		previousTreasuryRule = append(previousTreasuryRule, previousTreasuryItem)
 	}
-	var accountRule []interface{}
-	for _, accountItem := range account {
-		accountRule = append(accountRule, accountItem)
-	}
-	var senderRule []interface{}
-	for _, senderItem := range sender {
-		senderRule = append(senderRule, senderItem)
+	var newTreasuryRule []interface{}
+	for _, newTreasuryItem := range newTreasury {
+		newTreasuryRule = append(newTreasuryRule, newTreasuryItem)
 	}
 
-	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "RoleGranted", roleRule, accountRule, senderRule)
+	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "TreasuryTransferred", previousTreasuryRule, newTreasuryRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1438,8 +1607,8 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchRoleGranted(opts *bind.Watch
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(KeeperRegistryRoleGranted)
-				if err := _KeeperRegistry.contract.UnpackLog(event, "RoleGranted", log); err != nil {
+				event := new(KeeperRegistryTreasuryTransferred)
+				if err := _KeeperRegistry.contract.UnpackLog(event, "TreasuryTransferred", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1460,174 +1629,12 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchRoleGranted(opts *bind.Watch
 	}), nil
 }
 
-// ParseRoleGranted is a log parse operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
+// ParseTreasuryTransferred is a log parse operation binding the contract event 0xebebcc22237fa047dcfebf54b185ec126c9b24d45f4bd2a18e4fa02e07308c40.
 //
-// Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
-func (_KeeperRegistry *KeeperRegistryFilterer) ParseRoleGranted(log types.Log) (*KeeperRegistryRoleGranted, error) {
-	event := new(KeeperRegistryRoleGranted)
-	if err := _KeeperRegistry.contract.UnpackLog(event, "RoleGranted", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
-}
-
-// KeeperRegistryRoleRevokedIterator is returned from FilterRoleRevoked and is used to iterate over the raw logs and unpacked data for RoleRevoked events raised by the KeeperRegistry contract.
-type KeeperRegistryRoleRevokedIterator struct {
-	Event *KeeperRegistryRoleRevoked // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *KeeperRegistryRoleRevokedIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(KeeperRegistryRoleRevoked)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(KeeperRegistryRoleRevoked)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *KeeperRegistryRoleRevokedIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *KeeperRegistryRoleRevokedIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// KeeperRegistryRoleRevoked represents a RoleRevoked event raised by the KeeperRegistry contract.
-type KeeperRegistryRoleRevoked struct {
-	Role    [32]byte
-	Account common.Address
-	Sender  common.Address
-	Raw     types.Log // Blockchain specific contextual infos
-}
-
-// FilterRoleRevoked is a free log retrieval operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
-//
-// Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
-func (_KeeperRegistry *KeeperRegistryFilterer) FilterRoleRevoked(opts *bind.FilterOpts, role [][32]byte, account []common.Address, sender []common.Address) (*KeeperRegistryRoleRevokedIterator, error) {
-
-	var roleRule []interface{}
-	for _, roleItem := range role {
-		roleRule = append(roleRule, roleItem)
-	}
-	var accountRule []interface{}
-	for _, accountItem := range account {
-		accountRule = append(accountRule, accountItem)
-	}
-	var senderRule []interface{}
-	for _, senderItem := range sender {
-		senderRule = append(senderRule, senderItem)
-	}
-
-	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "RoleRevoked", roleRule, accountRule, senderRule)
-	if err != nil {
-		return nil, err
-	}
-	return &KeeperRegistryRoleRevokedIterator{contract: _KeeperRegistry.contract, event: "RoleRevoked", logs: logs, sub: sub}, nil
-}
-
-// WatchRoleRevoked is a free log subscription operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
-//
-// Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
-func (_KeeperRegistry *KeeperRegistryFilterer) WatchRoleRevoked(opts *bind.WatchOpts, sink chan<- *KeeperRegistryRoleRevoked, role [][32]byte, account []common.Address, sender []common.Address) (event.Subscription, error) {
-
-	var roleRule []interface{}
-	for _, roleItem := range role {
-		roleRule = append(roleRule, roleItem)
-	}
-	var accountRule []interface{}
-	for _, accountItem := range account {
-		accountRule = append(accountRule, accountItem)
-	}
-	var senderRule []interface{}
-	for _, senderItem := range sender {
-		senderRule = append(senderRule, senderItem)
-	}
-
-	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "RoleRevoked", roleRule, accountRule, senderRule)
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(KeeperRegistryRoleRevoked)
-				if err := _KeeperRegistry.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseRoleRevoked is a log parse operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
-//
-// Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
-func (_KeeperRegistry *KeeperRegistryFilterer) ParseRoleRevoked(log types.Log) (*KeeperRegistryRoleRevoked, error) {
-	event := new(KeeperRegistryRoleRevoked)
-	if err := _KeeperRegistry.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
+// Solidity: event TreasuryTransferred(address indexed previousTreasury, address indexed newTreasury)
+func (_KeeperRegistry *KeeperRegistryFilterer) ParseTreasuryTransferred(log types.Log) (*KeeperRegistryTreasuryTransferred, error) {
+	event := new(KeeperRegistryTreasuryTransferred)
+	if err := _KeeperRegistry.contract.UnpackLog(event, "TreasuryTransferred", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

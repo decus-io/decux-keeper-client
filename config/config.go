@@ -29,10 +29,8 @@ type Config struct {
 		Url string `yaml:"url"`
 	} `yaml:"btcesplora"`
 	Contract struct {
-		DeCusSystem       string `yaml:"decus_system"`
-		GroupRegistry     string `yaml:"group_registry"`
-		KeeperRegistry    string `yaml:"keeper_registry"`
-		ReceiptController string `yaml:"receipt_controller"`
+		DeCusSystem    string `yaml:"decus_system"`
+		KeeperRegistry string `yaml:"keeper_registry"`
 	} `yaml:"contract"`
 }
 

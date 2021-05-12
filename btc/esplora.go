@@ -13,7 +13,8 @@ type Utxo struct {
 	Value  uint64
 	Status struct {
 		Confirmed    bool
-		Block_Height int32
+		Block_Height uint64
+		Block_Time   uint64
 	}
 }
 

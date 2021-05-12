@@ -42,7 +42,7 @@ func signTypedData(typedData core.TypedData) (hexutil.Bytes, error) {
 	return signature, nil
 }
 
-func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Bytes, error) {
+func SignDeposit(receiptId, txId, height string) (hexutil.Bytes, error) {
 	typesStandard := core.Types{
 		"EIP712Domain": {
 			{Name: "name", Type: "string"},
@@ -51,9 +51,7 @@ func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Byt
 			{Name: "verifyingContract", Type: "address"},
 		},
 		"MintRequest": {
-			{Name: "recipient", Type: "address"},
-			{Name: "receiptId", Type: "uint256"},
-			{Name: "amount", Type: "uint256"},
+			{Name: "receiptId", Type: "bytes32"},
 			{Name: "txId", Type: "bytes32"},
 			{Name: "height", Type: "uint256"},
 		},
@@ -66,9 +64,7 @@ func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Byt
 		Salt:              "",
 	}
 	messageStandard := map[string]interface{}{
-		"recipient": recipient,
 		"receiptId": receiptId,
-		"amount":    amount,
 		"txId":      txId,
 		"height":    height,
 	}
