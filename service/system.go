@@ -48,12 +48,13 @@ func (s *System) checkReceipt(groupId string) error {
 	opts, cancel := s.makeCallOpts()
 	defer cancel()
 
-	_, _, _, receiptId, err := contract.DeCusSystem.GetGroup(opts, groupId)
+	group, err := contract.DeCusSystem.GetGroup(opts, groupId)
 	if err != nil {
 		return err
 	}
-	if receiptId == [32]byte{} {
-		return nil
+	receiptId, err := contract.DeCusSystem.GetReceiptId(opts, groupId, group.Nonce)
+	if err != nil {
+		return err
 	}
 	receipt := contract.Receipt{ReceiptId: s.receiptIdToString(receiptId)}
 	if receipt.IDeCusSystemReceipt, err = contract.DeCusSystem.GetReceipt(opts, receiptId); err != nil {

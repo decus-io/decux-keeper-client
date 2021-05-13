@@ -29,14 +29,13 @@ var (
 // IDeCusSystemReceipt is an auto generated low-level Go binding around an user-defined struct.
 type IDeCusSystemReceipt struct {
 	AmountInSatoshi    *big.Int
-	CreateTimestamp    *big.Int
+	UpdateTimestamp    *big.Int
 	TxId               [32]byte
 	Height             *big.Int
 	Status             uint8
 	Recipient          common.Address
 	GroupBtcAddress    string
 	WithdrawBtcAddress string
-	WithdrawTimestamp  *big.Int
 }
 
 // LibRequestMintRequest is an auto generated low-level Go binding around an user-defined struct.
@@ -47,7 +46,7 @@ type LibRequestMintRequest struct {
 }
 
 // DeCusSystemABI is the input ABI used to generate the binding from.
-const DeCusSystemABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"Cooldown\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"name\":\"MintRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"MintRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"MintVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"EIP712_DOMAIN_HASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_COOLDOWN\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WITHDRAW_VERIFICATION_END\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"chainId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"chillTime\",\"type\":\"uint256\"}],\"name\":\"chill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eBTC\",\"outputs\":[{\"internalType\":\"contractIEBTC\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"identifier\",\"type\":\"uint256\"}],\"name\":\"forceRequestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCooldownTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroup\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroupAllowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"createTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"},{\"internalType\":\"enumIDeCusSystem.Status\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"withdrawTimestamp\",\"type\":\"uint256\"}],\"internalType\":\"structIDeCusSystem.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"identifier\",\"type\":\"uint256\"}],\"name\":\"getReceiptId\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_eBTC\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_registry\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperRegistry\",\"outputs\":[{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"listGroupKeeper\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minKeeperSatoshi\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"recoverBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"name\":\"requestBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"identifier\",\"type\":\"uint256\"}],\"name\":\"requestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"revokeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"verifyBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"}],\"internalType\":\"structLibRequest.MintRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"r\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"s\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256\",\"name\":\"packedV\",\"type\":\"uint256\"}],\"name\":\"verifyMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const DeCusSystemABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"Cooldown\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"name\":\"MintRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"MintRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"MintVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"EIP712_DOMAIN_HASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_RESUSING_GAP\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_COOLDOWN\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WITHDRAW_VERIFICATION_END\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"chainId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"chillTime\",\"type\":\"uint256\"}],\"name\":\"chill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eBTC\",\"outputs\":[{\"internalType\":\"contractIEBTC\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"forceRequestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCooldownTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroup\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroupAllowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"updateTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"},{\"internalType\":\"enumIDeCusSystem.Status\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"internalType\":\"structIDeCusSystem.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"getReceiptId\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_eBTC\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_registry\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperRegistry\",\"outputs\":[{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"listGroupKeeper\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minKeeperSatoshi\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"recoverBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"name\":\"requestBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"requestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"revokeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"verifyBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"}],\"internalType\":\"structLibRequest.MintRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"r\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"s\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256\",\"name\":\"packedV\",\"type\":\"uint256\"}],\"name\":\"verifyMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // DeCusSystem is an auto generated Go binding around an Ethereum contract.
 type DeCusSystem struct {
@@ -220,6 +219,37 @@ func (_DeCusSystem *DeCusSystemSession) EIP712DOMAINHASH() ([32]byte, error) {
 // Solidity: function EIP712_DOMAIN_HASH() view returns(bytes32)
 func (_DeCusSystem *DeCusSystemCallerSession) EIP712DOMAINHASH() ([32]byte, error) {
 	return _DeCusSystem.Contract.EIP712DOMAINHASH(&_DeCusSystem.CallOpts)
+}
+
+// GROUPRESUSINGGAP is a free data retrieval call binding the contract method 0x853faff4.
+//
+// Solidity: function GROUP_RESUSING_GAP() view returns(uint256)
+func (_DeCusSystem *DeCusSystemCaller) GROUPRESUSINGGAP(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "GROUP_RESUSING_GAP")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GROUPRESUSINGGAP is a free data retrieval call binding the contract method 0x853faff4.
+//
+// Solidity: function GROUP_RESUSING_GAP() view returns(uint256)
+func (_DeCusSystem *DeCusSystemSession) GROUPRESUSINGGAP() (*big.Int, error) {
+	return _DeCusSystem.Contract.GROUPRESUSINGGAP(&_DeCusSystem.CallOpts)
+}
+
+// GROUPRESUSINGGAP is a free data retrieval call binding the contract method 0x853faff4.
+//
+// Solidity: function GROUP_RESUSING_GAP() view returns(uint256)
+func (_DeCusSystem *DeCusSystemCallerSession) GROUPRESUSINGGAP() (*big.Int, error) {
+	return _DeCusSystem.Contract.GROUPRESUSINGGAP(&_DeCusSystem.CallOpts)
 }
 
 // KEEPERCOOLDOWN is a free data retrieval call binding the contract method 0x7f7bcb62.
@@ -410,35 +440,56 @@ func (_DeCusSystem *DeCusSystemCallerSession) GetCooldownTime(keeper common.Addr
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256, uint256, uint256, bytes32)
-func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress string) (*big.Int, *big.Int, *big.Int, [32]byte, error) {
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce)
+func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress string) (struct {
+	Required    *big.Int
+	MaxSatoshi  *big.Int
+	CurrSatoshi *big.Int
+	Nonce       *big.Int
+}, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "getGroup", btcAddress)
 
+	outstruct := new(struct {
+		Required    *big.Int
+		MaxSatoshi  *big.Int
+		CurrSatoshi *big.Int
+		Nonce       *big.Int
+	})
 	if err != nil {
-		return *new(*big.Int), *new(*big.Int), *new(*big.Int), *new([32]byte), err
+		return *outstruct, err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
-	out1 := *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
-	out2 := *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
-	out3 := *abi.ConvertType(out[3], new([32]byte)).(*[32]byte)
+	outstruct.Required = *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	outstruct.MaxSatoshi = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
+	outstruct.CurrSatoshi = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
+	outstruct.Nonce = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
 
-	return out0, out1, out2, out3, err
+	return *outstruct, err
 
 }
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256, uint256, uint256, bytes32)
-func (_DeCusSystem *DeCusSystemSession) GetGroup(btcAddress string) (*big.Int, *big.Int, *big.Int, [32]byte, error) {
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce)
+func (_DeCusSystem *DeCusSystemSession) GetGroup(btcAddress string) (struct {
+	Required    *big.Int
+	MaxSatoshi  *big.Int
+	CurrSatoshi *big.Int
+	Nonce       *big.Int
+}, error) {
 	return _DeCusSystem.Contract.GetGroup(&_DeCusSystem.CallOpts, btcAddress)
 }
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256, uint256, uint256, bytes32)
-func (_DeCusSystem *DeCusSystemCallerSession) GetGroup(btcAddress string) (*big.Int, *big.Int, *big.Int, [32]byte, error) {
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce)
+func (_DeCusSystem *DeCusSystemCallerSession) GetGroup(btcAddress string) (struct {
+	Required    *big.Int
+	MaxSatoshi  *big.Int
+	CurrSatoshi *big.Int
+	Nonce       *big.Int
+}, error) {
 	return _DeCusSystem.Contract.GetGroup(&_DeCusSystem.CallOpts, btcAddress)
 }
 
@@ -475,7 +526,7 @@ func (_DeCusSystem *DeCusSystemCallerSession) GetGroupAllowance(btcAddress strin
 
 // GetReceipt is a free data retrieval call binding the contract method 0xfcecbb61.
 //
-// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string,uint256))
+// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string))
 func (_DeCusSystem *DeCusSystemCaller) GetReceipt(opts *bind.CallOpts, receiptId [32]byte) (IDeCusSystemReceipt, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "getReceipt", receiptId)
@@ -492,24 +543,24 @@ func (_DeCusSystem *DeCusSystemCaller) GetReceipt(opts *bind.CallOpts, receiptId
 
 // GetReceipt is a free data retrieval call binding the contract method 0xfcecbb61.
 //
-// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string,uint256))
+// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string))
 func (_DeCusSystem *DeCusSystemSession) GetReceipt(receiptId [32]byte) (IDeCusSystemReceipt, error) {
 	return _DeCusSystem.Contract.GetReceipt(&_DeCusSystem.CallOpts, receiptId)
 }
 
 // GetReceipt is a free data retrieval call binding the contract method 0xfcecbb61.
 //
-// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string,uint256))
+// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string))
 func (_DeCusSystem *DeCusSystemCallerSession) GetReceipt(receiptId [32]byte) (IDeCusSystemReceipt, error) {
 	return _DeCusSystem.Contract.GetReceipt(&_DeCusSystem.CallOpts, receiptId)
 }
 
-// GetReceiptId is a free data retrieval call binding the contract method 0x09e16c43.
+// GetReceiptId is a free data retrieval call binding the contract method 0xa2ad4d9b.
 //
-// Solidity: function getReceiptId(string groupBtcAddress, address recipient, uint256 identifier) pure returns(bytes32)
-func (_DeCusSystem *DeCusSystemCaller) GetReceiptId(opts *bind.CallOpts, groupBtcAddress string, recipient common.Address, identifier *big.Int) ([32]byte, error) {
+// Solidity: function getReceiptId(string groupBtcAddress, uint256 nonce) pure returns(bytes32)
+func (_DeCusSystem *DeCusSystemCaller) GetReceiptId(opts *bind.CallOpts, groupBtcAddress string, nonce *big.Int) ([32]byte, error) {
 	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "getReceiptId", groupBtcAddress, recipient, identifier)
+	err := _DeCusSystem.contract.Call(opts, &out, "getReceiptId", groupBtcAddress, nonce)
 
 	if err != nil {
 		return *new([32]byte), err
@@ -521,18 +572,18 @@ func (_DeCusSystem *DeCusSystemCaller) GetReceiptId(opts *bind.CallOpts, groupBt
 
 }
 
-// GetReceiptId is a free data retrieval call binding the contract method 0x09e16c43.
+// GetReceiptId is a free data retrieval call binding the contract method 0xa2ad4d9b.
 //
-// Solidity: function getReceiptId(string groupBtcAddress, address recipient, uint256 identifier) pure returns(bytes32)
-func (_DeCusSystem *DeCusSystemSession) GetReceiptId(groupBtcAddress string, recipient common.Address, identifier *big.Int) ([32]byte, error) {
-	return _DeCusSystem.Contract.GetReceiptId(&_DeCusSystem.CallOpts, groupBtcAddress, recipient, identifier)
+// Solidity: function getReceiptId(string groupBtcAddress, uint256 nonce) pure returns(bytes32)
+func (_DeCusSystem *DeCusSystemSession) GetReceiptId(groupBtcAddress string, nonce *big.Int) ([32]byte, error) {
+	return _DeCusSystem.Contract.GetReceiptId(&_DeCusSystem.CallOpts, groupBtcAddress, nonce)
 }
 
-// GetReceiptId is a free data retrieval call binding the contract method 0x09e16c43.
+// GetReceiptId is a free data retrieval call binding the contract method 0xa2ad4d9b.
 //
-// Solidity: function getReceiptId(string groupBtcAddress, address recipient, uint256 identifier) pure returns(bytes32)
-func (_DeCusSystem *DeCusSystemCallerSession) GetReceiptId(groupBtcAddress string, recipient common.Address, identifier *big.Int) ([32]byte, error) {
-	return _DeCusSystem.Contract.GetReceiptId(&_DeCusSystem.CallOpts, groupBtcAddress, recipient, identifier)
+// Solidity: function getReceiptId(string groupBtcAddress, uint256 nonce) pure returns(bytes32)
+func (_DeCusSystem *DeCusSystemCallerSession) GetReceiptId(groupBtcAddress string, nonce *big.Int) ([32]byte, error) {
+	return _DeCusSystem.Contract.GetReceiptId(&_DeCusSystem.CallOpts, groupBtcAddress, nonce)
 }
 
 // KeeperRegistry is a free data retrieval call binding the contract method 0x83e22774.
@@ -755,23 +806,23 @@ func (_DeCusSystem *DeCusSystemTransactorSession) DeleteGroup(btcAddress string)
 
 // ForceRequestMint is a paid mutator transaction binding the contract method 0x6d3c5abc.
 //
-// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 identifier) returns()
-func (_DeCusSystem *DeCusSystemTransactor) ForceRequestMint(opts *bind.TransactOpts, groupBtcAddress string, amountInSatoshi *big.Int, identifier *big.Int) (*types.Transaction, error) {
-	return _DeCusSystem.contract.Transact(opts, "forceRequestMint", groupBtcAddress, amountInSatoshi, identifier)
+// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+func (_DeCusSystem *DeCusSystemTransactor) ForceRequestMint(opts *bind.TransactOpts, groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "forceRequestMint", groupBtcAddress, amountInSatoshi, nonce)
 }
 
 // ForceRequestMint is a paid mutator transaction binding the contract method 0x6d3c5abc.
 //
-// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 identifier) returns()
-func (_DeCusSystem *DeCusSystemSession) ForceRequestMint(groupBtcAddress string, amountInSatoshi *big.Int, identifier *big.Int) (*types.Transaction, error) {
-	return _DeCusSystem.Contract.ForceRequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, identifier)
+// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+func (_DeCusSystem *DeCusSystemSession) ForceRequestMint(groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.ForceRequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, nonce)
 }
 
 // ForceRequestMint is a paid mutator transaction binding the contract method 0x6d3c5abc.
 //
-// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 identifier) returns()
-func (_DeCusSystem *DeCusSystemTransactorSession) ForceRequestMint(groupBtcAddress string, amountInSatoshi *big.Int, identifier *big.Int) (*types.Transaction, error) {
-	return _DeCusSystem.Contract.ForceRequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, identifier)
+// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) ForceRequestMint(groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.ForceRequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, nonce)
 }
 
 // Initialize is a paid mutator transaction binding the contract method 0x485cc955.
@@ -860,23 +911,23 @@ func (_DeCusSystem *DeCusSystemTransactorSession) RequestBurn(receiptId [32]byte
 
 // RequestMint is a paid mutator transaction binding the contract method 0x9123cdfc.
 //
-// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 identifier) returns()
-func (_DeCusSystem *DeCusSystemTransactor) RequestMint(opts *bind.TransactOpts, groupBtcAddress string, amountInSatoshi *big.Int, identifier *big.Int) (*types.Transaction, error) {
-	return _DeCusSystem.contract.Transact(opts, "requestMint", groupBtcAddress, amountInSatoshi, identifier)
+// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+func (_DeCusSystem *DeCusSystemTransactor) RequestMint(opts *bind.TransactOpts, groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "requestMint", groupBtcAddress, amountInSatoshi, nonce)
 }
 
 // RequestMint is a paid mutator transaction binding the contract method 0x9123cdfc.
 //
-// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 identifier) returns()
-func (_DeCusSystem *DeCusSystemSession) RequestMint(groupBtcAddress string, amountInSatoshi *big.Int, identifier *big.Int) (*types.Transaction, error) {
-	return _DeCusSystem.Contract.RequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, identifier)
+// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+func (_DeCusSystem *DeCusSystemSession) RequestMint(groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.RequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, nonce)
 }
 
 // RequestMint is a paid mutator transaction binding the contract method 0x9123cdfc.
 //
-// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 identifier) returns()
-func (_DeCusSystem *DeCusSystemTransactorSession) RequestMint(groupBtcAddress string, amountInSatoshi *big.Int, identifier *big.Int) (*types.Transaction, error) {
-	return _DeCusSystem.Contract.RequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, identifier)
+// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) RequestMint(groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.RequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, nonce)
 }
 
 // RevokeMint is a paid mutator transaction binding the contract method 0x507d87e4.
@@ -1033,14 +1084,15 @@ func (it *DeCusSystemBurnRequestedIterator) Close() error {
 // DeCusSystemBurnRequested represents a BurnRequested event raised by the DeCusSystem contract.
 type DeCusSystemBurnRequested struct {
 	ReceiptId          [32]byte
+	GroupBtcAddress    string
 	WithdrawBtcAddress string
 	Operator           common.Address
 	Raw                types.Log // Blockchain specific contextual infos
 }
 
-// FilterBurnRequested is a free log retrieval operation binding the contract event 0xaf29f62ec7927fddacdb365e839988b657d4af70b4cbae582c2d4cb525092859.
+// FilterBurnRequested is a free log retrieval operation binding the contract event 0xf0e638df6d296aaddeb18409852c4fa659a87b113a1fdb9cf7535668bd49497d.
 //
-// Solidity: event BurnRequested(bytes32 indexed receiptId, string withdrawBtcAddress, address operator)
+// Solidity: event BurnRequested(bytes32 indexed receiptId, string groupBtcAddress, string withdrawBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) FilterBurnRequested(opts *bind.FilterOpts, receiptId [][32]byte) (*DeCusSystemBurnRequestedIterator, error) {
 
 	var receiptIdRule []interface{}
@@ -1055,9 +1107,9 @@ func (_DeCusSystem *DeCusSystemFilterer) FilterBurnRequested(opts *bind.FilterOp
 	return &DeCusSystemBurnRequestedIterator{contract: _DeCusSystem.contract, event: "BurnRequested", logs: logs, sub: sub}, nil
 }
 
-// WatchBurnRequested is a free log subscription operation binding the contract event 0xaf29f62ec7927fddacdb365e839988b657d4af70b4cbae582c2d4cb525092859.
+// WatchBurnRequested is a free log subscription operation binding the contract event 0xf0e638df6d296aaddeb18409852c4fa659a87b113a1fdb9cf7535668bd49497d.
 //
-// Solidity: event BurnRequested(bytes32 indexed receiptId, string withdrawBtcAddress, address operator)
+// Solidity: event BurnRequested(bytes32 indexed receiptId, string groupBtcAddress, string withdrawBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) WatchBurnRequested(opts *bind.WatchOpts, sink chan<- *DeCusSystemBurnRequested, receiptId [][32]byte) (event.Subscription, error) {
 
 	var receiptIdRule []interface{}
@@ -1097,9 +1149,9 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchBurnRequested(opts *bind.WatchOpts
 	}), nil
 }
 
-// ParseBurnRequested is a log parse operation binding the contract event 0xaf29f62ec7927fddacdb365e839988b657d4af70b4cbae582c2d4cb525092859.
+// ParseBurnRequested is a log parse operation binding the contract event 0xf0e638df6d296aaddeb18409852c4fa659a87b113a1fdb9cf7535668bd49497d.
 //
-// Solidity: event BurnRequested(bytes32 indexed receiptId, string withdrawBtcAddress, address operator)
+// Solidity: event BurnRequested(bytes32 indexed receiptId, string groupBtcAddress, string withdrawBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) ParseBurnRequested(log types.Log) (*DeCusSystemBurnRequested, error) {
 	event := new(DeCusSystemBurnRequested)
 	if err := _DeCusSystem.contract.UnpackLog(event, "BurnRequested", log); err != nil {
@@ -1178,14 +1230,15 @@ func (it *DeCusSystemBurnRevokedIterator) Close() error {
 
 // DeCusSystemBurnRevoked represents a BurnRevoked event raised by the DeCusSystem contract.
 type DeCusSystemBurnRevoked struct {
-	ReceiptId [32]byte
-	Operator  common.Address
-	Raw       types.Log // Blockchain specific contextual infos
+	ReceiptId       [32]byte
+	GroupBtcAddress string
+	Operator        common.Address
+	Raw             types.Log // Blockchain specific contextual infos
 }
 
-// FilterBurnRevoked is a free log retrieval operation binding the contract event 0xac495874c874e0b930df8f90c2f9b7a972ede4a1f16649f0e533bc01591ca58f.
+// FilterBurnRevoked is a free log retrieval operation binding the contract event 0x8e24f8539f9ec3a6069ecf3348ec641da0bf8d223c4e5a69611809462087a9e8.
 //
-// Solidity: event BurnRevoked(bytes32 indexed receiptId, address operator)
+// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) FilterBurnRevoked(opts *bind.FilterOpts, receiptId [][32]byte) (*DeCusSystemBurnRevokedIterator, error) {
 
 	var receiptIdRule []interface{}
@@ -1200,9 +1253,9 @@ func (_DeCusSystem *DeCusSystemFilterer) FilterBurnRevoked(opts *bind.FilterOpts
 	return &DeCusSystemBurnRevokedIterator{contract: _DeCusSystem.contract, event: "BurnRevoked", logs: logs, sub: sub}, nil
 }
 
-// WatchBurnRevoked is a free log subscription operation binding the contract event 0xac495874c874e0b930df8f90c2f9b7a972ede4a1f16649f0e533bc01591ca58f.
+// WatchBurnRevoked is a free log subscription operation binding the contract event 0x8e24f8539f9ec3a6069ecf3348ec641da0bf8d223c4e5a69611809462087a9e8.
 //
-// Solidity: event BurnRevoked(bytes32 indexed receiptId, address operator)
+// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) WatchBurnRevoked(opts *bind.WatchOpts, sink chan<- *DeCusSystemBurnRevoked, receiptId [][32]byte) (event.Subscription, error) {
 
 	var receiptIdRule []interface{}
@@ -1242,9 +1295,9 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchBurnRevoked(opts *bind.WatchOpts, 
 	}), nil
 }
 
-// ParseBurnRevoked is a log parse operation binding the contract event 0xac495874c874e0b930df8f90c2f9b7a972ede4a1f16649f0e533bc01591ca58f.
+// ParseBurnRevoked is a log parse operation binding the contract event 0x8e24f8539f9ec3a6069ecf3348ec641da0bf8d223c4e5a69611809462087a9e8.
 //
-// Solidity: event BurnRevoked(bytes32 indexed receiptId, address operator)
+// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) ParseBurnRevoked(log types.Log) (*DeCusSystemBurnRevoked, error) {
 	event := new(DeCusSystemBurnRevoked)
 	if err := _DeCusSystem.contract.UnpackLog(event, "BurnRevoked", log); err != nil {
@@ -1323,14 +1376,15 @@ func (it *DeCusSystemBurnVerifiedIterator) Close() error {
 
 // DeCusSystemBurnVerified represents a BurnVerified event raised by the DeCusSystem contract.
 type DeCusSystemBurnVerified struct {
-	ReceiptId [32]byte
-	Operator  common.Address
-	Raw       types.Log // Blockchain specific contextual infos
+	ReceiptId       [32]byte
+	GroupBtcAddress string
+	Operator        common.Address
+	Raw             types.Log // Blockchain specific contextual infos
 }
 
-// FilterBurnVerified is a free log retrieval operation binding the contract event 0x70bb39abd625d63b2cc0091b385af6029d554f56d5d6b5231eb62570b2a30e5c.
+// FilterBurnVerified is a free log retrieval operation binding the contract event 0xd90232357c1ad1e207410849ce0a0374bac4c22771453838f285ceca745547e3.
 //
-// Solidity: event BurnVerified(bytes32 indexed receiptId, address operator)
+// Solidity: event BurnVerified(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) FilterBurnVerified(opts *bind.FilterOpts, receiptId [][32]byte) (*DeCusSystemBurnVerifiedIterator, error) {
 
 	var receiptIdRule []interface{}
@@ -1345,9 +1399,9 @@ func (_DeCusSystem *DeCusSystemFilterer) FilterBurnVerified(opts *bind.FilterOpt
 	return &DeCusSystemBurnVerifiedIterator{contract: _DeCusSystem.contract, event: "BurnVerified", logs: logs, sub: sub}, nil
 }
 
-// WatchBurnVerified is a free log subscription operation binding the contract event 0x70bb39abd625d63b2cc0091b385af6029d554f56d5d6b5231eb62570b2a30e5c.
+// WatchBurnVerified is a free log subscription operation binding the contract event 0xd90232357c1ad1e207410849ce0a0374bac4c22771453838f285ceca745547e3.
 //
-// Solidity: event BurnVerified(bytes32 indexed receiptId, address operator)
+// Solidity: event BurnVerified(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) WatchBurnVerified(opts *bind.WatchOpts, sink chan<- *DeCusSystemBurnVerified, receiptId [][32]byte) (event.Subscription, error) {
 
 	var receiptIdRule []interface{}
@@ -1387,9 +1441,9 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchBurnVerified(opts *bind.WatchOpts,
 	}), nil
 }
 
-// ParseBurnVerified is a log parse operation binding the contract event 0x70bb39abd625d63b2cc0091b385af6029d554f56d5d6b5231eb62570b2a30e5c.
+// ParseBurnVerified is a log parse operation binding the contract event 0xd90232357c1ad1e207410849ce0a0374bac4c22771453838f285ceca745547e3.
 //
-// Solidity: event BurnVerified(bytes32 indexed receiptId, address operator)
+// Solidity: event BurnVerified(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) ParseBurnVerified(log types.Log) (*DeCusSystemBurnVerified, error) {
 	event := new(DeCusSystemBurnVerified)
 	if err := _DeCusSystem.contract.UnpackLog(event, "BurnVerified", log); err != nil {
@@ -2039,14 +2093,15 @@ func (it *DeCusSystemMintRevokedIterator) Close() error {
 
 // DeCusSystemMintRevoked represents a MintRevoked event raised by the DeCusSystem contract.
 type DeCusSystemMintRevoked struct {
-	ReceiptId [32]byte
-	Operator  common.Address
-	Raw       types.Log // Blockchain specific contextual infos
+	ReceiptId       [32]byte
+	GroupBtcAddress string
+	Operator        common.Address
+	Raw             types.Log // Blockchain specific contextual infos
 }
 
-// FilterMintRevoked is a free log retrieval operation binding the contract event 0x81b8185e5a35937f4aa13a00bc90f20762e0dc84a2cb96b57cfa24343f2e090d.
+// FilterMintRevoked is a free log retrieval operation binding the contract event 0x24da21178c24a520845b59d6d351ecf3033e3ceefb8c66f286f667caa74cd2c3.
 //
-// Solidity: event MintRevoked(bytes32 indexed receiptId, address operator)
+// Solidity: event MintRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) FilterMintRevoked(opts *bind.FilterOpts, receiptId [][32]byte) (*DeCusSystemMintRevokedIterator, error) {
 
 	var receiptIdRule []interface{}
@@ -2061,9 +2116,9 @@ func (_DeCusSystem *DeCusSystemFilterer) FilterMintRevoked(opts *bind.FilterOpts
 	return &DeCusSystemMintRevokedIterator{contract: _DeCusSystem.contract, event: "MintRevoked", logs: logs, sub: sub}, nil
 }
 
-// WatchMintRevoked is a free log subscription operation binding the contract event 0x81b8185e5a35937f4aa13a00bc90f20762e0dc84a2cb96b57cfa24343f2e090d.
+// WatchMintRevoked is a free log subscription operation binding the contract event 0x24da21178c24a520845b59d6d351ecf3033e3ceefb8c66f286f667caa74cd2c3.
 //
-// Solidity: event MintRevoked(bytes32 indexed receiptId, address operator)
+// Solidity: event MintRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) WatchMintRevoked(opts *bind.WatchOpts, sink chan<- *DeCusSystemMintRevoked, receiptId [][32]byte) (event.Subscription, error) {
 
 	var receiptIdRule []interface{}
@@ -2103,9 +2158,9 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchMintRevoked(opts *bind.WatchOpts, 
 	}), nil
 }
 
-// ParseMintRevoked is a log parse operation binding the contract event 0x81b8185e5a35937f4aa13a00bc90f20762e0dc84a2cb96b57cfa24343f2e090d.
+// ParseMintRevoked is a log parse operation binding the contract event 0x24da21178c24a520845b59d6d351ecf3033e3ceefb8c66f286f667caa74cd2c3.
 //
-// Solidity: event MintRevoked(bytes32 indexed receiptId, address operator)
+// Solidity: event MintRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) ParseMintRevoked(log types.Log) (*DeCusSystemMintRevoked, error) {
 	event := new(DeCusSystemMintRevoked)
 	if err := _DeCusSystem.contract.UnpackLog(event, "MintRevoked", log); err != nil {
@@ -2184,14 +2239,15 @@ func (it *DeCusSystemMintVerifiedIterator) Close() error {
 
 // DeCusSystemMintVerified represents a MintVerified event raised by the DeCusSystem contract.
 type DeCusSystemMintVerified struct {
-	ReceiptId [32]byte
-	Keepers   []common.Address
-	Raw       types.Log // Blockchain specific contextual infos
+	ReceiptId       [32]byte
+	GroupBtcAddress string
+	Keepers         []common.Address
+	Raw             types.Log // Blockchain specific contextual infos
 }
 
-// FilterMintVerified is a free log retrieval operation binding the contract event 0x9738ba6e52a048264f1e819495d4634c28cfda92fbfac4097a444a59dfb097a7.
+// FilterMintVerified is a free log retrieval operation binding the contract event 0xf2b0b070a7c8b8436fc8c16f75c3f8d2ae027ca97adc891f7c450f7b46cce531.
 //
-// Solidity: event MintVerified(bytes32 indexed receiptId, address[] keepers)
+// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers)
 func (_DeCusSystem *DeCusSystemFilterer) FilterMintVerified(opts *bind.FilterOpts, receiptId [][32]byte) (*DeCusSystemMintVerifiedIterator, error) {
 
 	var receiptIdRule []interface{}
@@ -2206,9 +2262,9 @@ func (_DeCusSystem *DeCusSystemFilterer) FilterMintVerified(opts *bind.FilterOpt
 	return &DeCusSystemMintVerifiedIterator{contract: _DeCusSystem.contract, event: "MintVerified", logs: logs, sub: sub}, nil
 }
 
-// WatchMintVerified is a free log subscription operation binding the contract event 0x9738ba6e52a048264f1e819495d4634c28cfda92fbfac4097a444a59dfb097a7.
+// WatchMintVerified is a free log subscription operation binding the contract event 0xf2b0b070a7c8b8436fc8c16f75c3f8d2ae027ca97adc891f7c450f7b46cce531.
 //
-// Solidity: event MintVerified(bytes32 indexed receiptId, address[] keepers)
+// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers)
 func (_DeCusSystem *DeCusSystemFilterer) WatchMintVerified(opts *bind.WatchOpts, sink chan<- *DeCusSystemMintVerified, receiptId [][32]byte) (event.Subscription, error) {
 
 	var receiptIdRule []interface{}
@@ -2248,9 +2304,9 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchMintVerified(opts *bind.WatchOpts,
 	}), nil
 }
 
-// ParseMintVerified is a log parse operation binding the contract event 0x9738ba6e52a048264f1e819495d4634c28cfda92fbfac4097a444a59dfb097a7.
+// ParseMintVerified is a log parse operation binding the contract event 0xf2b0b070a7c8b8436fc8c16f75c3f8d2ae027ca97adc891f7c450f7b46cce531.
 //
-// Solidity: event MintVerified(bytes32 indexed receiptId, address[] keepers)
+// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers)
 func (_DeCusSystem *DeCusSystemFilterer) ParseMintVerified(log types.Log) (*DeCusSystemMintVerified, error) {
 	event := new(DeCusSystemMintVerified)
 	if err := _DeCusSystem.contract.UnpackLog(event, "MintVerified", log); err != nil {
