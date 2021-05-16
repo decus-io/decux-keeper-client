@@ -46,7 +46,7 @@ type LibRequestMintRequest struct {
 }
 
 // DeCusSystemABI is the input ABI used to generate the binding from.
-const DeCusSystemABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"Cooldown\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"name\":\"MintRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"MintRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"MintVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"EIP712_DOMAIN_HASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_RESUSING_GAP\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_COOLDOWN\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WITHDRAW_VERIFICATION_END\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"chainId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"chillTime\",\"type\":\"uint256\"}],\"name\":\"chill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eBTC\",\"outputs\":[{\"internalType\":\"contractIEBTC\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"forceRequestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCooldownTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroup\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroupAllowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"updateTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"},{\"internalType\":\"enumIDeCusSystem.Status\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"internalType\":\"structIDeCusSystem.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"getReceiptId\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_eBTC\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_registry\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperRegistry\",\"outputs\":[{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"listGroupKeeper\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minKeeperSatoshi\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"recoverBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"name\":\"requestBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"requestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"revokeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"verifyBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"}],\"internalType\":\"structLibRequest.MintRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"r\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"s\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256\",\"name\":\"packedV\",\"type\":\"uint256\"}],\"name\":\"verifyMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const DeCusSystemABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"Cooldown\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"name\":\"MintRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"MintRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"MintVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"EIP712_DOMAIN_HASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_REUSING_GAP\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_COOLDOWN\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WITHDRAW_VERIFICATION_END\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"chainId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"chillTime\",\"type\":\"uint256\"}],\"name\":\"chill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eBTC\",\"outputs\":[{\"internalType\":\"contractIEBTC\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"forceRequestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCooldownTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroup\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32\",\"name\":\"workingReceiptId\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"updateTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"},{\"internalType\":\"enumIDeCusSystem.Status\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"internalType\":\"structIDeCusSystem.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"getReceiptId\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_eBTC\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_registry\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperRegistry\",\"outputs\":[{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minKeeperSatoshi\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"recoverBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"name\":\"requestBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"requestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"revokeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"verifyBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"}],\"internalType\":\"structLibRequest.MintRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"r\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"s\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256\",\"name\":\"packedV\",\"type\":\"uint256\"}],\"name\":\"verifyMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // DeCusSystem is an auto generated Go binding around an Ethereum contract.
 type DeCusSystem struct {
@@ -221,12 +221,12 @@ func (_DeCusSystem *DeCusSystemCallerSession) EIP712DOMAINHASH() ([32]byte, erro
 	return _DeCusSystem.Contract.EIP712DOMAINHASH(&_DeCusSystem.CallOpts)
 }
 
-// GROUPRESUSINGGAP is a free data retrieval call binding the contract method 0x853faff4.
+// GROUPREUSINGGAP is a free data retrieval call binding the contract method 0x6e157869.
 //
-// Solidity: function GROUP_RESUSING_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) GROUPRESUSINGGAP(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function GROUP_REUSING_GAP() view returns(uint256)
+func (_DeCusSystem *DeCusSystemCaller) GROUPREUSINGGAP(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "GROUP_RESUSING_GAP")
+	err := _DeCusSystem.contract.Call(opts, &out, "GROUP_REUSING_GAP")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -238,18 +238,18 @@ func (_DeCusSystem *DeCusSystemCaller) GROUPRESUSINGGAP(opts *bind.CallOpts) (*b
 
 }
 
-// GROUPRESUSINGGAP is a free data retrieval call binding the contract method 0x853faff4.
+// GROUPREUSINGGAP is a free data retrieval call binding the contract method 0x6e157869.
 //
-// Solidity: function GROUP_RESUSING_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) GROUPRESUSINGGAP() (*big.Int, error) {
-	return _DeCusSystem.Contract.GROUPRESUSINGGAP(&_DeCusSystem.CallOpts)
+// Solidity: function GROUP_REUSING_GAP() view returns(uint256)
+func (_DeCusSystem *DeCusSystemSession) GROUPREUSINGGAP() (*big.Int, error) {
+	return _DeCusSystem.Contract.GROUPREUSINGGAP(&_DeCusSystem.CallOpts)
 }
 
-// GROUPRESUSINGGAP is a free data retrieval call binding the contract method 0x853faff4.
+// GROUPREUSINGGAP is a free data retrieval call binding the contract method 0x6e157869.
 //
-// Solidity: function GROUP_RESUSING_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) GROUPRESUSINGGAP() (*big.Int, error) {
-	return _DeCusSystem.Contract.GROUPRESUSINGGAP(&_DeCusSystem.CallOpts)
+// Solidity: function GROUP_REUSING_GAP() view returns(uint256)
+func (_DeCusSystem *DeCusSystemCallerSession) GROUPREUSINGGAP() (*big.Int, error) {
+	return _DeCusSystem.Contract.GROUPREUSINGGAP(&_DeCusSystem.CallOpts)
 }
 
 // KEEPERCOOLDOWN is a free data retrieval call binding the contract method 0x7f7bcb62.
@@ -440,21 +440,25 @@ func (_DeCusSystem *DeCusSystemCallerSession) GetCooldownTime(keeper common.Addr
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce)
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, bytes32 workingReceiptId)
 func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress string) (struct {
-	Required    *big.Int
-	MaxSatoshi  *big.Int
-	CurrSatoshi *big.Int
-	Nonce       *big.Int
+	Required         *big.Int
+	MaxSatoshi       *big.Int
+	CurrSatoshi      *big.Int
+	Nonce            *big.Int
+	Keepers          []common.Address
+	WorkingReceiptId [32]byte
 }, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "getGroup", btcAddress)
 
 	outstruct := new(struct {
-		Required    *big.Int
-		MaxSatoshi  *big.Int
-		CurrSatoshi *big.Int
-		Nonce       *big.Int
+		Required         *big.Int
+		MaxSatoshi       *big.Int
+		CurrSatoshi      *big.Int
+		Nonce            *big.Int
+		Keepers          []common.Address
+		WorkingReceiptId [32]byte
 	})
 	if err != nil {
 		return *outstruct, err
@@ -464,6 +468,8 @@ func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress 
 	outstruct.MaxSatoshi = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
 	outstruct.CurrSatoshi = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
 	outstruct.Nonce = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
+	outstruct.Keepers = *abi.ConvertType(out[4], new([]common.Address)).(*[]common.Address)
+	outstruct.WorkingReceiptId = *abi.ConvertType(out[5], new([32]byte)).(*[32]byte)
 
 	return *outstruct, err
 
@@ -471,57 +477,30 @@ func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress 
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce)
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, bytes32 workingReceiptId)
 func (_DeCusSystem *DeCusSystemSession) GetGroup(btcAddress string) (struct {
-	Required    *big.Int
-	MaxSatoshi  *big.Int
-	CurrSatoshi *big.Int
-	Nonce       *big.Int
+	Required         *big.Int
+	MaxSatoshi       *big.Int
+	CurrSatoshi      *big.Int
+	Nonce            *big.Int
+	Keepers          []common.Address
+	WorkingReceiptId [32]byte
 }, error) {
 	return _DeCusSystem.Contract.GetGroup(&_DeCusSystem.CallOpts, btcAddress)
 }
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce)
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, bytes32 workingReceiptId)
 func (_DeCusSystem *DeCusSystemCallerSession) GetGroup(btcAddress string) (struct {
-	Required    *big.Int
-	MaxSatoshi  *big.Int
-	CurrSatoshi *big.Int
-	Nonce       *big.Int
+	Required         *big.Int
+	MaxSatoshi       *big.Int
+	CurrSatoshi      *big.Int
+	Nonce            *big.Int
+	Keepers          []common.Address
+	WorkingReceiptId [32]byte
 }, error) {
 	return _DeCusSystem.Contract.GetGroup(&_DeCusSystem.CallOpts, btcAddress)
-}
-
-// GetGroupAllowance is a free data retrieval call binding the contract method 0xd1176107.
-//
-// Solidity: function getGroupAllowance(string btcAddress) view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) GetGroupAllowance(opts *bind.CallOpts, btcAddress string) (*big.Int, error) {
-	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "getGroupAllowance", btcAddress)
-
-	if err != nil {
-		return *new(*big.Int), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
-
-	return out0, err
-
-}
-
-// GetGroupAllowance is a free data retrieval call binding the contract method 0xd1176107.
-//
-// Solidity: function getGroupAllowance(string btcAddress) view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) GetGroupAllowance(btcAddress string) (*big.Int, error) {
-	return _DeCusSystem.Contract.GetGroupAllowance(&_DeCusSystem.CallOpts, btcAddress)
-}
-
-// GetGroupAllowance is a free data retrieval call binding the contract method 0xd1176107.
-//
-// Solidity: function getGroupAllowance(string btcAddress) view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) GetGroupAllowance(btcAddress string) (*big.Int, error) {
-	return _DeCusSystem.Contract.GetGroupAllowance(&_DeCusSystem.CallOpts, btcAddress)
 }
 
 // GetReceipt is a free data retrieval call binding the contract method 0xfcecbb61.
@@ -615,37 +594,6 @@ func (_DeCusSystem *DeCusSystemSession) KeeperRegistry() (common.Address, error)
 // Solidity: function keeperRegistry() view returns(address)
 func (_DeCusSystem *DeCusSystemCallerSession) KeeperRegistry() (common.Address, error) {
 	return _DeCusSystem.Contract.KeeperRegistry(&_DeCusSystem.CallOpts)
-}
-
-// ListGroupKeeper is a free data retrieval call binding the contract method 0x9522dd70.
-//
-// Solidity: function listGroupKeeper(string btcAddress) view returns(address[])
-func (_DeCusSystem *DeCusSystemCaller) ListGroupKeeper(opts *bind.CallOpts, btcAddress string) ([]common.Address, error) {
-	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "listGroupKeeper", btcAddress)
-
-	if err != nil {
-		return *new([]common.Address), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([]common.Address)).(*[]common.Address)
-
-	return out0, err
-
-}
-
-// ListGroupKeeper is a free data retrieval call binding the contract method 0x9522dd70.
-//
-// Solidity: function listGroupKeeper(string btcAddress) view returns(address[])
-func (_DeCusSystem *DeCusSystemSession) ListGroupKeeper(btcAddress string) ([]common.Address, error) {
-	return _DeCusSystem.Contract.ListGroupKeeper(&_DeCusSystem.CallOpts, btcAddress)
-}
-
-// ListGroupKeeper is a free data retrieval call binding the contract method 0x9522dd70.
-//
-// Solidity: function listGroupKeeper(string btcAddress) view returns(address[])
-func (_DeCusSystem *DeCusSystemCallerSession) ListGroupKeeper(btcAddress string) ([]common.Address, error) {
-	return _DeCusSystem.Contract.ListGroupKeeper(&_DeCusSystem.CallOpts, btcAddress)
 }
 
 // MinKeeperSatoshi is a free data retrieval call binding the contract method 0xad95033a.

@@ -10,8 +10,7 @@ import (
 
 	"github.com/decus-io/decus-keeper-client/config"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
-	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/ptypes/timestamp"
+	"google.golang.org/protobuf/proto"
 )
 
 var client = &http.Client{
@@ -70,7 +69,6 @@ func SendOperation(op *message.Operation, result proto.Message) error {
 	op.KeeperId = config.C.Keeper.Id.Hex()
 	op.Nonce = 1
 	op.Signature = []byte{1}
-	op.Timestamp = &timestamp.Timestamp{Seconds: time.Now().Unix()}
 
 	data, err := proto.Marshal(op)
 	if err != nil {
