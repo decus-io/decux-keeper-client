@@ -2,10 +2,12 @@ package config
 
 import (
 	"crypto/ecdsa"
+	"fmt"
 	"io/ioutil"
 	"log"
 
 	"github.com/btcsuite/btcd/btcec"
+	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"gopkg.in/yaml.v2"
@@ -19,15 +21,15 @@ type Config struct {
 		BtcKey *btcec.PrivateKey `yaml:"-"`
 		EthKey *ecdsa.PrivateKey `yaml:"-"`
 	} `yaml:"keeper"`
-	Coordinator struct {
-		Url string `yaml:"url"`
-	} `yaml:"coordinator"`
-	EthClient struct {
-		WssUrl string `yaml:"wss_url"`
-	} `yaml:"ethclient"`
-	BtcEsplora struct {
-		Url string `yaml:"url"`
-	} `yaml:"btcesplora"`
+	Btc struct {
+		Network       string           `yaml:"network"`
+		NetworkParams *chaincfg.Params `yaml:"-"`
+	} `yaml:"btc"`
+	Url struct {
+		Coordinator string `yaml:"coordinator"`
+		EthClient   string `yaml:"ethclient"`
+		BtcEsplora  string `yaml:"btcesplora"`
+	} `yaml:"url"`
 	Contract struct {
 		DeCusSystem    string `yaml:"decus_system"`
 		KeeperRegistry string `yaml:"keeper_registry"`
@@ -43,6 +45,18 @@ func Init(user string) error {
 		return err
 	}
 
+	log.Print("contract DeCusSystem: ", C.Contract.DeCusSystem)
+	log.Print("contract KeeperRegistry: ", C.Contract.KeeperRegistry)
+
+	switch C.Btc.Network {
+	case "testnet":
+		C.Btc.NetworkParams = &chaincfg.TestNet3Params
+	case "mainnet":
+		C.Btc.NetworkParams = &chaincfg.MainNetParams
+	default:
+		return fmt.Errorf("unknown btc networkd: %v", C.Btc.Network)
+	}
+
 	if C.Keeper.BtcKey, err = loadBtcKey(user); err != nil {
 		return err
 	}
@@ -54,7 +68,7 @@ func Init(user string) error {
 	if err != nil {
 		return err
 	}
-	C.EthClient.WssUrl += infuraId
+	C.Url.EthClient += infuraId
 	log.Print("infura id: ", infuraId)
 
 	C.Keeper.Id = crypto.PubkeyToAddress(C.Keeper.EthKey.PublicKey)

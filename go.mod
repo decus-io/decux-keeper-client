@@ -5,7 +5,8 @@ go 1.16
 require (
 	github.com/btcsuite/btcd v0.21.0-beta
 	github.com/btcsuite/btcutil v1.0.2
-	github.com/decus-io/decus-keeper-proto v0.0.9
+	github.com/btcsuite/btcutil/psbt v1.0.2
+	github.com/decus-io/decus-keeper-proto v0.0.10
 	github.com/ethereum/go-ethereum v1.10.1
 	github.com/google/uuid v1.1.5
 	github.com/natefinch/atomic v0.0.0-20200526193002-18c0533a5b09

@@ -144,7 +144,7 @@ func filterEvents(client *ethclient.Client) error {
 }
 
 func Init() error {
-	client, err := ethclient.Dial(config.C.EthClient.WssUrl)
+	client, err := ethclient.Dial(config.C.Url.EthClient)
 	if err != nil {
 		return err
 	}

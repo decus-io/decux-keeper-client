@@ -23,7 +23,7 @@ var client = &http.Client{
 }
 
 func request(subUrl string, result interface{}) error {
-	req, err := http.NewRequest("GET", config.C.BtcEsplora.Url+subUrl, nil)
+	req, err := http.NewRequest("GET", config.C.Url.BtcEsplora+subUrl, nil)
 	if err != nil {
 		return err
 	}

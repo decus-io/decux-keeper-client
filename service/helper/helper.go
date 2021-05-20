@@ -17,7 +17,11 @@ func FindUtxo(receipt *contract.Receipt) (*btc.Utxo, error) {
 	// reduce the chance that different keepers select different utxo
 	// (normally there won't be multiple utxo)
 	sort.Slice(utxo, func(i, j int) bool {
-		return utxo[i].Status.Block_Height < utxo[j].Status.Block_Height
+		if utxo[i].Status.Block_Height == utxo[j].Status.Block_Height {
+			return utxo[i].Txid < utxo[j].Txid
+		} else {
+			return utxo[i].Status.Block_Height < utxo[j].Status.Block_Height
+		}
 	})
 
 	for _, v := range utxo {

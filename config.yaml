@@ -1,9 +1,9 @@
-coordinator:
-  url: "http://coordinator.decus.io/api/"
-ethclient:
-  wss_url: wss://kovan.infura.io/ws/v3/
-btcesplora:
-  url: https://blockstream.info/testnet/api/
+btc:
+  network: testnet
+url:
+  coordinator: http://coordinator.decus.io/api/
+  ethclient: wss://kovan.infura.io/ws/v3/
+  btcesplora: https://blockstream.info/testnet/api/
 contract:
-  decus_system: "0xeC32A7d1DA03681D2CeC6fCFaE7Bc62d3F78A8c8"
-  keeper_registry: "0x9b2C37e10146577494c63224C1Eba0A9aC28D238"
+  decus_system: "0x367Dc8B13Ca07F301122B436D204E2c52B76025C"
+  keeper_registry: "0x5e77B65E9b78d66056C7048C773C81327bc79Fd6"

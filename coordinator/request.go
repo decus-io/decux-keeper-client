@@ -49,7 +49,7 @@ func Reqeust(subUrl string, data []byte, result proto.Message) error {
 		body = bytes.NewReader(data)
 	}
 
-	req, err := http.NewRequest(method, config.C.Coordinator.Url+subUrl, body)
+	req, err := http.NewRequest(method, config.C.Url.Coordinator+subUrl, body)
 	if err != nil {
 		return err
 	}
