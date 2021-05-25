@@ -13,12 +13,12 @@ import (
 )
 
 type Deposit struct {
-	signed map[string]bool
+	processed map[string]bool
 }
 
 func NewDeposit() *Deposit {
 	return &Deposit{
-		signed: map[string]bool{},
+		processed: map[string]bool{},
 	}
 }
 
@@ -33,7 +33,6 @@ func (s *Deposit) signDeposit(receipt *contract.Receipt, utxo *btc.Utxo) error {
 		Operation: &message.Operation_DepositSignature{
 			DepositSignature: &message.DepositSignature{
 				ReceiptId:   receipt.ReceiptId,
-				GroupId:     receipt.GroupBtcAddress,
 				TxId:        utxo.Txid,
 				BlockHeight: utxo.Status.Block_Height,
 				Signature:   signature,
@@ -44,11 +43,11 @@ func (s *Deposit) signDeposit(receipt *contract.Receipt, utxo *btc.Utxo) error {
 }
 
 func (s *Deposit) ProcessDeposit(receipt *contract.Receipt) error {
-	if s.signed[receipt.ReceiptId] {
+	if s.processed[receipt.ReceiptId] {
 		return nil
 	}
 
-	utxo, err := helper.FindUtxo(receipt)
+	utxo, err := helper.UtxoByReceipt(receipt)
 	if err != nil {
 		return err
 	}
@@ -59,7 +58,7 @@ func (s *Deposit) ProcessDeposit(receipt *contract.Receipt) error {
 	if err := s.signDeposit(receipt, utxo); err != nil {
 		return err
 	}
-	s.signed[receipt.ReceiptId] = true
+	s.processed[receipt.ReceiptId] = true
 	log.Print("deposit signed: ", receipt.ReceiptId, " txid: ", utxo.Txid)
 
 	return nil

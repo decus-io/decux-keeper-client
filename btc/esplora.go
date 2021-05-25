@@ -18,6 +18,14 @@ type Utxo struct {
 	}
 }
 
+type Tx struct {
+	Vin []struct {
+		Prevout struct {
+			Scriptpubkey_Address string
+		}
+	}
+}
+
 var client = &http.Client{
 	Timeout: time.Second * 30,
 }
@@ -43,4 +51,13 @@ func QueryUtxo(address string) ([]Utxo, error) {
 		return nil, err
 	}
 	return utxo, nil
+}
+
+func QueryTx(txId string) (*Tx, error) {
+	var tx Tx
+	err := request("tx/"+txId, &tx)
+	if err != nil {
+		return nil, err
+	}
+	return &tx, nil
 }

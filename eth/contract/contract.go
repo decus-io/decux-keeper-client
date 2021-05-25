@@ -27,6 +27,7 @@ var (
 	GroupAdded    = make(chan *abi.DeCusSystemGroupAdded)
 	GroupDeleted  = make(chan *abi.DeCusSystemGroupDeleted)
 	BurnRequested = make(chan *abi.DeCusSystemBurnRequested)
+	BtcRefunded   = make(chan *abi.DeCusSystemBtcRefunded)
 
 	decusSystemFilterer *abi.DeCusSystemFilterer
 	groupAddedId        common.Hash
@@ -68,6 +69,9 @@ func subscribeLoop(createFn func() (event.Subscription, error)) {
 func subscribeEvents(client *ethclient.Client) {
 	go subscribeLoop(func() (event.Subscription, error) {
 		return decusSystemFilterer.WatchBurnRequested(nil, BurnRequested, nil)
+	})
+	go subscribeLoop(func() (event.Subscription, error) {
+		return decusSystemFilterer.WatchBtcRefunded(nil, BtcRefunded)
 	})
 }
 

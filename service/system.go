@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"encoding/hex"
 	"fmt"
 	"log"
 	"time"
@@ -17,6 +16,7 @@ type System struct {
 	groupService    *Group
 	depositService  *Deposit
 	withdrawService *Withdraw
+	refundService   *Refund
 }
 
 func NewSystem() *System {
@@ -25,6 +25,7 @@ func NewSystem() *System {
 		groupService:    NewGroup(),
 		depositService:  NewDeposit(),
 		withdrawService: NewWithdraw(),
+		refundService:   NewRefund(),
 	}
 }
 
@@ -40,31 +41,19 @@ func (s *System) makeCallOpts() (*bind.CallOpts, context.CancelFunc) {
 	return &bind.CallOpts{Context: ctx}, cancel
 }
 
-func (s *System) receiptIdToString(receiptId [32]byte) string {
-	return "0x" + hex.EncodeToString(receiptId[:])
-}
-
 func (s *System) checkReceipt(groupId string) error {
 	opts, cancel := s.makeCallOpts()
 	defer cancel()
 
-	group, err := contract.DeCusSystem.GetGroup(opts, groupId)
+	receipt, err := contract.ReceiptByGroupId(opts, groupId)
 	if err != nil {
-		return err
-	}
-	receiptId, err := contract.DeCusSystem.GetReceiptId(opts, groupId, group.Nonce)
-	if err != nil {
-		return err
-	}
-	receipt := contract.Receipt{ReceiptId: s.receiptIdToString(receiptId)}
-	if receipt.IDeCusSystemReceipt, err = contract.DeCusSystem.GetReceipt(opts, receiptId); err != nil {
 		return err
 	}
 
 	if receipt.Status == contract.DepositRequested {
-		return s.depositService.ProcessDeposit(&receipt)
+		return s.depositService.ProcessDeposit(receipt)
 	} else if receipt.Status == contract.WithdrawRequested {
-		return s.withdrawService.ProcessWithdraw(&receipt)
+		return s.withdrawService.ProcessWithdraw(receipt)
 	}
 
 	return nil
@@ -87,15 +76,37 @@ func (s *System) onBurnRequested(event *abi.DeCusSystemBurnRequested) error {
 		return err
 	}
 	if s.groupService.Groups[receipt.GroupBtcAddress] {
-		log.Print("event BurnRequested: ", s.receiptIdToString(event.ReceiptId))
+		log.Print("event BurnRequested: ", contract.ReceiptIdToString(event.ReceiptId))
 		return s.checkReceipt(receipt.GroupBtcAddress)
 	}
 	return nil
 }
 
+func (s *System) checkBtcRefundImpl() error {
+	opts, cancel := s.makeCallOpts()
+	defer cancel()
+
+	refundData, err := contract.DeCusSystem.GetRefundData(opts)
+	if err != nil {
+		return err
+	}
+	if s.groupService.Groups[refundData.GroupBtcAddress] {
+		if err := s.refundService.ProcessRefund(opts, &refundData); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (s *System) checkBtcRefund() {
+	if err := s.checkBtcRefundImpl(); err != nil {
+		log.Print("check refund error: ", err)
+	}
+}
+
 func (s *System) Run() {
 	heartbeatTicker := time.NewTicker(time.Minute * 2)
-	checkReceiptTicker := time.NewTicker(time.Minute * 5)
+	checkContractTicker := time.NewTicker(time.Minute * 5)
 
 	for {
 		select {
@@ -103,8 +114,9 @@ func (s *System) Run() {
 			if err := s.keeperService.Heartbeat(); err != nil {
 				log.Print("error sending heartbeat: ", err)
 			}
-		case <-checkReceiptTicker.C:
+		case <-checkContractTicker.C:
 			s.checkAllReceipt()
+			s.checkBtcRefund()
 		case event := <-contract.GroupAdded:
 			s.groupService.OnGroupAdded(event)
 		case event := <-contract.GroupDeleted:
@@ -113,6 +125,9 @@ func (s *System) Run() {
 			if err := s.onBurnRequested(event); err != nil {
 				log.Print("error handling BurnRequested: ", err)
 			}
+		case event := <-contract.BtcRefunded:
+			log.Print("event BtcRefunded: ", event.GroupBtcAddress)
+			s.checkBtcRefund()
 		}
 	}
 }

@@ -5,11 +5,17 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/decus-io/decus-keeper-client/btc"
+	"github.com/decus-io/decus-keeper-client/eth/abi"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
 )
 
-func FindUtxo(receipt *contract.Receipt) (*btc.Utxo, error) {
+func txidEqual(txidStr string, txidBytes chainhash.Hash) bool {
+	return strings.EqualFold(txidStr, hex.EncodeToString(txidBytes[:]))
+}
+
+func UtxoByReceipt(receipt *contract.Receipt) (*btc.Utxo, error) {
 	utxo, err := btc.QueryUtxo(receipt.GroupBtcAddress)
 	if err != nil {
 		return nil, err
@@ -31,11 +37,24 @@ func FindUtxo(receipt *contract.Receipt) (*btc.Utxo, error) {
 					return &v, nil
 				}
 			} else {
-				txid := hex.EncodeToString(receipt.TxId[:])
-				if strings.EqualFold(v.Txid, txid) && receipt.Height.Uint64() == v.Status.Block_Height {
+				if txidEqual(v.Txid, receipt.TxId) && receipt.Height.Uint64() == v.Status.Block_Height {
 					return &v, nil
 				}
 			}
+		}
+	}
+
+	return nil, nil
+}
+
+func UtxoByRefundData(refundData *abi.IDeCusSystemBtcRefundData) (*btc.Utxo, error) {
+	utxo, err := btc.QueryUtxo(refundData.GroupBtcAddress)
+	if err != nil {
+		return nil, err
+	}
+	for _, v := range utxo {
+		if txidEqual(v.Txid, refundData.TxId) {
+			return &v, nil
 		}
 	}
 
