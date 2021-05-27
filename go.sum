@@ -114,6 +114,8 @@ github.com/decus-io/decus-keeper-proto v0.0.10 h1:tigy9JdRBsu5G5w2w/iZv3DhALMNzc
 github.com/decus-io/decus-keeper-proto v0.0.10/go.mod h1:b1jgPLBG59zMW9Py96sPAHMdlR4MUh3R7hYg2tEJKO0=
 github.com/decus-io/decus-keeper-proto v0.0.11 h1:VKZNnPynncgTV5pDOE+nNgZQrzzYpgw/wMjPAYU0YC0=
 github.com/decus-io/decus-keeper-proto v0.0.11/go.mod h1:b1jgPLBG59zMW9Py96sPAHMdlR4MUh3R7hYg2tEJKO0=
+github.com/decus-io/decus-keeper-proto v0.0.12 h1:dQNGh8xNiemVdoZBx3qwxrSfbPpbMk3W/Q8wqj1QsCw=
+github.com/decus-io/decus-keeper-proto v0.0.12/go.mod h1:b1jgPLBG59zMW9Py96sPAHMdlR4MUh3R7hYg2tEJKO0=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
 github.com/dgryski/go-bitstream v0.0.0-20180413035011-3522498ce2c8/go.mod h1:VMaSuZ+SZcx/wljOQKvp5srsbCiKDEb6K2wC4+PiBmQ=
 github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=

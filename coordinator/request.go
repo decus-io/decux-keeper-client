@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/decus-io/decus-keeper-client/config"
+	"github.com/decus-io/decus-keeper-client/eth"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
 	"google.golang.org/protobuf/proto"
 )
@@ -67,12 +68,23 @@ func Reqeust(subUrl string, data []byte, result proto.Message) error {
 
 func SendOperation(op *message.Operation, result proto.Message) error {
 	op.KeeperId = config.C.Keeper.Id.Hex()
-	op.Nonce = 1
-	op.Signature = []byte{1}
-
-	data, err := proto.Marshal(op)
+	opData, err := proto.Marshal(op)
 	if err != nil {
 		return err
 	}
-	return Reqeust("operation", data, result)
+	signature, err := eth.SignMessage(opData, true)
+	if err != nil {
+		return err
+	}
+
+	req := &message.Request{
+		Data:      opData,
+		Signature: signature,
+	}
+	reqData, err := proto.Marshal(req)
+	if err != nil {
+		return err
+	}
+
+	return Reqeust("operation", reqData, result)
 }
