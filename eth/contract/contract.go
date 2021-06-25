@@ -164,7 +164,7 @@ func Init() error {
 		return err
 	}
 
-	amount, err := KeeperRegistry.GetCollateralValue(nil, config.C.Keeper.Id)
+	amount, err := KeeperRegistry.GetCollateralWei(nil, config.C.Keeper.Id)
 	if err != nil {
 		return err
 	}

@@ -34,7 +34,7 @@ func (s *Deposit) signDeposit(receipt *contract.Receipt, utxo *btc.Utxo) error {
 			DepositSignature: &message.DepositSignature{
 				ReceiptId:   receipt.ReceiptId,
 				TxId:        utxo.Txid,
-				BlockHeight: utxo.Status.Block_Height,
+				BlockHeight: uint64(utxo.Status.Block_Height),
 				Signature:   signature,
 			},
 		},

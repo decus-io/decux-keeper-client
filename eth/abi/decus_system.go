@@ -28,32 +28,32 @@ var (
 
 // IDeCusSystemBtcRefundData is an auto generated low-level Go binding around an user-defined struct.
 type IDeCusSystemBtcRefundData struct {
-	ExpiryTimestamp *big.Int
 	TxId            [32]byte
 	GroupBtcAddress string
+	ExpiryTimestamp uint32
+}
+
+// IDeCusSystemMintRequest is an auto generated low-level Go binding around an user-defined struct.
+type IDeCusSystemMintRequest struct {
+	ReceiptId [32]byte
+	TxId      [32]byte
+	Height    uint32
 }
 
 // IDeCusSystemReceipt is an auto generated low-level Go binding around an user-defined struct.
 type IDeCusSystemReceipt struct {
 	AmountInSatoshi    *big.Int
-	UpdateTimestamp    *big.Int
 	TxId               [32]byte
-	Height             *big.Int
-	Status             uint8
-	Recipient          common.Address
 	GroupBtcAddress    string
 	WithdrawBtcAddress string
-}
-
-// LibRequestMintRequest is an auto generated low-level Go binding around an user-defined struct.
-type LibRequestMintRequest struct {
-	ReceiptId [32]byte
-	TxId      [32]byte
-	Height    *big.Int
+	UpdateTimestamp    uint32
+	Height             uint32
+	Recipient          common.Address
+	Status             uint8
 }
 
 // DeCusSystemABI is the input ABI used to generate the binding from.
-const DeCusSystemABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"expiryTimestamp\",\"type\":\"uint256\"}],\"name\":\"BtcRefunded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"Cooldown\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"name\":\"MintRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"MintRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"MintVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"EIP712_DOMAIN_HASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_REUSING_GAP\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_COOLDOWN\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"REFUND_GAP\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WITHDRAW_VERIFICATION_END\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"chainId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"chillTime\",\"type\":\"uint256\"}],\"name\":\"chill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eBTC\",\"outputs\":[{\"internalType\":\"contractIEBTC\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"forceRequestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCooldownTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroup\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32\",\"name\":\"workingReceiptId\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"updateTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"},{\"internalType\":\"enumIDeCusSystem.Status\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"internalType\":\"structIDeCusSystem.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"getReceiptId\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRefundData\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"expiryTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"internalType\":\"structIDeCusSystem.BtcRefundData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_eBTC\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_registry\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperRegistry\",\"outputs\":[{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minKeeperSatoshi\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"recoverBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"}],\"name\":\"refundBtc\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"name\":\"requestBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"requestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"revokeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"verifyBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"height\",\"type\":\"uint256\"}],\"internalType\":\"structLibRequest.MintRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"r\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"s\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256\",\"name\":\"packedV\",\"type\":\"uint256\"}],\"name\":\"verifyMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const DeCusSystemABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"expiryTimestamp\",\"type\":\"uint256\"}],\"name\":\"BtcRefunded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"bps\",\"type\":\"uint8\"}],\"name\":\"BurnFeeBpsUpdate\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"Cooldown\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FeeCollected\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"MinKeeperWeiUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"bps\",\"type\":\"uint8\"}],\"name\":\"MintFeeBpsUpdate\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"name\":\"MintRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"MintRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"btcTxId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"btcTxHeight\",\"type\":\"uint32\"}],\"name\":\"MintVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_REUSING_GAP\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_COOLDOWN\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"REFUND_GAP\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WITHDRAW_VERIFICATION_END\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"required\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"burnFeeBps\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"chillTime\",\"type\":\"uint32\"}],\"name\":\"chill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"collectFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"cong\",\"outputs\":[{\"internalType\":\"contractIToken\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint128\",\"name\":\"nonce\",\"type\":\"uint128\"}],\"name\":\"forceRequestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCooldownTime\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroup\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"uint256\",\"name\":\"cooldown\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"workingReceiptId\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"updateTimestamp\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"height\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"enumIDeCusSystem.Status\",\"name\":\"status\",\"type\":\"uint8\"}],\"internalType\":\"structIDeCusSystem.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"getReceiptId\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRefundData\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"expiryTimestamp\",\"type\":\"uint32\"}],\"internalType\":\"structIDeCusSystem.BtcRefundData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_cong\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_registry\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"_mintFeeBps\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"_burnFeeBps\",\"type\":\"uint8\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperRegistry\",\"outputs\":[{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minKeeperWei\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintFeeBps\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"recoverBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"}],\"name\":\"refundBtc\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"name\":\"requestBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amountInSatoshi\",\"type\":\"uint256\"},{\"internalType\":\"uint128\",\"name\":\"nonce\",\"type\":\"uint128\"}],\"name\":\"requestMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"revokeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"bps\",\"type\":\"uint8\"}],\"name\":\"updateBurnFeeBps\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"updateMinKeeperWei\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"bps\",\"type\":\"uint8\"}],\"name\":\"updateMintFeeBps\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"verifyBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint32\",\"name\":\"height\",\"type\":\"uint32\"}],\"internalType\":\"structIDeCusSystem.MintRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"r\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"s\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256\",\"name\":\"packedV\",\"type\":\"uint256\"}],\"name\":\"verifyMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // DeCusSystem is an auto generated Go binding around an Ethereum contract.
 type DeCusSystem struct {
@@ -197,12 +197,12 @@ func (_DeCusSystem *DeCusSystemTransactorRaw) Transact(opts *bind.TransactOpts, 
 	return _DeCusSystem.Contract.contract.Transact(opts, method, params...)
 }
 
-// EIP712DOMAINHASH is a free data retrieval call binding the contract method 0xe306f779.
+// ADMINROLE is a free data retrieval call binding the contract method 0x75b238fc.
 //
-// Solidity: function EIP712_DOMAIN_HASH() view returns(bytes32)
-func (_DeCusSystem *DeCusSystemCaller) EIP712DOMAINHASH(opts *bind.CallOpts) ([32]byte, error) {
+// Solidity: function ADMIN_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCaller) ADMINROLE(opts *bind.CallOpts) ([32]byte, error) {
 	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "EIP712_DOMAIN_HASH")
+	err := _DeCusSystem.contract.Call(opts, &out, "ADMIN_ROLE")
 
 	if err != nil {
 		return *new([32]byte), err
@@ -214,32 +214,63 @@ func (_DeCusSystem *DeCusSystemCaller) EIP712DOMAINHASH(opts *bind.CallOpts) ([3
 
 }
 
-// EIP712DOMAINHASH is a free data retrieval call binding the contract method 0xe306f779.
+// ADMINROLE is a free data retrieval call binding the contract method 0x75b238fc.
 //
-// Solidity: function EIP712_DOMAIN_HASH() view returns(bytes32)
-func (_DeCusSystem *DeCusSystemSession) EIP712DOMAINHASH() ([32]byte, error) {
-	return _DeCusSystem.Contract.EIP712DOMAINHASH(&_DeCusSystem.CallOpts)
+// Solidity: function ADMIN_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemSession) ADMINROLE() ([32]byte, error) {
+	return _DeCusSystem.Contract.ADMINROLE(&_DeCusSystem.CallOpts)
 }
 
-// EIP712DOMAINHASH is a free data retrieval call binding the contract method 0xe306f779.
+// ADMINROLE is a free data retrieval call binding the contract method 0x75b238fc.
 //
-// Solidity: function EIP712_DOMAIN_HASH() view returns(bytes32)
-func (_DeCusSystem *DeCusSystemCallerSession) EIP712DOMAINHASH() ([32]byte, error) {
-	return _DeCusSystem.Contract.EIP712DOMAINHASH(&_DeCusSystem.CallOpts)
+// Solidity: function ADMIN_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCallerSession) ADMINROLE() ([32]byte, error) {
+	return _DeCusSystem.Contract.ADMINROLE(&_DeCusSystem.CallOpts)
+}
+
+// DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
+//
+// Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCaller) DEFAULTADMINROLE(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "DEFAULT_ADMIN_ROLE")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
+//
+// Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemSession) DEFAULTADMINROLE() ([32]byte, error) {
+	return _DeCusSystem.Contract.DEFAULTADMINROLE(&_DeCusSystem.CallOpts)
+}
+
+// DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
+//
+// Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCallerSession) DEFAULTADMINROLE() ([32]byte, error) {
+	return _DeCusSystem.Contract.DEFAULTADMINROLE(&_DeCusSystem.CallOpts)
 }
 
 // GROUPREUSINGGAP is a free data retrieval call binding the contract method 0x6e157869.
 //
-// Solidity: function GROUP_REUSING_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) GROUPREUSINGGAP(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function GROUP_REUSING_GAP() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCaller) GROUPREUSINGGAP(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "GROUP_REUSING_GAP")
 
 	if err != nil {
-		return *new(*big.Int), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -247,30 +278,61 @@ func (_DeCusSystem *DeCusSystemCaller) GROUPREUSINGGAP(opts *bind.CallOpts) (*bi
 
 // GROUPREUSINGGAP is a free data retrieval call binding the contract method 0x6e157869.
 //
-// Solidity: function GROUP_REUSING_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) GROUPREUSINGGAP() (*big.Int, error) {
+// Solidity: function GROUP_REUSING_GAP() view returns(uint32)
+func (_DeCusSystem *DeCusSystemSession) GROUPREUSINGGAP() (uint32, error) {
 	return _DeCusSystem.Contract.GROUPREUSINGGAP(&_DeCusSystem.CallOpts)
 }
 
 // GROUPREUSINGGAP is a free data retrieval call binding the contract method 0x6e157869.
 //
-// Solidity: function GROUP_REUSING_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) GROUPREUSINGGAP() (*big.Int, error) {
+// Solidity: function GROUP_REUSING_GAP() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCallerSession) GROUPREUSINGGAP() (uint32, error) {
 	return _DeCusSystem.Contract.GROUPREUSINGGAP(&_DeCusSystem.CallOpts)
+}
+
+// GROUPROLE is a free data retrieval call binding the contract method 0xc812a215.
+//
+// Solidity: function GROUP_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCaller) GROUPROLE(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "GROUP_ROLE")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// GROUPROLE is a free data retrieval call binding the contract method 0xc812a215.
+//
+// Solidity: function GROUP_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemSession) GROUPROLE() ([32]byte, error) {
+	return _DeCusSystem.Contract.GROUPROLE(&_DeCusSystem.CallOpts)
+}
+
+// GROUPROLE is a free data retrieval call binding the contract method 0xc812a215.
+//
+// Solidity: function GROUP_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCallerSession) GROUPROLE() ([32]byte, error) {
+	return _DeCusSystem.Contract.GROUPROLE(&_DeCusSystem.CallOpts)
 }
 
 // KEEPERCOOLDOWN is a free data retrieval call binding the contract method 0x7f7bcb62.
 //
-// Solidity: function KEEPER_COOLDOWN() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) KEEPERCOOLDOWN(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function KEEPER_COOLDOWN() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCaller) KEEPERCOOLDOWN(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "KEEPER_COOLDOWN")
 
 	if err != nil {
-		return *new(*big.Int), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -278,30 +340,30 @@ func (_DeCusSystem *DeCusSystemCaller) KEEPERCOOLDOWN(opts *bind.CallOpts) (*big
 
 // KEEPERCOOLDOWN is a free data retrieval call binding the contract method 0x7f7bcb62.
 //
-// Solidity: function KEEPER_COOLDOWN() view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) KEEPERCOOLDOWN() (*big.Int, error) {
+// Solidity: function KEEPER_COOLDOWN() view returns(uint32)
+func (_DeCusSystem *DeCusSystemSession) KEEPERCOOLDOWN() (uint32, error) {
 	return _DeCusSystem.Contract.KEEPERCOOLDOWN(&_DeCusSystem.CallOpts)
 }
 
 // KEEPERCOOLDOWN is a free data retrieval call binding the contract method 0x7f7bcb62.
 //
-// Solidity: function KEEPER_COOLDOWN() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) KEEPERCOOLDOWN() (*big.Int, error) {
+// Solidity: function KEEPER_COOLDOWN() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCallerSession) KEEPERCOOLDOWN() (uint32, error) {
 	return _DeCusSystem.Contract.KEEPERCOOLDOWN(&_DeCusSystem.CallOpts)
 }
 
 // MINTREQUESTGRACEPERIOD is a free data retrieval call binding the contract method 0x48a4a489.
 //
-// Solidity: function MINT_REQUEST_GRACE_PERIOD() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) MINTREQUESTGRACEPERIOD(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function MINT_REQUEST_GRACE_PERIOD() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCaller) MINTREQUESTGRACEPERIOD(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "MINT_REQUEST_GRACE_PERIOD")
 
 	if err != nil {
-		return *new(*big.Int), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -309,30 +371,30 @@ func (_DeCusSystem *DeCusSystemCaller) MINTREQUESTGRACEPERIOD(opts *bind.CallOpt
 
 // MINTREQUESTGRACEPERIOD is a free data retrieval call binding the contract method 0x48a4a489.
 //
-// Solidity: function MINT_REQUEST_GRACE_PERIOD() view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) MINTREQUESTGRACEPERIOD() (*big.Int, error) {
+// Solidity: function MINT_REQUEST_GRACE_PERIOD() view returns(uint32)
+func (_DeCusSystem *DeCusSystemSession) MINTREQUESTGRACEPERIOD() (uint32, error) {
 	return _DeCusSystem.Contract.MINTREQUESTGRACEPERIOD(&_DeCusSystem.CallOpts)
 }
 
 // MINTREQUESTGRACEPERIOD is a free data retrieval call binding the contract method 0x48a4a489.
 //
-// Solidity: function MINT_REQUEST_GRACE_PERIOD() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) MINTREQUESTGRACEPERIOD() (*big.Int, error) {
+// Solidity: function MINT_REQUEST_GRACE_PERIOD() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCallerSession) MINTREQUESTGRACEPERIOD() (uint32, error) {
 	return _DeCusSystem.Contract.MINTREQUESTGRACEPERIOD(&_DeCusSystem.CallOpts)
 }
 
 // REFUNDGAP is a free data retrieval call binding the contract method 0x833eeb57.
 //
-// Solidity: function REFUND_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) REFUNDGAP(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function REFUND_GAP() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCaller) REFUNDGAP(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "REFUND_GAP")
 
 	if err != nil {
-		return *new(*big.Int), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -340,30 +402,30 @@ func (_DeCusSystem *DeCusSystemCaller) REFUNDGAP(opts *bind.CallOpts) (*big.Int,
 
 // REFUNDGAP is a free data retrieval call binding the contract method 0x833eeb57.
 //
-// Solidity: function REFUND_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) REFUNDGAP() (*big.Int, error) {
+// Solidity: function REFUND_GAP() view returns(uint32)
+func (_DeCusSystem *DeCusSystemSession) REFUNDGAP() (uint32, error) {
 	return _DeCusSystem.Contract.REFUNDGAP(&_DeCusSystem.CallOpts)
 }
 
 // REFUNDGAP is a free data retrieval call binding the contract method 0x833eeb57.
 //
-// Solidity: function REFUND_GAP() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) REFUNDGAP() (*big.Int, error) {
+// Solidity: function REFUND_GAP() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCallerSession) REFUNDGAP() (uint32, error) {
 	return _DeCusSystem.Contract.REFUNDGAP(&_DeCusSystem.CallOpts)
 }
 
 // WITHDRAWVERIFICATIONEND is a free data retrieval call binding the contract method 0x6557f366.
 //
-// Solidity: function WITHDRAW_VERIFICATION_END() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) WITHDRAWVERIFICATIONEND(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function WITHDRAW_VERIFICATION_END() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCaller) WITHDRAWVERIFICATIONEND(opts *bind.CallOpts) (uint32, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "WITHDRAW_VERIFICATION_END")
 
 	if err != nil {
-		return *new(*big.Int), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -371,55 +433,55 @@ func (_DeCusSystem *DeCusSystemCaller) WITHDRAWVERIFICATIONEND(opts *bind.CallOp
 
 // WITHDRAWVERIFICATIONEND is a free data retrieval call binding the contract method 0x6557f366.
 //
-// Solidity: function WITHDRAW_VERIFICATION_END() view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) WITHDRAWVERIFICATIONEND() (*big.Int, error) {
+// Solidity: function WITHDRAW_VERIFICATION_END() view returns(uint32)
+func (_DeCusSystem *DeCusSystemSession) WITHDRAWVERIFICATIONEND() (uint32, error) {
 	return _DeCusSystem.Contract.WITHDRAWVERIFICATIONEND(&_DeCusSystem.CallOpts)
 }
 
 // WITHDRAWVERIFICATIONEND is a free data retrieval call binding the contract method 0x6557f366.
 //
-// Solidity: function WITHDRAW_VERIFICATION_END() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) WITHDRAWVERIFICATIONEND() (*big.Int, error) {
+// Solidity: function WITHDRAW_VERIFICATION_END() view returns(uint32)
+func (_DeCusSystem *DeCusSystemCallerSession) WITHDRAWVERIFICATIONEND() (uint32, error) {
 	return _DeCusSystem.Contract.WITHDRAWVERIFICATIONEND(&_DeCusSystem.CallOpts)
 }
 
-// ChainId is a free data retrieval call binding the contract method 0x9a8a0592.
+// BurnFeeBps is a free data retrieval call binding the contract method 0xa5189810.
 //
-// Solidity: function chainId() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) ChainId(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function burnFeeBps() view returns(uint8)
+func (_DeCusSystem *DeCusSystemCaller) BurnFeeBps(opts *bind.CallOpts) (uint8, error) {
 	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "chainId")
+	err := _DeCusSystem.contract.Call(opts, &out, "burnFeeBps")
 
 	if err != nil {
-		return *new(*big.Int), err
+		return *new(uint8), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	out0 := *abi.ConvertType(out[0], new(uint8)).(*uint8)
 
 	return out0, err
 
 }
 
-// ChainId is a free data retrieval call binding the contract method 0x9a8a0592.
+// BurnFeeBps is a free data retrieval call binding the contract method 0xa5189810.
 //
-// Solidity: function chainId() view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) ChainId() (*big.Int, error) {
-	return _DeCusSystem.Contract.ChainId(&_DeCusSystem.CallOpts)
+// Solidity: function burnFeeBps() view returns(uint8)
+func (_DeCusSystem *DeCusSystemSession) BurnFeeBps() (uint8, error) {
+	return _DeCusSystem.Contract.BurnFeeBps(&_DeCusSystem.CallOpts)
 }
 
-// ChainId is a free data retrieval call binding the contract method 0x9a8a0592.
+// BurnFeeBps is a free data retrieval call binding the contract method 0xa5189810.
 //
-// Solidity: function chainId() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) ChainId() (*big.Int, error) {
-	return _DeCusSystem.Contract.ChainId(&_DeCusSystem.CallOpts)
+// Solidity: function burnFeeBps() view returns(uint8)
+func (_DeCusSystem *DeCusSystemCallerSession) BurnFeeBps() (uint8, error) {
+	return _DeCusSystem.Contract.BurnFeeBps(&_DeCusSystem.CallOpts)
 }
 
-// EBTC is a free data retrieval call binding the contract method 0x5f447e04.
+// Cong is a free data retrieval call binding the contract method 0x88fead14.
 //
-// Solidity: function eBTC() view returns(address)
-func (_DeCusSystem *DeCusSystemCaller) EBTC(opts *bind.CallOpts) (common.Address, error) {
+// Solidity: function cong() view returns(address)
+func (_DeCusSystem *DeCusSystemCaller) Cong(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "eBTC")
+	err := _DeCusSystem.contract.Call(opts, &out, "cong")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -431,32 +493,32 @@ func (_DeCusSystem *DeCusSystemCaller) EBTC(opts *bind.CallOpts) (common.Address
 
 }
 
-// EBTC is a free data retrieval call binding the contract method 0x5f447e04.
+// Cong is a free data retrieval call binding the contract method 0x88fead14.
 //
-// Solidity: function eBTC() view returns(address)
-func (_DeCusSystem *DeCusSystemSession) EBTC() (common.Address, error) {
-	return _DeCusSystem.Contract.EBTC(&_DeCusSystem.CallOpts)
+// Solidity: function cong() view returns(address)
+func (_DeCusSystem *DeCusSystemSession) Cong() (common.Address, error) {
+	return _DeCusSystem.Contract.Cong(&_DeCusSystem.CallOpts)
 }
 
-// EBTC is a free data retrieval call binding the contract method 0x5f447e04.
+// Cong is a free data retrieval call binding the contract method 0x88fead14.
 //
-// Solidity: function eBTC() view returns(address)
-func (_DeCusSystem *DeCusSystemCallerSession) EBTC() (common.Address, error) {
-	return _DeCusSystem.Contract.EBTC(&_DeCusSystem.CallOpts)
+// Solidity: function cong() view returns(address)
+func (_DeCusSystem *DeCusSystemCallerSession) Cong() (common.Address, error) {
+	return _DeCusSystem.Contract.Cong(&_DeCusSystem.CallOpts)
 }
 
 // GetCooldownTime is a free data retrieval call binding the contract method 0x85c95a1e.
 //
-// Solidity: function getCooldownTime(address keeper) view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) GetCooldownTime(opts *bind.CallOpts, keeper common.Address) (*big.Int, error) {
+// Solidity: function getCooldownTime(address keeper) view returns(uint32)
+func (_DeCusSystem *DeCusSystemCaller) GetCooldownTime(opts *bind.CallOpts, keeper common.Address) (uint32, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "getCooldownTime", keeper)
 
 	if err != nil {
-		return *new(*big.Int), err
+		return *new(uint32), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
 
 	return out0, err
 
@@ -464,27 +526,28 @@ func (_DeCusSystem *DeCusSystemCaller) GetCooldownTime(opts *bind.CallOpts, keep
 
 // GetCooldownTime is a free data retrieval call binding the contract method 0x85c95a1e.
 //
-// Solidity: function getCooldownTime(address keeper) view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) GetCooldownTime(keeper common.Address) (*big.Int, error) {
+// Solidity: function getCooldownTime(address keeper) view returns(uint32)
+func (_DeCusSystem *DeCusSystemSession) GetCooldownTime(keeper common.Address) (uint32, error) {
 	return _DeCusSystem.Contract.GetCooldownTime(&_DeCusSystem.CallOpts, keeper)
 }
 
 // GetCooldownTime is a free data retrieval call binding the contract method 0x85c95a1e.
 //
-// Solidity: function getCooldownTime(address keeper) view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) GetCooldownTime(keeper common.Address) (*big.Int, error) {
+// Solidity: function getCooldownTime(address keeper) view returns(uint32)
+func (_DeCusSystem *DeCusSystemCallerSession) GetCooldownTime(keeper common.Address) (uint32, error) {
 	return _DeCusSystem.Contract.GetCooldownTime(&_DeCusSystem.CallOpts, keeper)
 }
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, bytes32 workingReceiptId)
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, uint256 cooldown, bytes32 workingReceiptId)
 func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress string) (struct {
 	Required         *big.Int
 	MaxSatoshi       *big.Int
 	CurrSatoshi      *big.Int
 	Nonce            *big.Int
 	Keepers          []common.Address
+	Cooldown         *big.Int
 	WorkingReceiptId [32]byte
 }, error) {
 	var out []interface{}
@@ -496,6 +559,7 @@ func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress 
 		CurrSatoshi      *big.Int
 		Nonce            *big.Int
 		Keepers          []common.Address
+		Cooldown         *big.Int
 		WorkingReceiptId [32]byte
 	})
 	if err != nil {
@@ -507,7 +571,8 @@ func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress 
 	outstruct.CurrSatoshi = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
 	outstruct.Nonce = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
 	outstruct.Keepers = *abi.ConvertType(out[4], new([]common.Address)).(*[]common.Address)
-	outstruct.WorkingReceiptId = *abi.ConvertType(out[5], new([32]byte)).(*[32]byte)
+	outstruct.Cooldown = *abi.ConvertType(out[5], new(*big.Int)).(**big.Int)
+	outstruct.WorkingReceiptId = *abi.ConvertType(out[6], new([32]byte)).(*[32]byte)
 
 	return *outstruct, err
 
@@ -515,13 +580,14 @@ func (_DeCusSystem *DeCusSystemCaller) GetGroup(opts *bind.CallOpts, btcAddress 
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, bytes32 workingReceiptId)
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, uint256 cooldown, bytes32 workingReceiptId)
 func (_DeCusSystem *DeCusSystemSession) GetGroup(btcAddress string) (struct {
 	Required         *big.Int
 	MaxSatoshi       *big.Int
 	CurrSatoshi      *big.Int
 	Nonce            *big.Int
 	Keepers          []common.Address
+	Cooldown         *big.Int
 	WorkingReceiptId [32]byte
 }, error) {
 	return _DeCusSystem.Contract.GetGroup(&_DeCusSystem.CallOpts, btcAddress)
@@ -529,13 +595,14 @@ func (_DeCusSystem *DeCusSystemSession) GetGroup(btcAddress string) (struct {
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
 //
-// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, bytes32 workingReceiptId)
+// Solidity: function getGroup(string btcAddress) view returns(uint256 required, uint256 maxSatoshi, uint256 currSatoshi, uint256 nonce, address[] keepers, uint256 cooldown, bytes32 workingReceiptId)
 func (_DeCusSystem *DeCusSystemCallerSession) GetGroup(btcAddress string) (struct {
 	Required         *big.Int
 	MaxSatoshi       *big.Int
 	CurrSatoshi      *big.Int
 	Nonce            *big.Int
 	Keepers          []common.Address
+	Cooldown         *big.Int
 	WorkingReceiptId [32]byte
 }, error) {
 	return _DeCusSystem.Contract.GetGroup(&_DeCusSystem.CallOpts, btcAddress)
@@ -543,7 +610,7 @@ func (_DeCusSystem *DeCusSystemCallerSession) GetGroup(btcAddress string) (struc
 
 // GetReceipt is a free data retrieval call binding the contract method 0xfcecbb61.
 //
-// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string))
+// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,bytes32,string,string,uint32,uint32,address,uint8))
 func (_DeCusSystem *DeCusSystemCaller) GetReceipt(opts *bind.CallOpts, receiptId [32]byte) (IDeCusSystemReceipt, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "getReceipt", receiptId)
@@ -560,14 +627,14 @@ func (_DeCusSystem *DeCusSystemCaller) GetReceipt(opts *bind.CallOpts, receiptId
 
 // GetReceipt is a free data retrieval call binding the contract method 0xfcecbb61.
 //
-// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string))
+// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,bytes32,string,string,uint32,uint32,address,uint8))
 func (_DeCusSystem *DeCusSystemSession) GetReceipt(receiptId [32]byte) (IDeCusSystemReceipt, error) {
 	return _DeCusSystem.Contract.GetReceipt(&_DeCusSystem.CallOpts, receiptId)
 }
 
 // GetReceipt is a free data retrieval call binding the contract method 0xfcecbb61.
 //
-// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,uint256,bytes32,uint256,uint8,address,string,string))
+// Solidity: function getReceipt(bytes32 receiptId) view returns((uint256,bytes32,string,string,uint32,uint32,address,uint8))
 func (_DeCusSystem *DeCusSystemCallerSession) GetReceipt(receiptId [32]byte) (IDeCusSystemReceipt, error) {
 	return _DeCusSystem.Contract.GetReceipt(&_DeCusSystem.CallOpts, receiptId)
 }
@@ -605,7 +672,7 @@ func (_DeCusSystem *DeCusSystemCallerSession) GetReceiptId(groupBtcAddress strin
 
 // GetRefundData is a free data retrieval call binding the contract method 0x38f39b48.
 //
-// Solidity: function getRefundData() view returns((uint256,bytes32,string))
+// Solidity: function getRefundData() view returns((bytes32,string,uint32))
 func (_DeCusSystem *DeCusSystemCaller) GetRefundData(opts *bind.CallOpts) (IDeCusSystemBtcRefundData, error) {
 	var out []interface{}
 	err := _DeCusSystem.contract.Call(opts, &out, "getRefundData")
@@ -622,16 +689,140 @@ func (_DeCusSystem *DeCusSystemCaller) GetRefundData(opts *bind.CallOpts) (IDeCu
 
 // GetRefundData is a free data retrieval call binding the contract method 0x38f39b48.
 //
-// Solidity: function getRefundData() view returns((uint256,bytes32,string))
+// Solidity: function getRefundData() view returns((bytes32,string,uint32))
 func (_DeCusSystem *DeCusSystemSession) GetRefundData() (IDeCusSystemBtcRefundData, error) {
 	return _DeCusSystem.Contract.GetRefundData(&_DeCusSystem.CallOpts)
 }
 
 // GetRefundData is a free data retrieval call binding the contract method 0x38f39b48.
 //
-// Solidity: function getRefundData() view returns((uint256,bytes32,string))
+// Solidity: function getRefundData() view returns((bytes32,string,uint32))
 func (_DeCusSystem *DeCusSystemCallerSession) GetRefundData() (IDeCusSystemBtcRefundData, error) {
 	return _DeCusSystem.Contract.GetRefundData(&_DeCusSystem.CallOpts)
+}
+
+// GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
+//
+// Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCaller) GetRoleAdmin(opts *bind.CallOpts, role [32]byte) ([32]byte, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "getRoleAdmin", role)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
+//
+// Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
+func (_DeCusSystem *DeCusSystemSession) GetRoleAdmin(role [32]byte) ([32]byte, error) {
+	return _DeCusSystem.Contract.GetRoleAdmin(&_DeCusSystem.CallOpts, role)
+}
+
+// GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
+//
+// Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCallerSession) GetRoleAdmin(role [32]byte) ([32]byte, error) {
+	return _DeCusSystem.Contract.GetRoleAdmin(&_DeCusSystem.CallOpts, role)
+}
+
+// GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
+//
+// Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
+func (_DeCusSystem *DeCusSystemCaller) GetRoleMember(opts *bind.CallOpts, role [32]byte, index *big.Int) (common.Address, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "getRoleMember", role, index)
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
+//
+// Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
+func (_DeCusSystem *DeCusSystemSession) GetRoleMember(role [32]byte, index *big.Int) (common.Address, error) {
+	return _DeCusSystem.Contract.GetRoleMember(&_DeCusSystem.CallOpts, role, index)
+}
+
+// GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
+//
+// Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
+func (_DeCusSystem *DeCusSystemCallerSession) GetRoleMember(role [32]byte, index *big.Int) (common.Address, error) {
+	return _DeCusSystem.Contract.GetRoleMember(&_DeCusSystem.CallOpts, role, index)
+}
+
+// GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
+//
+// Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
+func (_DeCusSystem *DeCusSystemCaller) GetRoleMemberCount(opts *bind.CallOpts, role [32]byte) (*big.Int, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "getRoleMemberCount", role)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
+//
+// Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
+func (_DeCusSystem *DeCusSystemSession) GetRoleMemberCount(role [32]byte) (*big.Int, error) {
+	return _DeCusSystem.Contract.GetRoleMemberCount(&_DeCusSystem.CallOpts, role)
+}
+
+// GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
+//
+// Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
+func (_DeCusSystem *DeCusSystemCallerSession) GetRoleMemberCount(role [32]byte) (*big.Int, error) {
+	return _DeCusSystem.Contract.GetRoleMemberCount(&_DeCusSystem.CallOpts, role)
+}
+
+// HasRole is a free data retrieval call binding the contract method 0x91d14854.
+//
+// Solidity: function hasRole(bytes32 role, address account) view returns(bool)
+func (_DeCusSystem *DeCusSystemCaller) HasRole(opts *bind.CallOpts, role [32]byte, account common.Address) (bool, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "hasRole", role, account)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// HasRole is a free data retrieval call binding the contract method 0x91d14854.
+//
+// Solidity: function hasRole(bytes32 role, address account) view returns(bool)
+func (_DeCusSystem *DeCusSystemSession) HasRole(role [32]byte, account common.Address) (bool, error) {
+	return _DeCusSystem.Contract.HasRole(&_DeCusSystem.CallOpts, role, account)
+}
+
+// HasRole is a free data retrieval call binding the contract method 0x91d14854.
+//
+// Solidity: function hasRole(bytes32 role, address account) view returns(bool)
+func (_DeCusSystem *DeCusSystemCallerSession) HasRole(role [32]byte, account common.Address) (bool, error) {
+	return _DeCusSystem.Contract.HasRole(&_DeCusSystem.CallOpts, role, account)
 }
 
 // KeeperRegistry is a free data retrieval call binding the contract method 0x83e22774.
@@ -665,12 +856,12 @@ func (_DeCusSystem *DeCusSystemCallerSession) KeeperRegistry() (common.Address, 
 	return _DeCusSystem.Contract.KeeperRegistry(&_DeCusSystem.CallOpts)
 }
 
-// MinKeeperSatoshi is a free data retrieval call binding the contract method 0xad95033a.
+// MinKeeperWei is a free data retrieval call binding the contract method 0x0ba68998.
 //
-// Solidity: function minKeeperSatoshi() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCaller) MinKeeperSatoshi(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function minKeeperWei() view returns(uint256)
+func (_DeCusSystem *DeCusSystemCaller) MinKeeperWei(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "minKeeperSatoshi")
+	err := _DeCusSystem.contract.Call(opts, &out, "minKeeperWei")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -682,49 +873,49 @@ func (_DeCusSystem *DeCusSystemCaller) MinKeeperSatoshi(opts *bind.CallOpts) (*b
 
 }
 
-// MinKeeperSatoshi is a free data retrieval call binding the contract method 0xad95033a.
+// MinKeeperWei is a free data retrieval call binding the contract method 0x0ba68998.
 //
-// Solidity: function minKeeperSatoshi() view returns(uint256)
-func (_DeCusSystem *DeCusSystemSession) MinKeeperSatoshi() (*big.Int, error) {
-	return _DeCusSystem.Contract.MinKeeperSatoshi(&_DeCusSystem.CallOpts)
+// Solidity: function minKeeperWei() view returns(uint256)
+func (_DeCusSystem *DeCusSystemSession) MinKeeperWei() (*big.Int, error) {
+	return _DeCusSystem.Contract.MinKeeperWei(&_DeCusSystem.CallOpts)
 }
 
-// MinKeeperSatoshi is a free data retrieval call binding the contract method 0xad95033a.
+// MinKeeperWei is a free data retrieval call binding the contract method 0x0ba68998.
 //
-// Solidity: function minKeeperSatoshi() view returns(uint256)
-func (_DeCusSystem *DeCusSystemCallerSession) MinKeeperSatoshi() (*big.Int, error) {
-	return _DeCusSystem.Contract.MinKeeperSatoshi(&_DeCusSystem.CallOpts)
+// Solidity: function minKeeperWei() view returns(uint256)
+func (_DeCusSystem *DeCusSystemCallerSession) MinKeeperWei() (*big.Int, error) {
+	return _DeCusSystem.Contract.MinKeeperWei(&_DeCusSystem.CallOpts)
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// MintFeeBps is a free data retrieval call binding the contract method 0x97c8bcc1.
 //
-// Solidity: function owner() view returns(address)
-func (_DeCusSystem *DeCusSystemCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+// Solidity: function mintFeeBps() view returns(uint8)
+func (_DeCusSystem *DeCusSystemCaller) MintFeeBps(opts *bind.CallOpts) (uint8, error) {
 	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "owner")
+	err := _DeCusSystem.contract.Call(opts, &out, "mintFeeBps")
 
 	if err != nil {
-		return *new(common.Address), err
+		return *new(uint8), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+	out0 := *abi.ConvertType(out[0], new(uint8)).(*uint8)
 
 	return out0, err
 
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// MintFeeBps is a free data retrieval call binding the contract method 0x97c8bcc1.
 //
-// Solidity: function owner() view returns(address)
-func (_DeCusSystem *DeCusSystemSession) Owner() (common.Address, error) {
-	return _DeCusSystem.Contract.Owner(&_DeCusSystem.CallOpts)
+// Solidity: function mintFeeBps() view returns(uint8)
+func (_DeCusSystem *DeCusSystemSession) MintFeeBps() (uint8, error) {
+	return _DeCusSystem.Contract.MintFeeBps(&_DeCusSystem.CallOpts)
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// MintFeeBps is a free data retrieval call binding the contract method 0x97c8bcc1.
 //
-// Solidity: function owner() view returns(address)
-func (_DeCusSystem *DeCusSystemCallerSession) Owner() (common.Address, error) {
-	return _DeCusSystem.Contract.Owner(&_DeCusSystem.CallOpts)
+// Solidity: function mintFeeBps() view returns(uint8)
+func (_DeCusSystem *DeCusSystemCallerSession) MintFeeBps() (uint8, error) {
+	return _DeCusSystem.Contract.MintFeeBps(&_DeCusSystem.CallOpts)
 }
 
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
@@ -758,46 +949,67 @@ func (_DeCusSystem *DeCusSystemCallerSession) Paused() (bool, error) {
 	return _DeCusSystem.Contract.Paused(&_DeCusSystem.CallOpts)
 }
 
-// AddGroup is a paid mutator transaction binding the contract method 0xc5a746bf.
+// AddGroup is a paid mutator transaction binding the contract method 0x66dc5a23.
 //
-// Solidity: function addGroup(string btcAddress, uint256 required, uint256 maxSatoshi, address[] keepers) returns()
-func (_DeCusSystem *DeCusSystemTransactor) AddGroup(opts *bind.TransactOpts, btcAddress string, required *big.Int, maxSatoshi *big.Int, keepers []common.Address) (*types.Transaction, error) {
+// Solidity: function addGroup(string btcAddress, uint32 required, uint256 maxSatoshi, address[] keepers) returns()
+func (_DeCusSystem *DeCusSystemTransactor) AddGroup(opts *bind.TransactOpts, btcAddress string, required uint32, maxSatoshi *big.Int, keepers []common.Address) (*types.Transaction, error) {
 	return _DeCusSystem.contract.Transact(opts, "addGroup", btcAddress, required, maxSatoshi, keepers)
 }
 
-// AddGroup is a paid mutator transaction binding the contract method 0xc5a746bf.
+// AddGroup is a paid mutator transaction binding the contract method 0x66dc5a23.
 //
-// Solidity: function addGroup(string btcAddress, uint256 required, uint256 maxSatoshi, address[] keepers) returns()
-func (_DeCusSystem *DeCusSystemSession) AddGroup(btcAddress string, required *big.Int, maxSatoshi *big.Int, keepers []common.Address) (*types.Transaction, error) {
+// Solidity: function addGroup(string btcAddress, uint32 required, uint256 maxSatoshi, address[] keepers) returns()
+func (_DeCusSystem *DeCusSystemSession) AddGroup(btcAddress string, required uint32, maxSatoshi *big.Int, keepers []common.Address) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.AddGroup(&_DeCusSystem.TransactOpts, btcAddress, required, maxSatoshi, keepers)
 }
 
-// AddGroup is a paid mutator transaction binding the contract method 0xc5a746bf.
+// AddGroup is a paid mutator transaction binding the contract method 0x66dc5a23.
 //
-// Solidity: function addGroup(string btcAddress, uint256 required, uint256 maxSatoshi, address[] keepers) returns()
-func (_DeCusSystem *DeCusSystemTransactorSession) AddGroup(btcAddress string, required *big.Int, maxSatoshi *big.Int, keepers []common.Address) (*types.Transaction, error) {
+// Solidity: function addGroup(string btcAddress, uint32 required, uint256 maxSatoshi, address[] keepers) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) AddGroup(btcAddress string, required uint32, maxSatoshi *big.Int, keepers []common.Address) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.AddGroup(&_DeCusSystem.TransactOpts, btcAddress, required, maxSatoshi, keepers)
 }
 
-// Chill is a paid mutator transaction binding the contract method 0xc976966a.
+// Chill is a paid mutator transaction binding the contract method 0x3d701d00.
 //
-// Solidity: function chill(address keeper, uint256 chillTime) returns()
-func (_DeCusSystem *DeCusSystemTransactor) Chill(opts *bind.TransactOpts, keeper common.Address, chillTime *big.Int) (*types.Transaction, error) {
+// Solidity: function chill(address keeper, uint32 chillTime) returns()
+func (_DeCusSystem *DeCusSystemTransactor) Chill(opts *bind.TransactOpts, keeper common.Address, chillTime uint32) (*types.Transaction, error) {
 	return _DeCusSystem.contract.Transact(opts, "chill", keeper, chillTime)
 }
 
-// Chill is a paid mutator transaction binding the contract method 0xc976966a.
+// Chill is a paid mutator transaction binding the contract method 0x3d701d00.
 //
-// Solidity: function chill(address keeper, uint256 chillTime) returns()
-func (_DeCusSystem *DeCusSystemSession) Chill(keeper common.Address, chillTime *big.Int) (*types.Transaction, error) {
+// Solidity: function chill(address keeper, uint32 chillTime) returns()
+func (_DeCusSystem *DeCusSystemSession) Chill(keeper common.Address, chillTime uint32) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.Chill(&_DeCusSystem.TransactOpts, keeper, chillTime)
 }
 
-// Chill is a paid mutator transaction binding the contract method 0xc976966a.
+// Chill is a paid mutator transaction binding the contract method 0x3d701d00.
 //
-// Solidity: function chill(address keeper, uint256 chillTime) returns()
-func (_DeCusSystem *DeCusSystemTransactorSession) Chill(keeper common.Address, chillTime *big.Int) (*types.Transaction, error) {
+// Solidity: function chill(address keeper, uint32 chillTime) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) Chill(keeper common.Address, chillTime uint32) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.Chill(&_DeCusSystem.TransactOpts, keeper, chillTime)
+}
+
+// CollectFee is a paid mutator transaction binding the contract method 0xa969ff0a.
+//
+// Solidity: function collectFee(uint256 amount) returns()
+func (_DeCusSystem *DeCusSystemTransactor) CollectFee(opts *bind.TransactOpts, amount *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "collectFee", amount)
+}
+
+// CollectFee is a paid mutator transaction binding the contract method 0xa969ff0a.
+//
+// Solidity: function collectFee(uint256 amount) returns()
+func (_DeCusSystem *DeCusSystemSession) CollectFee(amount *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.CollectFee(&_DeCusSystem.TransactOpts, amount)
+}
+
+// CollectFee is a paid mutator transaction binding the contract method 0xa969ff0a.
+//
+// Solidity: function collectFee(uint256 amount) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) CollectFee(amount *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.CollectFee(&_DeCusSystem.TransactOpts, amount)
 }
 
 // DeleteGroup is a paid mutator transaction binding the contract method 0x2e8b92a9.
@@ -821,46 +1033,88 @@ func (_DeCusSystem *DeCusSystemTransactorSession) DeleteGroup(btcAddress string)
 	return _DeCusSystem.Contract.DeleteGroup(&_DeCusSystem.TransactOpts, btcAddress)
 }
 
-// ForceRequestMint is a paid mutator transaction binding the contract method 0x6d3c5abc.
+// ForceRequestMint is a paid mutator transaction binding the contract method 0x9695936d.
 //
-// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint128 nonce) returns()
 func (_DeCusSystem *DeCusSystemTransactor) ForceRequestMint(opts *bind.TransactOpts, groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.contract.Transact(opts, "forceRequestMint", groupBtcAddress, amountInSatoshi, nonce)
 }
 
-// ForceRequestMint is a paid mutator transaction binding the contract method 0x6d3c5abc.
+// ForceRequestMint is a paid mutator transaction binding the contract method 0x9695936d.
 //
-// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint128 nonce) returns()
 func (_DeCusSystem *DeCusSystemSession) ForceRequestMint(groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.ForceRequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, nonce)
 }
 
-// ForceRequestMint is a paid mutator transaction binding the contract method 0x6d3c5abc.
+// ForceRequestMint is a paid mutator transaction binding the contract method 0x9695936d.
 //
-// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+// Solidity: function forceRequestMint(string groupBtcAddress, uint256 amountInSatoshi, uint128 nonce) returns()
 func (_DeCusSystem *DeCusSystemTransactorSession) ForceRequestMint(groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.ForceRequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, nonce)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x485cc955.
+// GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
 //
-// Solidity: function initialize(address _eBTC, address _registry) returns()
-func (_DeCusSystem *DeCusSystemTransactor) Initialize(opts *bind.TransactOpts, _eBTC common.Address, _registry common.Address) (*types.Transaction, error) {
-	return _DeCusSystem.contract.Transact(opts, "initialize", _eBTC, _registry)
+// Solidity: function grantRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemTransactor) GrantRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "grantRole", role, account)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x485cc955.
+// GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
 //
-// Solidity: function initialize(address _eBTC, address _registry) returns()
-func (_DeCusSystem *DeCusSystemSession) Initialize(_eBTC common.Address, _registry common.Address) (*types.Transaction, error) {
-	return _DeCusSystem.Contract.Initialize(&_DeCusSystem.TransactOpts, _eBTC, _registry)
+// Solidity: function grantRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemSession) GrantRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.GrantRole(&_DeCusSystem.TransactOpts, role, account)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x485cc955.
+// GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
 //
-// Solidity: function initialize(address _eBTC, address _registry) returns()
-func (_DeCusSystem *DeCusSystemTransactorSession) Initialize(_eBTC common.Address, _registry common.Address) (*types.Transaction, error) {
-	return _DeCusSystem.Contract.Initialize(&_DeCusSystem.TransactOpts, _eBTC, _registry)
+// Solidity: function grantRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) GrantRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.GrantRole(&_DeCusSystem.TransactOpts, role, account)
+}
+
+// Initialize is a paid mutator transaction binding the contract method 0x0937bf29.
+//
+// Solidity: function initialize(address _cong, address _registry, uint8 _mintFeeBps, uint8 _burnFeeBps) returns()
+func (_DeCusSystem *DeCusSystemTransactor) Initialize(opts *bind.TransactOpts, _cong common.Address, _registry common.Address, _mintFeeBps uint8, _burnFeeBps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "initialize", _cong, _registry, _mintFeeBps, _burnFeeBps)
+}
+
+// Initialize is a paid mutator transaction binding the contract method 0x0937bf29.
+//
+// Solidity: function initialize(address _cong, address _registry, uint8 _mintFeeBps, uint8 _burnFeeBps) returns()
+func (_DeCusSystem *DeCusSystemSession) Initialize(_cong common.Address, _registry common.Address, _mintFeeBps uint8, _burnFeeBps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.Initialize(&_DeCusSystem.TransactOpts, _cong, _registry, _mintFeeBps, _burnFeeBps)
+}
+
+// Initialize is a paid mutator transaction binding the contract method 0x0937bf29.
+//
+// Solidity: function initialize(address _cong, address _registry, uint8 _mintFeeBps, uint8 _burnFeeBps) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) Initialize(_cong common.Address, _registry common.Address, _mintFeeBps uint8, _burnFeeBps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.Initialize(&_DeCusSystem.TransactOpts, _cong, _registry, _mintFeeBps, _burnFeeBps)
+}
+
+// Pause is a paid mutator transaction binding the contract method 0x8456cb59.
+//
+// Solidity: function pause() returns()
+func (_DeCusSystem *DeCusSystemTransactor) Pause(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "pause")
+}
+
+// Pause is a paid mutator transaction binding the contract method 0x8456cb59.
+//
+// Solidity: function pause() returns()
+func (_DeCusSystem *DeCusSystemSession) Pause() (*types.Transaction, error) {
+	return _DeCusSystem.Contract.Pause(&_DeCusSystem.TransactOpts)
+}
+
+// Pause is a paid mutator transaction binding the contract method 0x8456cb59.
+//
+// Solidity: function pause() returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) Pause() (*types.Transaction, error) {
+	return _DeCusSystem.Contract.Pause(&_DeCusSystem.TransactOpts)
 }
 
 // RecoverBurn is a paid mutator transaction binding the contract method 0xe8c86b03.
@@ -905,25 +1159,25 @@ func (_DeCusSystem *DeCusSystemTransactorSession) RefundBtc(groupBtcAddress stri
 	return _DeCusSystem.Contract.RefundBtc(&_DeCusSystem.TransactOpts, groupBtcAddress, txId)
 }
 
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+// RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
 //
-// Solidity: function renounceOwnership() returns()
-func (_DeCusSystem *DeCusSystemTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _DeCusSystem.contract.Transact(opts, "renounceOwnership")
+// Solidity: function renounceRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemTransactor) RenounceRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "renounceRole", role, account)
 }
 
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+// RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
 //
-// Solidity: function renounceOwnership() returns()
-func (_DeCusSystem *DeCusSystemSession) RenounceOwnership() (*types.Transaction, error) {
-	return _DeCusSystem.Contract.RenounceOwnership(&_DeCusSystem.TransactOpts)
+// Solidity: function renounceRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemSession) RenounceRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.RenounceRole(&_DeCusSystem.TransactOpts, role, account)
 }
 
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+// RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
 //
-// Solidity: function renounceOwnership() returns()
-func (_DeCusSystem *DeCusSystemTransactorSession) RenounceOwnership() (*types.Transaction, error) {
-	return _DeCusSystem.Contract.RenounceOwnership(&_DeCusSystem.TransactOpts)
+// Solidity: function renounceRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) RenounceRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.RenounceRole(&_DeCusSystem.TransactOpts, role, account)
 }
 
 // RequestBurn is a paid mutator transaction binding the contract method 0x5f890657.
@@ -947,23 +1201,23 @@ func (_DeCusSystem *DeCusSystemTransactorSession) RequestBurn(receiptId [32]byte
 	return _DeCusSystem.Contract.RequestBurn(&_DeCusSystem.TransactOpts, receiptId, withdrawBtcAddress)
 }
 
-// RequestMint is a paid mutator transaction binding the contract method 0x9123cdfc.
+// RequestMint is a paid mutator transaction binding the contract method 0x3412d6a0.
 //
-// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint128 nonce) returns()
 func (_DeCusSystem *DeCusSystemTransactor) RequestMint(opts *bind.TransactOpts, groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.contract.Transact(opts, "requestMint", groupBtcAddress, amountInSatoshi, nonce)
 }
 
-// RequestMint is a paid mutator transaction binding the contract method 0x9123cdfc.
+// RequestMint is a paid mutator transaction binding the contract method 0x3412d6a0.
 //
-// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint128 nonce) returns()
 func (_DeCusSystem *DeCusSystemSession) RequestMint(groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.RequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, nonce)
 }
 
-// RequestMint is a paid mutator transaction binding the contract method 0x9123cdfc.
+// RequestMint is a paid mutator transaction binding the contract method 0x3412d6a0.
 //
-// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint256 nonce) returns()
+// Solidity: function requestMint(string groupBtcAddress, uint256 amountInSatoshi, uint128 nonce) returns()
 func (_DeCusSystem *DeCusSystemTransactorSession) RequestMint(groupBtcAddress string, amountInSatoshi *big.Int, nonce *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.RequestMint(&_DeCusSystem.TransactOpts, groupBtcAddress, amountInSatoshi, nonce)
 }
@@ -989,25 +1243,109 @@ func (_DeCusSystem *DeCusSystemTransactorSession) RevokeMint(receiptId [32]byte)
 	return _DeCusSystem.Contract.RevokeMint(&_DeCusSystem.TransactOpts, receiptId)
 }
 
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+// RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
 //
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_DeCusSystem *DeCusSystemTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
-	return _DeCusSystem.contract.Transact(opts, "transferOwnership", newOwner)
+// Solidity: function revokeRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemTransactor) RevokeRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "revokeRole", role, account)
 }
 
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+// RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
 //
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_DeCusSystem *DeCusSystemSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _DeCusSystem.Contract.TransferOwnership(&_DeCusSystem.TransactOpts, newOwner)
+// Solidity: function revokeRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemSession) RevokeRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.RevokeRole(&_DeCusSystem.TransactOpts, role, account)
 }
 
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+// RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
 //
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_DeCusSystem *DeCusSystemTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _DeCusSystem.Contract.TransferOwnership(&_DeCusSystem.TransactOpts, newOwner)
+// Solidity: function revokeRole(bytes32 role, address account) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) RevokeRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.RevokeRole(&_DeCusSystem.TransactOpts, role, account)
+}
+
+// Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
+//
+// Solidity: function unpause() returns()
+func (_DeCusSystem *DeCusSystemTransactor) Unpause(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "unpause")
+}
+
+// Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
+//
+// Solidity: function unpause() returns()
+func (_DeCusSystem *DeCusSystemSession) Unpause() (*types.Transaction, error) {
+	return _DeCusSystem.Contract.Unpause(&_DeCusSystem.TransactOpts)
+}
+
+// Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
+//
+// Solidity: function unpause() returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) Unpause() (*types.Transaction, error) {
+	return _DeCusSystem.Contract.Unpause(&_DeCusSystem.TransactOpts)
+}
+
+// UpdateBurnFeeBps is a paid mutator transaction binding the contract method 0x7868fa8f.
+//
+// Solidity: function updateBurnFeeBps(uint8 bps) returns()
+func (_DeCusSystem *DeCusSystemTransactor) UpdateBurnFeeBps(opts *bind.TransactOpts, bps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "updateBurnFeeBps", bps)
+}
+
+// UpdateBurnFeeBps is a paid mutator transaction binding the contract method 0x7868fa8f.
+//
+// Solidity: function updateBurnFeeBps(uint8 bps) returns()
+func (_DeCusSystem *DeCusSystemSession) UpdateBurnFeeBps(bps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.UpdateBurnFeeBps(&_DeCusSystem.TransactOpts, bps)
+}
+
+// UpdateBurnFeeBps is a paid mutator transaction binding the contract method 0x7868fa8f.
+//
+// Solidity: function updateBurnFeeBps(uint8 bps) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) UpdateBurnFeeBps(bps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.UpdateBurnFeeBps(&_DeCusSystem.TransactOpts, bps)
+}
+
+// UpdateMinKeeperWei is a paid mutator transaction binding the contract method 0x540e4d47.
+//
+// Solidity: function updateMinKeeperWei(uint256 amount) returns()
+func (_DeCusSystem *DeCusSystemTransactor) UpdateMinKeeperWei(opts *bind.TransactOpts, amount *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "updateMinKeeperWei", amount)
+}
+
+// UpdateMinKeeperWei is a paid mutator transaction binding the contract method 0x540e4d47.
+//
+// Solidity: function updateMinKeeperWei(uint256 amount) returns()
+func (_DeCusSystem *DeCusSystemSession) UpdateMinKeeperWei(amount *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.UpdateMinKeeperWei(&_DeCusSystem.TransactOpts, amount)
+}
+
+// UpdateMinKeeperWei is a paid mutator transaction binding the contract method 0x540e4d47.
+//
+// Solidity: function updateMinKeeperWei(uint256 amount) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) UpdateMinKeeperWei(amount *big.Int) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.UpdateMinKeeperWei(&_DeCusSystem.TransactOpts, amount)
+}
+
+// UpdateMintFeeBps is a paid mutator transaction binding the contract method 0x9f8f7923.
+//
+// Solidity: function updateMintFeeBps(uint8 bps) returns()
+func (_DeCusSystem *DeCusSystemTransactor) UpdateMintFeeBps(opts *bind.TransactOpts, bps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "updateMintFeeBps", bps)
+}
+
+// UpdateMintFeeBps is a paid mutator transaction binding the contract method 0x9f8f7923.
+//
+// Solidity: function updateMintFeeBps(uint8 bps) returns()
+func (_DeCusSystem *DeCusSystemSession) UpdateMintFeeBps(bps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.UpdateMintFeeBps(&_DeCusSystem.TransactOpts, bps)
+}
+
+// UpdateMintFeeBps is a paid mutator transaction binding the contract method 0x9f8f7923.
+//
+// Solidity: function updateMintFeeBps(uint8 bps) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) UpdateMintFeeBps(bps uint8) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.UpdateMintFeeBps(&_DeCusSystem.TransactOpts, bps)
 }
 
 // VerifyBurn is a paid mutator transaction binding the contract method 0x372fedf1.
@@ -1031,24 +1369,24 @@ func (_DeCusSystem *DeCusSystemTransactorSession) VerifyBurn(receiptId [32]byte)
 	return _DeCusSystem.Contract.VerifyBurn(&_DeCusSystem.TransactOpts, receiptId)
 }
 
-// VerifyMint is a paid mutator transaction binding the contract method 0xc764654c.
+// VerifyMint is a paid mutator transaction binding the contract method 0x4327c083.
 //
-// Solidity: function verifyMint((bytes32,bytes32,uint256) request, address[] keepers, bytes32[] r, bytes32[] s, uint256 packedV) returns()
-func (_DeCusSystem *DeCusSystemTransactor) VerifyMint(opts *bind.TransactOpts, request LibRequestMintRequest, keepers []common.Address, r [][32]byte, s [][32]byte, packedV *big.Int) (*types.Transaction, error) {
+// Solidity: function verifyMint((bytes32,bytes32,uint32) request, address[] keepers, bytes32[] r, bytes32[] s, uint256 packedV) returns()
+func (_DeCusSystem *DeCusSystemTransactor) VerifyMint(opts *bind.TransactOpts, request IDeCusSystemMintRequest, keepers []common.Address, r [][32]byte, s [][32]byte, packedV *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.contract.Transact(opts, "verifyMint", request, keepers, r, s, packedV)
 }
 
-// VerifyMint is a paid mutator transaction binding the contract method 0xc764654c.
+// VerifyMint is a paid mutator transaction binding the contract method 0x4327c083.
 //
-// Solidity: function verifyMint((bytes32,bytes32,uint256) request, address[] keepers, bytes32[] r, bytes32[] s, uint256 packedV) returns()
-func (_DeCusSystem *DeCusSystemSession) VerifyMint(request LibRequestMintRequest, keepers []common.Address, r [][32]byte, s [][32]byte, packedV *big.Int) (*types.Transaction, error) {
+// Solidity: function verifyMint((bytes32,bytes32,uint32) request, address[] keepers, bytes32[] r, bytes32[] s, uint256 packedV) returns()
+func (_DeCusSystem *DeCusSystemSession) VerifyMint(request IDeCusSystemMintRequest, keepers []common.Address, r [][32]byte, s [][32]byte, packedV *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.VerifyMint(&_DeCusSystem.TransactOpts, request, keepers, r, s, packedV)
 }
 
-// VerifyMint is a paid mutator transaction binding the contract method 0xc764654c.
+// VerifyMint is a paid mutator transaction binding the contract method 0x4327c083.
 //
-// Solidity: function verifyMint((bytes32,bytes32,uint256) request, address[] keepers, bytes32[] r, bytes32[] s, uint256 packedV) returns()
-func (_DeCusSystem *DeCusSystemTransactorSession) VerifyMint(request LibRequestMintRequest, keepers []common.Address, r [][32]byte, s [][32]byte, packedV *big.Int) (*types.Transaction, error) {
+// Solidity: function verifyMint((bytes32,bytes32,uint32) request, address[] keepers, bytes32[] r, bytes32[] s, uint256 packedV) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) VerifyMint(request IDeCusSystemMintRequest, keepers []common.Address, r [][32]byte, s [][32]byte, packedV *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.VerifyMint(&_DeCusSystem.TransactOpts, request, keepers, r, s, packedV)
 }
 
@@ -1182,6 +1520,140 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchBtcRefunded(opts *bind.WatchOpts, 
 func (_DeCusSystem *DeCusSystemFilterer) ParseBtcRefunded(log types.Log) (*DeCusSystemBtcRefunded, error) {
 	event := new(DeCusSystemBtcRefunded)
 	if err := _DeCusSystem.contract.UnpackLog(event, "BtcRefunded", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// DeCusSystemBurnFeeBpsUpdateIterator is returned from FilterBurnFeeBpsUpdate and is used to iterate over the raw logs and unpacked data for BurnFeeBpsUpdate events raised by the DeCusSystem contract.
+type DeCusSystemBurnFeeBpsUpdateIterator struct {
+	Event *DeCusSystemBurnFeeBpsUpdate // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemBurnFeeBpsUpdateIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemBurnFeeBpsUpdate)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemBurnFeeBpsUpdate)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemBurnFeeBpsUpdateIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemBurnFeeBpsUpdateIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemBurnFeeBpsUpdate represents a BurnFeeBpsUpdate event raised by the DeCusSystem contract.
+type DeCusSystemBurnFeeBpsUpdate struct {
+	Bps uint8
+	Raw types.Log // Blockchain specific contextual infos
+}
+
+// FilterBurnFeeBpsUpdate is a free log retrieval operation binding the contract event 0x0b51614018b00e6a609cf57ff03fcd5bba3ea2b2ad467e66c4749199a7b607e1.
+//
+// Solidity: event BurnFeeBpsUpdate(uint8 bps)
+func (_DeCusSystem *DeCusSystemFilterer) FilterBurnFeeBpsUpdate(opts *bind.FilterOpts) (*DeCusSystemBurnFeeBpsUpdateIterator, error) {
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "BurnFeeBpsUpdate")
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemBurnFeeBpsUpdateIterator{contract: _DeCusSystem.contract, event: "BurnFeeBpsUpdate", logs: logs, sub: sub}, nil
+}
+
+// WatchBurnFeeBpsUpdate is a free log subscription operation binding the contract event 0x0b51614018b00e6a609cf57ff03fcd5bba3ea2b2ad467e66c4749199a7b607e1.
+//
+// Solidity: event BurnFeeBpsUpdate(uint8 bps)
+func (_DeCusSystem *DeCusSystemFilterer) WatchBurnFeeBpsUpdate(opts *bind.WatchOpts, sink chan<- *DeCusSystemBurnFeeBpsUpdate) (event.Subscription, error) {
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "BurnFeeBpsUpdate")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemBurnFeeBpsUpdate)
+				if err := _DeCusSystem.contract.UnpackLog(event, "BurnFeeBpsUpdate", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseBurnFeeBpsUpdate is a log parse operation binding the contract event 0x0b51614018b00e6a609cf57ff03fcd5bba3ea2b2ad467e66c4749199a7b607e1.
+//
+// Solidity: event BurnFeeBpsUpdate(uint8 bps)
+func (_DeCusSystem *DeCusSystemFilterer) ParseBurnFeeBpsUpdate(log types.Log) (*DeCusSystemBurnFeeBpsUpdate, error) {
+	event := new(DeCusSystemBurnFeeBpsUpdate)
+	if err := _DeCusSystem.contract.UnpackLog(event, "BurnFeeBpsUpdate", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1406,13 +1878,14 @@ func (it *DeCusSystemBurnRevokedIterator) Close() error {
 type DeCusSystemBurnRevoked struct {
 	ReceiptId       [32]byte
 	GroupBtcAddress string
+	Recipient       common.Address
 	Operator        common.Address
 	Raw             types.Log // Blockchain specific contextual infos
 }
 
-// FilterBurnRevoked is a free log retrieval operation binding the contract event 0x8e24f8539f9ec3a6069ecf3348ec641da0bf8d223c4e5a69611809462087a9e8.
+// FilterBurnRevoked is a free log retrieval operation binding the contract event 0x1870528c09977fe75036f8586518e5853addf6419747cbb81294106f734fe2e1.
 //
-// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
+// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address recipient, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) FilterBurnRevoked(opts *bind.FilterOpts, receiptId [][32]byte) (*DeCusSystemBurnRevokedIterator, error) {
 
 	var receiptIdRule []interface{}
@@ -1427,9 +1900,9 @@ func (_DeCusSystem *DeCusSystemFilterer) FilterBurnRevoked(opts *bind.FilterOpts
 	return &DeCusSystemBurnRevokedIterator{contract: _DeCusSystem.contract, event: "BurnRevoked", logs: logs, sub: sub}, nil
 }
 
-// WatchBurnRevoked is a free log subscription operation binding the contract event 0x8e24f8539f9ec3a6069ecf3348ec641da0bf8d223c4e5a69611809462087a9e8.
+// WatchBurnRevoked is a free log subscription operation binding the contract event 0x1870528c09977fe75036f8586518e5853addf6419747cbb81294106f734fe2e1.
 //
-// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
+// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address recipient, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) WatchBurnRevoked(opts *bind.WatchOpts, sink chan<- *DeCusSystemBurnRevoked, receiptId [][32]byte) (event.Subscription, error) {
 
 	var receiptIdRule []interface{}
@@ -1469,9 +1942,9 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchBurnRevoked(opts *bind.WatchOpts, 
 	}), nil
 }
 
-// ParseBurnRevoked is a log parse operation binding the contract event 0x8e24f8539f9ec3a6069ecf3348ec641da0bf8d223c4e5a69611809462087a9e8.
+// ParseBurnRevoked is a log parse operation binding the contract event 0x1870528c09977fe75036f8586518e5853addf6419747cbb81294106f734fe2e1.
 //
-// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address operator)
+// Solidity: event BurnRevoked(bytes32 indexed receiptId, string groupBtcAddress, address recipient, address operator)
 func (_DeCusSystem *DeCusSystemFilterer) ParseBurnRevoked(log types.Log) (*DeCusSystemBurnRevoked, error) {
 	event := new(DeCusSystemBurnRevoked)
 	if err := _DeCusSystem.contract.UnpackLog(event, "BurnRevoked", log); err != nil {
@@ -1772,6 +2245,151 @@ func (_DeCusSystem *DeCusSystemFilterer) ParseCooldown(log types.Log) (*DeCusSys
 	return event, nil
 }
 
+// DeCusSystemFeeCollectedIterator is returned from FilterFeeCollected and is used to iterate over the raw logs and unpacked data for FeeCollected events raised by the DeCusSystem contract.
+type DeCusSystemFeeCollectedIterator struct {
+	Event *DeCusSystemFeeCollected // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemFeeCollectedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemFeeCollected)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemFeeCollected)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemFeeCollectedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemFeeCollectedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemFeeCollected represents a FeeCollected event raised by the DeCusSystem contract.
+type DeCusSystemFeeCollected struct {
+	Owner  common.Address
+	Amount *big.Int
+	Raw    types.Log // Blockchain specific contextual infos
+}
+
+// FilterFeeCollected is a free log retrieval operation binding the contract event 0x06c5efeff5c320943d265dc4e5f1af95ad523555ce0c1957e367dda5514572df.
+//
+// Solidity: event FeeCollected(address indexed owner, uint256 amount)
+func (_DeCusSystem *DeCusSystemFilterer) FilterFeeCollected(opts *bind.FilterOpts, owner []common.Address) (*DeCusSystemFeeCollectedIterator, error) {
+
+	var ownerRule []interface{}
+	for _, ownerItem := range owner {
+		ownerRule = append(ownerRule, ownerItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "FeeCollected", ownerRule)
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemFeeCollectedIterator{contract: _DeCusSystem.contract, event: "FeeCollected", logs: logs, sub: sub}, nil
+}
+
+// WatchFeeCollected is a free log subscription operation binding the contract event 0x06c5efeff5c320943d265dc4e5f1af95ad523555ce0c1957e367dda5514572df.
+//
+// Solidity: event FeeCollected(address indexed owner, uint256 amount)
+func (_DeCusSystem *DeCusSystemFilterer) WatchFeeCollected(opts *bind.WatchOpts, sink chan<- *DeCusSystemFeeCollected, owner []common.Address) (event.Subscription, error) {
+
+	var ownerRule []interface{}
+	for _, ownerItem := range owner {
+		ownerRule = append(ownerRule, ownerItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "FeeCollected", ownerRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemFeeCollected)
+				if err := _DeCusSystem.contract.UnpackLog(event, "FeeCollected", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseFeeCollected is a log parse operation binding the contract event 0x06c5efeff5c320943d265dc4e5f1af95ad523555ce0c1957e367dda5514572df.
+//
+// Solidity: event FeeCollected(address indexed owner, uint256 amount)
+func (_DeCusSystem *DeCusSystemFilterer) ParseFeeCollected(log types.Log) (*DeCusSystemFeeCollected, error) {
+	event := new(DeCusSystemFeeCollected)
+	if err := _DeCusSystem.contract.UnpackLog(event, "FeeCollected", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
 // DeCusSystemGroupAddedIterator is returned from FilterGroupAdded and is used to iterate over the raw logs and unpacked data for GroupAdded events raised by the DeCusSystem contract.
 type DeCusSystemGroupAddedIterator struct {
 	Event *DeCusSystemGroupAdded // Event containing the contract specifics and raw log
@@ -2037,6 +2655,274 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchGroupDeleted(opts *bind.WatchOpts,
 func (_DeCusSystem *DeCusSystemFilterer) ParseGroupDeleted(log types.Log) (*DeCusSystemGroupDeleted, error) {
 	event := new(DeCusSystemGroupDeleted)
 	if err := _DeCusSystem.contract.UnpackLog(event, "GroupDeleted", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// DeCusSystemMinKeeperWeiUpdatedIterator is returned from FilterMinKeeperWeiUpdated and is used to iterate over the raw logs and unpacked data for MinKeeperWeiUpdated events raised by the DeCusSystem contract.
+type DeCusSystemMinKeeperWeiUpdatedIterator struct {
+	Event *DeCusSystemMinKeeperWeiUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemMinKeeperWeiUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemMinKeeperWeiUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemMinKeeperWeiUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemMinKeeperWeiUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemMinKeeperWeiUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemMinKeeperWeiUpdated represents a MinKeeperWeiUpdated event raised by the DeCusSystem contract.
+type DeCusSystemMinKeeperWeiUpdated struct {
+	Amount *big.Int
+	Raw    types.Log // Blockchain specific contextual infos
+}
+
+// FilterMinKeeperWeiUpdated is a free log retrieval operation binding the contract event 0xb80f16f9b403c4f69ff6aeca65145a3c9598665966472bc95b89981c435b4c38.
+//
+// Solidity: event MinKeeperWeiUpdated(uint256 amount)
+func (_DeCusSystem *DeCusSystemFilterer) FilterMinKeeperWeiUpdated(opts *bind.FilterOpts) (*DeCusSystemMinKeeperWeiUpdatedIterator, error) {
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "MinKeeperWeiUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemMinKeeperWeiUpdatedIterator{contract: _DeCusSystem.contract, event: "MinKeeperWeiUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchMinKeeperWeiUpdated is a free log subscription operation binding the contract event 0xb80f16f9b403c4f69ff6aeca65145a3c9598665966472bc95b89981c435b4c38.
+//
+// Solidity: event MinKeeperWeiUpdated(uint256 amount)
+func (_DeCusSystem *DeCusSystemFilterer) WatchMinKeeperWeiUpdated(opts *bind.WatchOpts, sink chan<- *DeCusSystemMinKeeperWeiUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "MinKeeperWeiUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemMinKeeperWeiUpdated)
+				if err := _DeCusSystem.contract.UnpackLog(event, "MinKeeperWeiUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseMinKeeperWeiUpdated is a log parse operation binding the contract event 0xb80f16f9b403c4f69ff6aeca65145a3c9598665966472bc95b89981c435b4c38.
+//
+// Solidity: event MinKeeperWeiUpdated(uint256 amount)
+func (_DeCusSystem *DeCusSystemFilterer) ParseMinKeeperWeiUpdated(log types.Log) (*DeCusSystemMinKeeperWeiUpdated, error) {
+	event := new(DeCusSystemMinKeeperWeiUpdated)
+	if err := _DeCusSystem.contract.UnpackLog(event, "MinKeeperWeiUpdated", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// DeCusSystemMintFeeBpsUpdateIterator is returned from FilterMintFeeBpsUpdate and is used to iterate over the raw logs and unpacked data for MintFeeBpsUpdate events raised by the DeCusSystem contract.
+type DeCusSystemMintFeeBpsUpdateIterator struct {
+	Event *DeCusSystemMintFeeBpsUpdate // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemMintFeeBpsUpdateIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemMintFeeBpsUpdate)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemMintFeeBpsUpdate)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemMintFeeBpsUpdateIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemMintFeeBpsUpdateIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemMintFeeBpsUpdate represents a MintFeeBpsUpdate event raised by the DeCusSystem contract.
+type DeCusSystemMintFeeBpsUpdate struct {
+	Bps uint8
+	Raw types.Log // Blockchain specific contextual infos
+}
+
+// FilterMintFeeBpsUpdate is a free log retrieval operation binding the contract event 0x08d2e44d794bdf975e593b5fe224cf8615f7fe1a03fe2fa7c405ef02b6393ff6.
+//
+// Solidity: event MintFeeBpsUpdate(uint8 bps)
+func (_DeCusSystem *DeCusSystemFilterer) FilterMintFeeBpsUpdate(opts *bind.FilterOpts) (*DeCusSystemMintFeeBpsUpdateIterator, error) {
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "MintFeeBpsUpdate")
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemMintFeeBpsUpdateIterator{contract: _DeCusSystem.contract, event: "MintFeeBpsUpdate", logs: logs, sub: sub}, nil
+}
+
+// WatchMintFeeBpsUpdate is a free log subscription operation binding the contract event 0x08d2e44d794bdf975e593b5fe224cf8615f7fe1a03fe2fa7c405ef02b6393ff6.
+//
+// Solidity: event MintFeeBpsUpdate(uint8 bps)
+func (_DeCusSystem *DeCusSystemFilterer) WatchMintFeeBpsUpdate(opts *bind.WatchOpts, sink chan<- *DeCusSystemMintFeeBpsUpdate) (event.Subscription, error) {
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "MintFeeBpsUpdate")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemMintFeeBpsUpdate)
+				if err := _DeCusSystem.contract.UnpackLog(event, "MintFeeBpsUpdate", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseMintFeeBpsUpdate is a log parse operation binding the contract event 0x08d2e44d794bdf975e593b5fe224cf8615f7fe1a03fe2fa7c405ef02b6393ff6.
+//
+// Solidity: event MintFeeBpsUpdate(uint8 bps)
+func (_DeCusSystem *DeCusSystemFilterer) ParseMintFeeBpsUpdate(log types.Log) (*DeCusSystemMintFeeBpsUpdate, error) {
+	event := new(DeCusSystemMintFeeBpsUpdate)
+	if err := _DeCusSystem.contract.UnpackLog(event, "MintFeeBpsUpdate", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -2416,12 +3302,14 @@ type DeCusSystemMintVerified struct {
 	ReceiptId       [32]byte
 	GroupBtcAddress string
 	Keepers         []common.Address
+	BtcTxId         [32]byte
+	BtcTxHeight     uint32
 	Raw             types.Log // Blockchain specific contextual infos
 }
 
-// FilterMintVerified is a free log retrieval operation binding the contract event 0xf2b0b070a7c8b8436fc8c16f75c3f8d2ae027ca97adc891f7c450f7b46cce531.
+// FilterMintVerified is a free log retrieval operation binding the contract event 0x19d0f59e71cb6f748028c86f27cb22d05c57315a9c850320ecda2cd13f5a43d5.
 //
-// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers)
+// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers, bytes32 btcTxId, uint32 btcTxHeight)
 func (_DeCusSystem *DeCusSystemFilterer) FilterMintVerified(opts *bind.FilterOpts, receiptId [][32]byte) (*DeCusSystemMintVerifiedIterator, error) {
 
 	var receiptIdRule []interface{}
@@ -2436,9 +3324,9 @@ func (_DeCusSystem *DeCusSystemFilterer) FilterMintVerified(opts *bind.FilterOpt
 	return &DeCusSystemMintVerifiedIterator{contract: _DeCusSystem.contract, event: "MintVerified", logs: logs, sub: sub}, nil
 }
 
-// WatchMintVerified is a free log subscription operation binding the contract event 0xf2b0b070a7c8b8436fc8c16f75c3f8d2ae027ca97adc891f7c450f7b46cce531.
+// WatchMintVerified is a free log subscription operation binding the contract event 0x19d0f59e71cb6f748028c86f27cb22d05c57315a9c850320ecda2cd13f5a43d5.
 //
-// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers)
+// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers, bytes32 btcTxId, uint32 btcTxHeight)
 func (_DeCusSystem *DeCusSystemFilterer) WatchMintVerified(opts *bind.WatchOpts, sink chan<- *DeCusSystemMintVerified, receiptId [][32]byte) (event.Subscription, error) {
 
 	var receiptIdRule []interface{}
@@ -2478,165 +3366,12 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchMintVerified(opts *bind.WatchOpts,
 	}), nil
 }
 
-// ParseMintVerified is a log parse operation binding the contract event 0xf2b0b070a7c8b8436fc8c16f75c3f8d2ae027ca97adc891f7c450f7b46cce531.
+// ParseMintVerified is a log parse operation binding the contract event 0x19d0f59e71cb6f748028c86f27cb22d05c57315a9c850320ecda2cd13f5a43d5.
 //
-// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers)
+// Solidity: event MintVerified(bytes32 indexed receiptId, string groupBtcAddress, address[] keepers, bytes32 btcTxId, uint32 btcTxHeight)
 func (_DeCusSystem *DeCusSystemFilterer) ParseMintVerified(log types.Log) (*DeCusSystemMintVerified, error) {
 	event := new(DeCusSystemMintVerified)
 	if err := _DeCusSystem.contract.UnpackLog(event, "MintVerified", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
-}
-
-// DeCusSystemOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the DeCusSystem contract.
-type DeCusSystemOwnershipTransferredIterator struct {
-	Event *DeCusSystemOwnershipTransferred // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *DeCusSystemOwnershipTransferredIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(DeCusSystemOwnershipTransferred)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(DeCusSystemOwnershipTransferred)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *DeCusSystemOwnershipTransferredIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *DeCusSystemOwnershipTransferredIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// DeCusSystemOwnershipTransferred represents a OwnershipTransferred event raised by the DeCusSystem contract.
-type DeCusSystemOwnershipTransferred struct {
-	PreviousOwner common.Address
-	NewOwner      common.Address
-	Raw           types.Log // Blockchain specific contextual infos
-}
-
-// FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
-//
-// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_DeCusSystem *DeCusSystemFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*DeCusSystemOwnershipTransferredIterator, error) {
-
-	var previousOwnerRule []interface{}
-	for _, previousOwnerItem := range previousOwner {
-		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
-	}
-	var newOwnerRule []interface{}
-	for _, newOwnerItem := range newOwner {
-		newOwnerRule = append(newOwnerRule, newOwnerItem)
-	}
-
-	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
-	if err != nil {
-		return nil, err
-	}
-	return &DeCusSystemOwnershipTransferredIterator{contract: _DeCusSystem.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
-}
-
-// WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
-//
-// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_DeCusSystem *DeCusSystemFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *DeCusSystemOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
-
-	var previousOwnerRule []interface{}
-	for _, previousOwnerItem := range previousOwner {
-		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
-	}
-	var newOwnerRule []interface{}
-	for _, newOwnerItem := range newOwner {
-		newOwnerRule = append(newOwnerRule, newOwnerItem)
-	}
-
-	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(DeCusSystemOwnershipTransferred)
-				if err := _DeCusSystem.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
-//
-// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_DeCusSystem *DeCusSystemFilterer) ParseOwnershipTransferred(log types.Log) (*DeCusSystemOwnershipTransferred, error) {
-	event := new(DeCusSystemOwnershipTransferred)
-	if err := _DeCusSystem.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -2771,6 +3506,492 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchPaused(opts *bind.WatchOpts, sink 
 func (_DeCusSystem *DeCusSystemFilterer) ParsePaused(log types.Log) (*DeCusSystemPaused, error) {
 	event := new(DeCusSystemPaused)
 	if err := _DeCusSystem.contract.UnpackLog(event, "Paused", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// DeCusSystemRoleAdminChangedIterator is returned from FilterRoleAdminChanged and is used to iterate over the raw logs and unpacked data for RoleAdminChanged events raised by the DeCusSystem contract.
+type DeCusSystemRoleAdminChangedIterator struct {
+	Event *DeCusSystemRoleAdminChanged // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemRoleAdminChangedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemRoleAdminChanged)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemRoleAdminChanged)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemRoleAdminChangedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemRoleAdminChangedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemRoleAdminChanged represents a RoleAdminChanged event raised by the DeCusSystem contract.
+type DeCusSystemRoleAdminChanged struct {
+	Role              [32]byte
+	PreviousAdminRole [32]byte
+	NewAdminRole      [32]byte
+	Raw               types.Log // Blockchain specific contextual infos
+}
+
+// FilterRoleAdminChanged is a free log retrieval operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
+//
+// Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
+func (_DeCusSystem *DeCusSystemFilterer) FilterRoleAdminChanged(opts *bind.FilterOpts, role [][32]byte, previousAdminRole [][32]byte, newAdminRole [][32]byte) (*DeCusSystemRoleAdminChangedIterator, error) {
+
+	var roleRule []interface{}
+	for _, roleItem := range role {
+		roleRule = append(roleRule, roleItem)
+	}
+	var previousAdminRoleRule []interface{}
+	for _, previousAdminRoleItem := range previousAdminRole {
+		previousAdminRoleRule = append(previousAdminRoleRule, previousAdminRoleItem)
+	}
+	var newAdminRoleRule []interface{}
+	for _, newAdminRoleItem := range newAdminRole {
+		newAdminRoleRule = append(newAdminRoleRule, newAdminRoleItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "RoleAdminChanged", roleRule, previousAdminRoleRule, newAdminRoleRule)
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemRoleAdminChangedIterator{contract: _DeCusSystem.contract, event: "RoleAdminChanged", logs: logs, sub: sub}, nil
+}
+
+// WatchRoleAdminChanged is a free log subscription operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
+//
+// Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
+func (_DeCusSystem *DeCusSystemFilterer) WatchRoleAdminChanged(opts *bind.WatchOpts, sink chan<- *DeCusSystemRoleAdminChanged, role [][32]byte, previousAdminRole [][32]byte, newAdminRole [][32]byte) (event.Subscription, error) {
+
+	var roleRule []interface{}
+	for _, roleItem := range role {
+		roleRule = append(roleRule, roleItem)
+	}
+	var previousAdminRoleRule []interface{}
+	for _, previousAdminRoleItem := range previousAdminRole {
+		previousAdminRoleRule = append(previousAdminRoleRule, previousAdminRoleItem)
+	}
+	var newAdminRoleRule []interface{}
+	for _, newAdminRoleItem := range newAdminRole {
+		newAdminRoleRule = append(newAdminRoleRule, newAdminRoleItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "RoleAdminChanged", roleRule, previousAdminRoleRule, newAdminRoleRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemRoleAdminChanged)
+				if err := _DeCusSystem.contract.UnpackLog(event, "RoleAdminChanged", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRoleAdminChanged is a log parse operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
+//
+// Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
+func (_DeCusSystem *DeCusSystemFilterer) ParseRoleAdminChanged(log types.Log) (*DeCusSystemRoleAdminChanged, error) {
+	event := new(DeCusSystemRoleAdminChanged)
+	if err := _DeCusSystem.contract.UnpackLog(event, "RoleAdminChanged", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// DeCusSystemRoleGrantedIterator is returned from FilterRoleGranted and is used to iterate over the raw logs and unpacked data for RoleGranted events raised by the DeCusSystem contract.
+type DeCusSystemRoleGrantedIterator struct {
+	Event *DeCusSystemRoleGranted // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemRoleGrantedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemRoleGranted)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemRoleGranted)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemRoleGrantedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemRoleGrantedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemRoleGranted represents a RoleGranted event raised by the DeCusSystem contract.
+type DeCusSystemRoleGranted struct {
+	Role    [32]byte
+	Account common.Address
+	Sender  common.Address
+	Raw     types.Log // Blockchain specific contextual infos
+}
+
+// FilterRoleGranted is a free log retrieval operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
+//
+// Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
+func (_DeCusSystem *DeCusSystemFilterer) FilterRoleGranted(opts *bind.FilterOpts, role [][32]byte, account []common.Address, sender []common.Address) (*DeCusSystemRoleGrantedIterator, error) {
+
+	var roleRule []interface{}
+	for _, roleItem := range role {
+		roleRule = append(roleRule, roleItem)
+	}
+	var accountRule []interface{}
+	for _, accountItem := range account {
+		accountRule = append(accountRule, accountItem)
+	}
+	var senderRule []interface{}
+	for _, senderItem := range sender {
+		senderRule = append(senderRule, senderItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "RoleGranted", roleRule, accountRule, senderRule)
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemRoleGrantedIterator{contract: _DeCusSystem.contract, event: "RoleGranted", logs: logs, sub: sub}, nil
+}
+
+// WatchRoleGranted is a free log subscription operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
+//
+// Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
+func (_DeCusSystem *DeCusSystemFilterer) WatchRoleGranted(opts *bind.WatchOpts, sink chan<- *DeCusSystemRoleGranted, role [][32]byte, account []common.Address, sender []common.Address) (event.Subscription, error) {
+
+	var roleRule []interface{}
+	for _, roleItem := range role {
+		roleRule = append(roleRule, roleItem)
+	}
+	var accountRule []interface{}
+	for _, accountItem := range account {
+		accountRule = append(accountRule, accountItem)
+	}
+	var senderRule []interface{}
+	for _, senderItem := range sender {
+		senderRule = append(senderRule, senderItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "RoleGranted", roleRule, accountRule, senderRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemRoleGranted)
+				if err := _DeCusSystem.contract.UnpackLog(event, "RoleGranted", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRoleGranted is a log parse operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
+//
+// Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
+func (_DeCusSystem *DeCusSystemFilterer) ParseRoleGranted(log types.Log) (*DeCusSystemRoleGranted, error) {
+	event := new(DeCusSystemRoleGranted)
+	if err := _DeCusSystem.contract.UnpackLog(event, "RoleGranted", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// DeCusSystemRoleRevokedIterator is returned from FilterRoleRevoked and is used to iterate over the raw logs and unpacked data for RoleRevoked events raised by the DeCusSystem contract.
+type DeCusSystemRoleRevokedIterator struct {
+	Event *DeCusSystemRoleRevoked // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemRoleRevokedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemRoleRevoked)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemRoleRevoked)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemRoleRevokedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemRoleRevokedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemRoleRevoked represents a RoleRevoked event raised by the DeCusSystem contract.
+type DeCusSystemRoleRevoked struct {
+	Role    [32]byte
+	Account common.Address
+	Sender  common.Address
+	Raw     types.Log // Blockchain specific contextual infos
+}
+
+// FilterRoleRevoked is a free log retrieval operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
+//
+// Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
+func (_DeCusSystem *DeCusSystemFilterer) FilterRoleRevoked(opts *bind.FilterOpts, role [][32]byte, account []common.Address, sender []common.Address) (*DeCusSystemRoleRevokedIterator, error) {
+
+	var roleRule []interface{}
+	for _, roleItem := range role {
+		roleRule = append(roleRule, roleItem)
+	}
+	var accountRule []interface{}
+	for _, accountItem := range account {
+		accountRule = append(accountRule, accountItem)
+	}
+	var senderRule []interface{}
+	for _, senderItem := range sender {
+		senderRule = append(senderRule, senderItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "RoleRevoked", roleRule, accountRule, senderRule)
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemRoleRevokedIterator{contract: _DeCusSystem.contract, event: "RoleRevoked", logs: logs, sub: sub}, nil
+}
+
+// WatchRoleRevoked is a free log subscription operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
+//
+// Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
+func (_DeCusSystem *DeCusSystemFilterer) WatchRoleRevoked(opts *bind.WatchOpts, sink chan<- *DeCusSystemRoleRevoked, role [][32]byte, account []common.Address, sender []common.Address) (event.Subscription, error) {
+
+	var roleRule []interface{}
+	for _, roleItem := range role {
+		roleRule = append(roleRule, roleItem)
+	}
+	var accountRule []interface{}
+	for _, accountItem := range account {
+		accountRule = append(accountRule, accountItem)
+	}
+	var senderRule []interface{}
+	for _, senderItem := range sender {
+		senderRule = append(senderRule, senderItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "RoleRevoked", roleRule, accountRule, senderRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemRoleRevoked)
+				if err := _DeCusSystem.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseRoleRevoked is a log parse operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
+//
+// Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
+func (_DeCusSystem *DeCusSystemFilterer) ParseRoleRevoked(log types.Log) (*DeCusSystemRoleRevoked, error) {
+	event := new(DeCusSystemRoleRevoked)
+	if err := _DeCusSystem.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
