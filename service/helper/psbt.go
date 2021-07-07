@@ -3,7 +3,6 @@ package helper
 import (
 	"errors"
 	"fmt"
-	"math/big"
 	"strings"
 
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
@@ -16,7 +15,7 @@ import (
 type TxInfo struct {
 	PreTxId    chainhash.Hash
 	TargetAddr string
-	Amount     *big.Int
+	Amount     int64
 }
 
 func rawTxId(txId chainhash.Hash) chainhash.Hash {
@@ -38,7 +37,7 @@ func verifyTransaction(txInfo *TxInfo, p *psbt.Packet) error {
 	if p.Inputs[0].WitnessUtxo == nil || p.Inputs[0].WitnessScript == nil {
 		return errors.New("missing witness fields")
 	}
-	if p.Inputs[0].WitnessUtxo.Value != txInfo.Amount.Int64() {
+	if p.Inputs[0].WitnessUtxo.Value != txInfo.Amount {
 		return errors.New("unmatched input value")
 	}
 

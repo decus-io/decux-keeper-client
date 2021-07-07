@@ -4,7 +4,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"log"
-	"math/big"
 	"strings"
 
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
@@ -94,7 +93,7 @@ func (s *Refund) processRefundImpl(refundData *abi.IDeCusSystemBtcRefundData,
 	txInfo := &helper.TxInfo{
 		PreTxId:    refundData.TxId,
 		TargetAddr: tx.Vin[0].Prevout.Scriptpubkey_Address,
-		Amount:     big.NewInt(int64(utxo.Value)),
+		Amount:     int64(utxo.Value),
 	}
 	signed, err := helper.SignPsbt(txInfo, psbt)
 	if err != nil {

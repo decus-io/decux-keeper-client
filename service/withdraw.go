@@ -56,7 +56,7 @@ func (s *Withdraw) processWithdrawImpl(receipt *contract.Receipt, psbt string) e
 	txInfo := &helper.TxInfo{
 		PreTxId:    receipt.TxId,
 		TargetAddr: receipt.WithdrawBtcAddress,
-		Amount:     receipt.AmountInSatoshi,
+		Amount:     int64(receipt.AmountInSatoshi),
 	}
 	signed, err := helper.SignPsbt(txInfo, psbt)
 	if err != nil {

@@ -31,7 +31,7 @@ func UtxoByReceipt(receipt *contract.Receipt) (*btc.Utxo, error) {
 	})
 
 	for _, v := range utxo {
-		if v.Status.Confirmed && v.Value == receipt.AmountInSatoshi.Uint64() {
+		if v.Status.Confirmed && v.Value == uint64(receipt.AmountInSatoshi) {
 			if receipt.Status == contract.DepositRequested {
 				if v.Status.Block_Time > receipt.UpdateTimestamp {
 					return &v, nil
