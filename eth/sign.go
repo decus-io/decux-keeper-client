@@ -11,8 +11,9 @@ import (
 	"github.com/ethereum/go-ethereum/signer/core"
 )
 
-func sign(sighash []byte, legacyV bool) (hexutil.Bytes, error) {
-	signature, err := crypto.Sign(sighash, config.C.Keeper.EthKey)
+func SignMessage(message []byte, legacyV bool) (hexutil.Bytes, error) {
+	digestHash := crypto.Keccak256(message)
+	signature, err := crypto.Sign(digestHash, config.C.Keeper.EthKey)
 	if err != nil {
 		return nil, err
 	}
@@ -33,16 +34,14 @@ func signTypedData(typedData core.TypedData) (hexutil.Bytes, error) {
 	}
 
 	rawData := []byte(fmt.Sprintf("\x19\x01%s%s", string(domainSeparator), string(typedDataHash)))
-	sighash := crypto.Keccak256(rawData)
-
-	signature, err := sign(sighash, true)
+	signature, err := SignMessage(rawData, true)
 	if err != nil {
 		return nil, err
 	}
 	return signature, nil
 }
 
-func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Bytes, error) {
+func SignDeposit(receiptId, txId, height string) (hexutil.Bytes, error) {
 	typesStandard := core.Types{
 		"EIP712Domain": {
 			{Name: "name", Type: "string"},
@@ -51,9 +50,7 @@ func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Byt
 			{Name: "verifyingContract", Type: "address"},
 		},
 		"MintRequest": {
-			{Name: "recipient", Type: "address"},
-			{Name: "receiptId", Type: "uint256"},
-			{Name: "amount", Type: "uint256"},
+			{Name: "receiptId", Type: "bytes32"},
 			{Name: "txId", Type: "bytes32"},
 			{Name: "height", Type: "uint256"},
 		},
@@ -66,9 +63,7 @@ func SignDeposit(recipient, receiptId, amount, txId, height string) (hexutil.Byt
 		Salt:              "",
 	}
 	messageStandard := map[string]interface{}{
-		"recipient": recipient,
 		"receiptId": receiptId,
-		"amount":    amount,
 		"txId":      txId,
 		"height":    height,
 	}

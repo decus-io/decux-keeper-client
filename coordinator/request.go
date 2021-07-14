@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/decus-io/decus-keeper-client/config"
+	"github.com/decus-io/decus-keeper-client/eth"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
-	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/ptypes/timestamp"
+	"google.golang.org/protobuf/proto"
 )
 
 var client = &http.Client{
@@ -50,7 +50,7 @@ func Reqeust(subUrl string, data []byte, result proto.Message) error {
 		body = bytes.NewReader(data)
 	}
 
-	req, err := http.NewRequest(method, config.C.Coordinator.Url+subUrl, body)
+	req, err := http.NewRequest(method, config.C.Url.Coordinator+subUrl, body)
 	if err != nil {
 		return err
 	}
@@ -68,13 +68,23 @@ func Reqeust(subUrl string, data []byte, result proto.Message) error {
 
 func SendOperation(op *message.Operation, result proto.Message) error {
 	op.KeeperId = config.C.Keeper.Id.Hex()
-	op.Nonce = 1
-	op.Signature = []byte{1}
-	op.Timestamp = &timestamp.Timestamp{Seconds: time.Now().Unix()}
-
-	data, err := proto.Marshal(op)
+	opData, err := proto.Marshal(op)
 	if err != nil {
 		return err
 	}
-	return Reqeust("operation", data, result)
+	signature, err := eth.SignMessage(opData, true)
+	if err != nil {
+		return err
+	}
+
+	req := &message.Request{
+		Data:      opData,
+		Signature: signature,
+	}
+	reqData, err := proto.Marshal(req)
+	if err != nil {
+		return err
+	}
+
+	return Reqeust("operation", reqData, result)
 }

@@ -1,104 +1,73 @@
 package service
 
 import (
-	"encoding/hex"
 	"log"
-	"math/big"
 
-	"github.com/btcsuite/btcd/txscript"
-	"github.com/btcsuite/btcutil"
-	"github.com/decus-io/decus-keeper-client/config"
 	"github.com/decus-io/decus-keeper-client/coordinator"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
 	"github.com/decus-io/decus-keeper-client/service/helper"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 
 type Withdraw struct {
-	signed map[int64]bool
+	processed map[string]bool
 }
 
 func NewWithdraw() *Withdraw {
 	return &Withdraw{
-		signed: map[int64]bool{},
+		processed: map[string]bool{},
 	}
 }
 
-func (s *Withdraw) ProcessWithdraw(opts *bind.CallOpts, groupId *big.Int, receiptId *big.Int) error {
-	if s.signed[receiptId.Int64()] {
+func (s *Withdraw) ProcessWithdraw(receipt *contract.Receipt) error {
+	if s.processed[receipt.ReceiptId] {
 		return nil
 	}
 
-	utxo, err := helper.FindUtxo(opts, groupId, receiptId)
+	utxo, err := helper.UtxoByReceipt(receipt)
 	if err != nil {
 		return err
 	}
 	if utxo == nil {
-		s.signed[receiptId.Int64()] = true
-		log.Print("withdrawing should have been finished for uxto not found: ", receiptId)
+		s.processed[receipt.ReceiptId] = true
+		log.Print("withdrawing should have been finished for uxto not found: ", receipt.ReceiptId)
 		return nil
-	}
-
-	amount, err := contract.ReceiptController.GetAmountInSatoshi(opts, receiptId)
-	if err != nil {
-		return err
-	}
-	receiptInfo, err := contract.ReceiptController.GetReceiptInfo(opts, receiptId)
-	if err != nil {
-		return err
 	}
 
 	op := &message.Operation{
 		Operation: &message.Operation_WithdrawRequest{
-			WithdrawRequest: &message.WithdrawRequest{
-				GroupId:   int32(groupId.Int64()),
-				ReceiptId: int32(receiptId.Int64()),
-				Recipient: receiptInfo.BtcAddress,
-				Amount:    amount.Uint64(),
-			},
+			WithdrawRequest: &message.WithdrawRequest{ReceiptId: receipt.ReceiptId},
 		},
 	}
-	var withdraw message.Withdraw
-	if err := coordinator.SendOperation(op, &withdraw); err != nil {
+	var withdrawRsp message.Withdraw
+	if err := coordinator.SendOperation(op, &withdrawRsp); err != nil {
 		return err
 	}
-	if err := s.processWithdrawImpl(&withdraw); err != nil {
+	if err := s.processWithdrawImpl(receipt, withdrawRsp.Psbt); err != nil {
 		return err
 	}
 
-	s.signed[receiptId.Int64()] = true
-	log.Print("withdraw signed: ", receiptId)
+	s.processed[receipt.ReceiptId] = true
+	log.Print("withdraw signed: ", receipt.ReceiptId)
 	return nil
 }
 
-func (s *Withdraw) processWithdrawImpl(withdraw *message.Withdraw) error {
-	// TODO: need verification ?
-	paymentRaw, err := hex.DecodeString(withdraw.PaymentRaw)
+func (s *Withdraw) processWithdrawImpl(receipt *contract.Receipt, psbt string) error {
+	txInfo := &helper.TxInfo{
+		PreTxId:    receipt.TxId,
+		TargetAddr: receipt.WithdrawBtcAddress,
+		Amount:     int64(receipt.AmountInSatoshi),
+	}
+	signed, err := helper.SignPsbt(txInfo, psbt)
 	if err != nil {
 		return err
-	}
-	ptx, err := btcutil.NewTxFromBytes(paymentRaw)
-	if err != nil {
-		return err
-	}
-	tx := ptx.MsgTx()
-
-	redeemScript, err := hex.DecodeString(withdraw.RedeemScript)
-	if err != nil {
-		return err
-	}
-	sig, err := txscript.RawTxInSignature(tx, 0, redeemScript,
-		txscript.SigHashAll, config.C.Keeper.BtcKey)
-	if err != nil {
-		log.Fatal("sign tx error: ", err)
 	}
 
 	op := &message.Operation{
 		Operation: &message.Operation_WithdrawSignature{
 			WithdrawSignature: &message.WithdrawSignature{
-				ReceiptId: withdraw.ReceiptId,
-				Signature: sig,
+				ReceiptId: receipt.ReceiptId,
+				Psbt:      signed,
 			},
 		},
 	}

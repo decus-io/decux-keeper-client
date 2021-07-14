@@ -4,29 +4,39 @@ import (
 	"context"
 	"errors"
 	"log"
+	"math/big"
+	"strings"
 	"time"
 
 	"github.com/decus-io/decus-keeper-client/config"
 	"github.com/decus-io/decus-keeper-client/eth/abi"
+	"github.com/ethereum/go-ethereum"
+	gethabi "github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/event"
 )
 
 var (
-	GroupRegistry     *abi.GroupRegistryCaller
-	KeeperRegistry    *abi.KeeperRegistryCaller
-	ReceiptController *abi.ReceiptControllerCaller
+	DeCusSystem    *abi.DeCusSystemCaller
+	KeeperRegistry *abi.KeeperRegistryCaller
 
 	ChainId int64
 
-	GroupAdded        = make(chan *abi.GroupRegistryGroupAdded)
-	WithdrawRequested = make(chan *abi.ReceiptControllerWithdrawRequested)
+	GroupAdded    = make(chan *abi.DeCusSystemGroupAdded)
+	GroupDeleted  = make(chan *abi.DeCusSystemGroupDeleted)
+	BurnRequested = make(chan *abi.DeCusSystemBurnRequested)
+	BtcRefunded   = make(chan *abi.DeCusSystemBtcRefunded)
+
+	decusSystemFilterer *abi.DeCusSystemFilterer
+	groupAddedId        common.Hash
+	groupDeletedId      common.Hash
 )
 
 func initContracts(client *ethclient.Client) error {
 	var err error
-	GroupRegistry, err = abi.NewGroupRegistryCaller(common.HexToAddress(config.C.Contract.GroupRegistry), client)
+	DeCusSystem, err = abi.NewDeCusSystemCaller(common.HexToAddress(config.C.Contract.DeCusSystem), client)
 	if err != nil {
 		return err
 	}
@@ -34,8 +44,7 @@ func initContracts(client *ethclient.Client) error {
 	if err != nil {
 		return err
 	}
-	ReceiptController, err = abi.NewReceiptControllerCaller(
-		common.HexToAddress(config.C.Contract.ReceiptController), client)
+	decusSystemFilterer, err = abi.NewDeCusSystemFilterer(common.HexToAddress(config.C.Contract.DeCusSystem), client)
 	if err != nil {
 		return err
 	}
@@ -43,7 +52,7 @@ func initContracts(client *ethclient.Client) error {
 	return nil
 }
 
-func subscribe(createFn func() (event.Subscription, error)) {
+func subscribeLoop(createFn func() (event.Subscription, error)) {
 	for {
 		sub, err := createFn()
 		if err != nil {
@@ -58,24 +67,88 @@ func subscribe(createFn func() (event.Subscription, error)) {
 }
 
 func subscribeEvents(client *ethclient.Client) {
-	go subscribe(func() (event.Subscription, error) {
-		filter, err := abi.NewReceiptControllerFilterer(common.HexToAddress(config.C.Contract.ReceiptController), client)
-		if err != nil {
-			return nil, err
-		}
-		return filter.WatchWithdrawRequested(nil, WithdrawRequested, nil)
+	go subscribeLoop(func() (event.Subscription, error) {
+		return decusSystemFilterer.WatchBurnRequested(nil, BurnRequested, nil)
 	})
-	go subscribe(func() (event.Subscription, error) {
-		filter, err := abi.NewGroupRegistryFilterer(common.HexToAddress(config.C.Contract.GroupRegistry), client)
-		if err != nil {
-			return nil, err
-		}
-		return filter.WatchGroupAdded(nil, GroupAdded, nil)
+	go subscribeLoop(func() (event.Subscription, error) {
+		return decusSystemFilterer.WatchBtcRefunded(nil, BtcRefunded)
 	})
 }
 
+func parseLogs(logs []types.Log) error {
+	for _, l := range logs {
+		switch l.Topics[0] {
+		case groupAddedId:
+			event, err := decusSystemFilterer.ParseGroupAdded(l)
+			if err != nil {
+				return err
+			}
+			GroupAdded <- event
+		case groupDeletedId:
+			event, err := decusSystemFilterer.ParseGroupDeleted(l)
+			if err != nil {
+				return err
+			}
+			GroupDeleted <- event
+		}
+	}
+
+	return nil
+}
+
+func filterLoop(client *ethclient.Client, topics [][]common.Hash) {
+	var startBlock uint64
+
+	for {
+		ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+		curBlock, err := client.BlockNumber(ctx)
+
+		if err != nil {
+			log.Print("BlockNumber err: ", err)
+		} else if curBlock >= startBlock {
+			query := ethereum.FilterQuery{
+				Addresses: []common.Address{common.HexToAddress(config.C.Contract.DeCusSystem)},
+				Topics:    topics,
+				FromBlock: new(big.Int).SetUint64(startBlock),
+				ToBlock:   new(big.Int).SetUint64(curBlock),
+			}
+
+			logs, err := client.FilterLogs(ctx, query)
+			if err == nil {
+				err = parseLogs(logs)
+			}
+			if err != nil {
+				log.Print("FilterLogs err: ", err)
+			} else {
+				startBlock = curBlock + 1
+			}
+		}
+
+		cancel()
+		time.Sleep(time.Minute * 5)
+	}
+}
+
+func filterEvents(client *ethclient.Client) error {
+	parsed, err := gethabi.JSON(strings.NewReader(abi.DeCusSystemABI))
+	if err != nil {
+		return err
+	}
+
+	groupAddedId = parsed.Events["GroupAdded"].ID
+	groupDeletedId = parsed.Events["GroupDeleted"].ID
+	query := [][]interface{}{{groupAddedId, groupDeletedId}}
+	topics, err := gethabi.MakeTopics(query...)
+	if err != nil {
+		return err
+	}
+
+	go filterLoop(client, topics)
+	return nil
+}
+
 func Init() error {
-	client, err := ethclient.Dial(config.C.EthClient.WssUrl)
+	client, err := ethclient.Dial(config.C.Url.EthClient)
 	if err != nil {
 		return err
 	}
@@ -91,14 +164,18 @@ func Init() error {
 		return err
 	}
 
-	exist, err := KeeperRegistry.Exist(nil, config.C.Keeper.Id)
+	amount, err := KeeperRegistry.GetCollateralWei(nil, config.C.Keeper.Id)
 	if err != nil {
 		return err
 	}
-	if !exist {
+	if amount.Cmp(&big.Int{}) == 0 {
 		return errors.New("keeper not exist: " + config.C.Keeper.Id.Hex())
 	}
 
+	if err := filterEvents(client); err != nil {
+		return err
+	}
 	subscribeEvents(client)
+
 	return nil
 }

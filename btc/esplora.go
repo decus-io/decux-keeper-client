@@ -13,7 +13,16 @@ type Utxo struct {
 	Value  uint64
 	Status struct {
 		Confirmed    bool
-		Block_Height int32
+		Block_Height uint32
+		Block_Time   uint32
+	}
+}
+
+type Tx struct {
+	Vin []struct {
+		Prevout struct {
+			Scriptpubkey_Address string
+		}
 	}
 }
 
@@ -22,7 +31,7 @@ var client = &http.Client{
 }
 
 func request(subUrl string, result interface{}) error {
-	req, err := http.NewRequest("GET", config.C.BtcEsplora.Url+subUrl, nil)
+	req, err := http.NewRequest("GET", config.C.Url.BtcEsplora+subUrl, nil)
 	if err != nil {
 		return err
 	}
@@ -42,4 +51,13 @@ func QueryUtxo(address string) ([]Utxo, error) {
 		return nil, err
 	}
 	return utxo, nil
+}
+
+func QueryTx(txId string) (*Tx, error) {
+	var tx Tx
+	err := request("tx/"+txId, &tx)
+	if err != nil {
+		return nil, err
+	}
+	return &tx, nil
 }

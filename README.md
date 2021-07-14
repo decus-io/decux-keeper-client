@@ -1,6 +1,13 @@
-decus-keeper-client
-===================
+# decus-keeper-client
 
 ```
-export PRIVATE_KEY=
+# password for keystore file
+export PASSWORD=$(cat ./pwd)
+
+# init setting
+./decus-keeper-client init
+
+# run
+./decus-keeper-client
+
 ```
