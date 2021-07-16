@@ -3,6 +3,7 @@ package config
 import (
 	"bytes"
 	"crypto/ecdsa"
+	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -16,25 +17,32 @@ import (
 	"github.com/ququzone/go-common/env"
 )
 
-const userDir = "./user"
+const (
+	userDir = "./user"
 
-func ethKeyFile(user string) string {
-	return filepath.Join(userDir, user, "eth-key")
+	ethKeyFile   = "eth-key"
+	btcKeyFile   = "btc-key"
+	infuraIdFile = "infura-id"
+	emailFile    = "email"
+)
+
+func dataPath(user string, file string) string {
+	return filepath.Join(userDir, user, file)
 }
 
-func btcKeyFile(user string) string {
-	return filepath.Join(userDir, user, "btc-key")
-}
-
-func infuraIdFile() string {
-	return filepath.Join(userDir, "infura-id")
+func save(user string, file string, r io.Reader) error {
+	path := dataPath(user, file)
+	if err := os.MkdirAll(filepath.Dir(path), 0700); err != nil {
+		return err
+	}
+	return atomic.WriteFile(path, r)
 }
 
 func password() string {
 	return env.GetNonEmpty("PASSWORD")
 }
 
-func saveKey(file string, privateKey *ecdsa.PrivateKey) error {
+func saveKey(user string, file string, privateKey *ecdsa.PrivateKey) error {
 	id, err := uuid.NewRandom()
 	if err != nil {
 		return err
@@ -50,30 +58,33 @@ func saveKey(file string, privateKey *ecdsa.PrivateKey) error {
 	if err != nil {
 		return err
 	}
-	if err := os.MkdirAll(filepath.Dir(file), 0700); err != nil {
-		return err
-	}
-	return atomic.WriteFile(file, bytes.NewReader(data))
+	return save(user, file, bytes.NewReader(data))
 }
 
 func SaveEthKey(user string, ethKey *ecdsa.PrivateKey) error {
-	return saveKey(ethKeyFile(user), ethKey)
+	return saveKey(user, ethKeyFile, ethKey)
 }
 
 func SaveBtcKey(user string, btcKey *btcec.PrivateKey) error {
-	return saveKey(btcKeyFile(user), btcKey.ToECDSA())
+	return saveKey(user, btcKeyFile, btcKey.ToECDSA())
 }
 
-func SaveInfuraId(infuraId string) error {
-	file := infuraIdFile()
-	if err := os.MkdirAll(filepath.Dir(file), 0700); err != nil {
-		return err
-	}
-	return atomic.WriteFile(file, strings.NewReader(infuraId))
+func SaveInfuraId(user string, infuraId string) error {
+	return save(user, infuraIdFile, strings.NewReader(infuraId))
 }
 
-func loadKey(file string) (*ecdsa.PrivateKey, error) {
-	data, err := ioutil.ReadFile(file)
+func SaveEmail(user string, email string) error {
+	return save(user, emailFile, strings.NewReader(email))
+}
+
+//
+
+func load(user string, file string) ([]byte, error) {
+	return ioutil.ReadFile(dataPath(user, file))
+}
+
+func loadKey(user string, file string) (*ecdsa.PrivateKey, error) {
+	data, err := load(user, file)
 	if err != nil {
 		return nil, err
 	}
@@ -86,21 +97,23 @@ func loadKey(file string) (*ecdsa.PrivateKey, error) {
 }
 
 func loadEthKey(user string) (*ecdsa.PrivateKey, error) {
-	return loadKey(ethKeyFile(user))
+	return loadKey(user, ethKeyFile)
 }
 
 func loadBtcKey(user string) (*btcec.PrivateKey, error) {
-	privateKey, err := loadKey(btcKeyFile(user))
+	privateKey, err := loadKey(user, btcKeyFile)
 	if err != nil {
 		return nil, err
 	}
 	return (*btcec.PrivateKey)(privateKey), nil
 }
 
-func loadInfuraId() (string, error) {
-	data, err := ioutil.ReadFile(infuraIdFile())
-	if err != nil {
-		return "", err
-	}
-	return string(data), nil
+func loadInfuraId(user string) (string, error) {
+	data, err := load(user, infuraIdFile)
+	return string(data), err
+}
+
+func loadEmail(user string) (string, error) {
+	data, err := load(user, emailFile)
+	return string(data), err
 }

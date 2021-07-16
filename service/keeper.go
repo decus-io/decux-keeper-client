@@ -14,14 +14,17 @@ func NewKeeper() *Keeper {
 }
 
 func (s *Keeper) Init() error {
-	return s.Heartbeat()
+	return s.Heartbeat(nil)
 }
 
-func (*Keeper) Heartbeat() error {
+func (*Keeper) Heartbeat(groupNum *uint64) error {
 	op := &message.Operation{
 		Operation: &message.Operation_Heartbeat{
 			Heartbeat: &message.Heartbeat{
+				DecusSystem: config.C.Contract.DeCusSystem,
 				BtcPubKey: config.C.Keeper.BtcKey.PubKey().SerializeCompressed(),
+				Email:     config.C.Keeper.Email,
+				GroupNum:  groupNum,
 			},
 		},
 	}

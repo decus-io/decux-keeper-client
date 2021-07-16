@@ -18,6 +18,7 @@ var C Config
 type Config struct {
 	Keeper struct {
 		Id     common.Address    `yaml:"-"`
+		Email  string            `yaml:"-"`
 		BtcKey *btcec.PrivateKey `yaml:"-"`
 		EthKey *ecdsa.PrivateKey `yaml:"-"`
 	} `yaml:"keeper"`
@@ -64,12 +65,19 @@ func Init(user string) error {
 		return err
 	}
 
-	infuraId, err := loadInfuraId()
+	infuraId, err := loadInfuraId(user)
 	if err != nil {
 		return err
 	}
 	C.Url.EthClient += infuraId
 	log.Print("infura id: ", infuraId)
+
+	// optional
+	email, err := loadEmail(user)
+	if err != nil {
+		email = ""
+	}
+	C.Keeper.Email = email
 
 	C.Keeper.Id = crypto.PubkeyToAddress(C.Keeper.EthKey.PublicKey)
 	log.Print("keeper id: ", C.Keeper.Id.Hex())

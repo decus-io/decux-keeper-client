@@ -111,7 +111,8 @@ func (s *System) Run() {
 	for {
 		select {
 		case <-heartbeatTicker.C:
-			if err := s.keeperService.Heartbeat(); err != nil {
+			groupNum := uint64(len(s.groupService.Groups))
+			if err := s.keeperService.Heartbeat(&groupNum); err != nil {
 				log.Print("error sending heartbeat: ", err)
 			}
 		case <-checkContractTicker.C:

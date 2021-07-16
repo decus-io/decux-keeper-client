@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/mail"
 
 	"github.com/btcsuite/btcutil"
 	"github.com/decus-io/decus-keeper-client/config"
@@ -19,7 +20,7 @@ func initSetting(user string) error {
 	if _, err := fmt.Scanln(&str); err != nil {
 		return err
 	}
-	if err := config.SaveInfuraId(str); err != nil {
+	if err := config.SaveInfuraId(user, str); err != nil {
 		return err
 	}
 
@@ -46,6 +47,21 @@ func initSetting(user string) error {
 		return err
 	}
 	if err := config.SaveBtcKey(user, btcKey.PrivKey); err != nil {
+		return err
+	}
+
+	//
+	fmt.Println("Email to receive notification when the client is offline:")
+	str = ""
+	if _, err := fmt.Scanln(&str); err != nil && err.Error() != "unexpected newline" {
+		return err
+	}
+	if len(str) > 0 {
+		if _, err := mail.ParseAddress(str); err != nil {
+			return err
+		}
+	}
+	if err := config.SaveEmail(user, str); err != nil {
 		return err
 	}
 
