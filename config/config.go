@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"strings"
 
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/chaincfg"
@@ -65,12 +66,14 @@ func Init(user string) error {
 		return err
 	}
 
-	infuraId, err := loadInfuraId(user)
-	if err != nil {
-		return err
+	if strings.Contains(C.Url.EthClient, "infura") {
+		infuraId, err := loadInfuraId(user)
+		if err != nil {
+			return err
+		}
+		C.Url.EthClient += infuraId
+		log.Print("infura id: ", infuraId)
 	}
-	C.Url.EthClient += infuraId
-	log.Print("infura id: ", infuraId)
 
 	// optional
 	email, err := loadEmail(user)

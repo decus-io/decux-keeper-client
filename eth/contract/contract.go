@@ -175,7 +175,9 @@ func Init() error {
 	if err := filterEvents(client); err != nil {
 		return err
 	}
-	subscribeEvents(client)
+	if strings.HasPrefix(config.C.Url.EthClient, "wss") {
+		subscribeEvents(client)
+	}
 
 	return nil
 }
