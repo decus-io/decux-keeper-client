@@ -7,3 +7,4 @@ url:
 contract:
   decus_system: "0x367Dc8B13Ca07F301122B436D204E2c52B76025C"
   keeper_registry: "0x5e77B65E9b78d66056C7048C773C81327bc79Fd6"
+  decus_system_start_block: 24931457

@@ -1,31 +1,33 @@
 package service
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"time"
 
-	"github.com/decus-io/decus-keeper-client/eth/abi"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/core/types"
 )
 
 type System struct {
-	keeperService   *Keeper
-	groupService    *Group
-	depositService  *Deposit
-	withdrawService *Withdraw
-	refundService   *Refund
+	eventService    *EventService
+	keeperService   *KeeperService
+	groupService    *GroupService
+	depositService  *DepositService
+	withdrawService *WithdrawService
+	refundService   *RefundService
 }
 
 func NewSystem() *System {
+	groupService := NewGroupService()
+
 	return &System{
-		keeperService:   NewKeeper(),
-		groupService:    NewGroup(),
-		depositService:  NewDeposit(),
-		withdrawService: NewWithdraw(),
-		refundService:   NewRefund(),
+		eventService:    NewEventService(),
+		keeperService:   NewKeeperService(),
+		groupService:    groupService,
+		depositService:  NewDepositService(),
+		withdrawService: NewWithdrawService(),
+		refundService:   NewRefundService(groupService),
 	}
 }
 
@@ -36,16 +38,71 @@ func (s *System) Init() error {
 	return nil
 }
 
-func (s *System) makeCallOpts() (*bind.CallOpts, context.CancelFunc) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-	return &bind.CallOpts{Context: ctx}, cancel
+func (s *System) handleEvent(l types.Log) {
+	if err := s.handleEventImpl(l); err != nil {
+		log.Print("handle event error: ", err)
+	}
 }
 
-func (s *System) checkReceipt(groupId string) error {
-	opts, cancel := s.makeCallOpts()
+func (s *System) handleEventImpl(l types.Log) error {
+	eventId := contract.EventID
+	filterer := contract.DecusSystemFilterer
+
+	switch l.Topics[0] {
+	case eventId["GroupAdded"]:
+		event, err := filterer.ParseGroupAdded(l)
+		if err != nil {
+			return err
+		}
+		s.groupService.OnGroupAdded(event)
+	case eventId["GroupDeleted"]:
+		event, err := filterer.ParseGroupDeleted(l)
+		if err != nil {
+			return err
+		}
+		s.groupService.OnGroupDeleted(event)
+	case eventId["MintRequested"]:
+		event, err := filterer.ParseMintRequested(l)
+		if err != nil {
+			return err
+		}
+		s.groupService.CheckGroup(event.GroupBtcAddress)
+		if s.groupService.IsMyGroup(event.GroupBtcAddress) {
+			log.Print("event MintRequested: ", contract.ReceiptIdToString(event.ReceiptId))
+		}
+	case eventId["BurnRequested"]:
+		event, err := filterer.ParseBurnRequested(l)
+		if err != nil {
+			return err
+		}
+		s.groupService.CheckGroup(event.GroupBtcAddress)
+		if s.groupService.IsMyGroup(event.GroupBtcAddress) {
+			log.Print("event BurnRequested: ", contract.ReceiptIdToString(event.ReceiptId))
+			// call checkReceipt immediately to get the blockNumber
+			s.checkReceipt(event.GroupBtcAddress)
+		}
+	}
+
+	return nil
+}
+
+func (s *System) syncEvents() {
+	if err := s.eventService.Sync(s.handleEvent); err != nil {
+		log.Print("sync events error: ", err)
+	}
+}
+
+func (s *System) checkReceipt(groupId string) {
+	if err := s.checkReceiptImpl(groupId); err != nil {
+		log.Print("check receipt error: ", err)
+	}
+}
+
+func (s *System) checkReceiptImpl(groupId string) error {
+	opts, cancel := contract.MakeCallOpts()
 	defer cancel()
 
-	receipt, err := contract.ReceiptByGroupId(opts, groupId)
+	receipt, err := s.groupService.ReceiptByGroupId(opts, groupId)
 	if err != nil {
 		return err
 	}
@@ -53,44 +110,27 @@ func (s *System) checkReceipt(groupId string) error {
 	if receipt.Status == contract.DepositRequested {
 		return s.depositService.ProcessDeposit(receipt)
 	} else if receipt.Status == contract.WithdrawRequested {
-		return s.withdrawService.ProcessWithdraw(receipt)
+		return s.withdrawService.ProcessWithdraw(opts, receipt)
 	}
 
 	return nil
 }
 
 func (s *System) checkAllReceipt() {
-	for groupId := range s.groupService.Groups {
-		if err := s.checkReceipt(groupId); err != nil {
-			log.Print("check receipt error: ", err)
-		}
+	for _, groupId := range s.groupService.MyGroups() {
+		s.checkReceipt(groupId)
 	}
-}
-
-func (s *System) onBurnRequested(event *abi.DeCusSystemBurnRequested) error {
-	opts, cancel := s.makeCallOpts()
-	defer cancel()
-
-	receipt, err := contract.DeCusSystem.GetReceipt(opts, event.ReceiptId)
-	if err != nil {
-		return err
-	}
-	if s.groupService.Groups[receipt.GroupBtcAddress] {
-		log.Print("event BurnRequested: ", contract.ReceiptIdToString(event.ReceiptId))
-		return s.checkReceipt(receipt.GroupBtcAddress)
-	}
-	return nil
 }
 
 func (s *System) checkBtcRefundImpl() error {
-	opts, cancel := s.makeCallOpts()
+	opts, cancel := contract.MakeCallOpts()
 	defer cancel()
 
 	refundData, err := contract.DeCusSystem.GetRefundData(opts)
 	if err != nil {
 		return err
 	}
-	if s.groupService.Groups[refundData.GroupBtcAddress] {
+	if s.groupService.IsMyGroup(refundData.GroupBtcAddress) {
 		if err := s.refundService.ProcessRefund(opts, &refundData); err != nil {
 			return err
 		}
@@ -106,28 +146,23 @@ func (s *System) checkBtcRefund() {
 
 func (s *System) Run() {
 	heartbeatTicker := time.NewTicker(time.Minute * 2)
+	minuteTicker := time.NewTicker(time.Minute)
 	checkContractTicker := time.NewTicker(time.Minute * 5)
+
+	s.syncEvents()
 
 	for {
 		select {
 		case <-heartbeatTicker.C:
-			groupNum := uint64(len(s.groupService.Groups))
+			groupNum := uint64(len(s.groupService.MyGroups()))
 			if err := s.keeperService.Heartbeat(&groupNum); err != nil {
 				log.Print("error sending heartbeat: ", err)
 			}
+		case <-minuteTicker.C:
+			s.syncEvents()
+			s.groupService.OnTimer()
 		case <-checkContractTicker.C:
 			s.checkAllReceipt()
-			s.checkBtcRefund()
-		case event := <-contract.GroupAdded:
-			s.groupService.OnGroupAdded(event)
-		case event := <-contract.GroupDeleted:
-			s.groupService.OnGroupDeleted(event)
-		case event := <-contract.BurnRequested:
-			if err := s.onBurnRequested(event); err != nil {
-				log.Print("error handling BurnRequested: ", err)
-			}
-		case event := <-contract.BtcRefunded:
-			log.Print("event BtcRefunded: ", event.GroupBtcAddress)
 			s.checkBtcRefund()
 		}
 	}

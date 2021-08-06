@@ -16,17 +16,19 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 
-type Refund struct {
-	processed map[chainhash.Hash]bool
+type RefundService struct {
+	processed    map[chainhash.Hash]bool
+	groupService *GroupService
 }
 
-func NewRefund() *Refund {
-	return &Refund{
-		processed: map[chainhash.Hash]bool{},
+func NewRefundService(groupService *GroupService) *RefundService {
+	return &RefundService{
+		processed:    map[chainhash.Hash]bool{},
+		groupService: groupService,
 	}
 }
 
-func (s *Refund) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCusSystemBtcRefundData) error {
+func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCusSystemBtcRefundData) error {
 	if s.processed[refundData.TxId] {
 		return nil
 	}
@@ -42,7 +44,7 @@ func (s *Refund) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCusSystem
 		return nil
 	}
 
-	receipt, err := contract.ReceiptByGroupId(opts, refundData.GroupBtcAddress)
+	receipt, err := s.groupService.ReceiptByGroupId(opts, refundData.GroupBtcAddress)
 	if err != nil {
 		return err
 	}
@@ -80,7 +82,7 @@ func (s *Refund) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCusSystem
 	return nil
 }
 
-func (s *Refund) processRefundImpl(refundData *abi.IDeCusSystemBtcRefundData,
+func (s *RefundService) processRefundImpl(refundData *abi.IDeCusSystemBtcRefundData,
 	utxo *btc.Utxo, psbt string) error {
 	tx, err := btc.QueryTx(utxo.Txid)
 	if err != nil {

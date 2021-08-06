@@ -7,19 +7,22 @@ import (
 	"github.com/decus-io/decus-keeper-client/eth/contract"
 	"github.com/decus-io/decus-keeper-client/service/helper"
 	"github.com/decus-io/decus-keeper-proto/golang/message"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 
-type Withdraw struct {
-	processed map[string]bool
+type WithdrawService struct {
+	processed  map[string]bool
+	txBlockNum map[string]uint64
 }
 
-func NewWithdraw() *Withdraw {
-	return &Withdraw{
-		processed: map[string]bool{},
+func NewWithdrawService() *WithdrawService {
+	return &WithdrawService{
+		processed:  map[string]bool{},
+		txBlockNum: map[string]uint64{},
 	}
 }
 
-func (s *Withdraw) ProcessWithdraw(receipt *contract.Receipt) error {
+func (s *WithdrawService) ProcessWithdraw(opts *bind.CallOpts, receipt *contract.Receipt) error {
 	if s.processed[receipt.ReceiptId] {
 		return nil
 	}
@@ -31,6 +34,19 @@ func (s *Withdraw) ProcessWithdraw(receipt *contract.Receipt) error {
 	if utxo == nil {
 		s.processed[receipt.ReceiptId] = true
 		log.Print("withdrawing should have been finished for uxto not found: ", receipt.ReceiptId)
+		return nil
+	}
+
+	curBlockNum, err := contract.Client.BlockNumber(opts.Context)
+	if err != nil {
+		return err
+	}
+	txBlockNum, ok := s.txBlockNum[receipt.ReceiptId]
+	if !ok {
+		s.txBlockNum[receipt.ReceiptId] = curBlockNum
+		return nil
+	}
+	if curBlockNum < txBlockNum+12 {
 		return nil
 	}
 
@@ -52,7 +68,7 @@ func (s *Withdraw) ProcessWithdraw(receipt *contract.Receipt) error {
 	return nil
 }
 
-func (s *Withdraw) processWithdrawImpl(receipt *contract.Receipt, psbt string) error {
+func (s *WithdrawService) processWithdrawImpl(receipt *contract.Receipt, psbt string) error {
 	txInfo := &helper.TxInfo{
 		PreTxId:    receipt.TxId,
 		TargetAddr: receipt.WithdrawBtcAddress,

@@ -12,17 +12,17 @@ import (
 	"github.com/decus-io/decus-keeper-proto/golang/message"
 )
 
-type Deposit struct {
+type DepositService struct {
 	processed map[string]bool
 }
 
-func NewDeposit() *Deposit {
-	return &Deposit{
+func NewDepositService() *DepositService {
+	return &DepositService{
 		processed: map[string]bool{},
 	}
 }
 
-func (s *Deposit) signDeposit(receipt *contract.Receipt, utxo *btc.Utxo) error {
+func (s *DepositService) signDeposit(receipt *contract.Receipt, utxo *btc.Utxo) error {
 	signature, err := eth.SignDeposit(receipt.ReceiptId,
 		"0x"+utxo.Txid, strconv.FormatInt(int64(utxo.Status.Block_Height), 10))
 	if err != nil {
@@ -42,7 +42,7 @@ func (s *Deposit) signDeposit(receipt *contract.Receipt, utxo *btc.Utxo) error {
 	return coordinator.SendOperation(op, nil)
 }
 
-func (s *Deposit) ProcessDeposit(receipt *contract.Receipt) error {
+func (s *DepositService) ProcessDeposit(receipt *contract.Receipt) error {
 	if s.processed[receipt.ReceiptId] {
 		return nil
 	}

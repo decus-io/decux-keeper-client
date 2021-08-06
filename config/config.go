@@ -33,8 +33,9 @@ type Config struct {
 		BtcEsplora  string `yaml:"btcesplora"`
 	} `yaml:"url"`
 	Contract struct {
-		DeCusSystem    string `yaml:"decus_system"`
-		KeeperRegistry string `yaml:"keeper_registry"`
+		DeCusSystem           string `yaml:"decus_system"`
+		KeeperRegistry        string `yaml:"keeper_registry"`
+		DeCusSystemStartBlock uint64 `yaml:"decus_system_start_block"`
 	} `yaml:"contract"`
 }
 

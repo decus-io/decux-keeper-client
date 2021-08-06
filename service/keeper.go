@@ -6,25 +6,25 @@ import (
 	"github.com/decus-io/decus-keeper-proto/golang/message"
 )
 
-type Keeper struct {
+type KeeperService struct {
 }
 
-func NewKeeper() *Keeper {
-	return &Keeper{}
+func NewKeeperService() *KeeperService {
+	return &KeeperService{}
 }
 
-func (s *Keeper) Init() error {
+func (s *KeeperService) Init() error {
 	return s.Heartbeat(nil)
 }
 
-func (*Keeper) Heartbeat(groupNum *uint64) error {
+func (*KeeperService) Heartbeat(groupNum *uint64) error {
 	op := &message.Operation{
 		Operation: &message.Operation_Heartbeat{
 			Heartbeat: &message.Heartbeat{
 				DecusSystem: config.C.Contract.DeCusSystem,
-				BtcPubKey: config.C.Keeper.BtcKey.PubKey().SerializeCompressed(),
-				Email:     config.C.Keeper.Email,
-				GroupNum:  groupNum,
+				BtcPubKey:   config.C.Keeper.BtcKey.PubKey().SerializeCompressed(),
+				Email:       config.C.Keeper.Email,
+				GroupNum:    groupNum,
 			},
 		},
 	}
