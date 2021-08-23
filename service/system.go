@@ -155,7 +155,8 @@ func (s *System) Run() {
 		select {
 		case <-heartbeatTicker.C:
 			groupNum := uint64(len(s.groupService.MyGroups()))
-			if err := s.keeperService.Heartbeat(&groupNum); err != nil {
+			syncMinutes := s.eventService.SyncMinutes()
+			if err := s.keeperService.Heartbeat(&groupNum, syncMinutes); err != nil {
 				log.Print("error sending heartbeat: ", err)
 			}
 		case <-minuteTicker.C:

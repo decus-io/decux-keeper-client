@@ -13,14 +13,14 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
-func initSetting(user string) error {
+func initSetting() error {
 	var str string
 
 	fmt.Println("Paste infura project id:")
 	if _, err := fmt.Scanln(&str); err != nil {
 		return err
 	}
-	if err := config.SaveInfuraId(user, str); err != nil {
+	if err := config.SaveInfuraId(str); err != nil {
 		return err
 	}
 
@@ -33,7 +33,7 @@ func initSetting(user string) error {
 	if err != nil {
 		return err
 	}
-	if err := config.SaveEthKey(user, ethKey); err != nil {
+	if err := config.SaveEthKey(ethKey); err != nil {
 		return err
 	}
 
@@ -46,7 +46,7 @@ func initSetting(user string) error {
 	if err != nil {
 		return err
 	}
-	if err := config.SaveBtcKey(user, btcKey.PrivKey); err != nil {
+	if err := config.SaveBtcKey(btcKey.PrivKey); err != nil {
 		return err
 	}
 
@@ -61,7 +61,7 @@ func initSetting(user string) error {
 			return err
 		}
 	}
-	if err := config.SaveEmail(user, str); err != nil {
+	if err := config.SaveEmail(str); err != nil {
 		return err
 	}
 
@@ -95,7 +95,8 @@ func main() {
 	var err error
 	if flag.NArg() > 0 {
 		if flag.Arg(0) == "init" {
-			err = initSetting(*user)
+			config.C.Keeper.User = *user
+			err = initSetting()
 		} else {
 			err = fmt.Errorf("unkown arguments: %v", flag.Args())
 		}

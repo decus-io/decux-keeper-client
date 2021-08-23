@@ -26,12 +26,12 @@ const (
 	emailFile    = "email"
 )
 
-func dataPath(user string, file string) string {
-	return filepath.Join(userDir, user, file)
+func DataPath(file string) string {
+	return filepath.Join(userDir, C.Keeper.User, file)
 }
 
-func save(user string, file string, r io.Reader) error {
-	path := dataPath(user, file)
+func save(file string, r io.Reader) error {
+	path := DataPath(file)
 	if err := os.MkdirAll(filepath.Dir(path), 0700); err != nil {
 		return err
 	}
@@ -42,7 +42,7 @@ func password() string {
 	return env.GetNonEmpty("PASSWORD")
 }
 
-func saveKey(user string, file string, privateKey *ecdsa.PrivateKey) error {
+func saveKey(file string, privateKey *ecdsa.PrivateKey) error {
 	id, err := uuid.NewRandom()
 	if err != nil {
 		return err
@@ -58,33 +58,33 @@ func saveKey(user string, file string, privateKey *ecdsa.PrivateKey) error {
 	if err != nil {
 		return err
 	}
-	return save(user, file, bytes.NewReader(data))
+	return save(file, bytes.NewReader(data))
 }
 
-func SaveEthKey(user string, ethKey *ecdsa.PrivateKey) error {
-	return saveKey(user, ethKeyFile, ethKey)
+func SaveEthKey(ethKey *ecdsa.PrivateKey) error {
+	return saveKey(ethKeyFile, ethKey)
 }
 
-func SaveBtcKey(user string, btcKey *btcec.PrivateKey) error {
-	return saveKey(user, btcKeyFile, btcKey.ToECDSA())
+func SaveBtcKey(btcKey *btcec.PrivateKey) error {
+	return saveKey(btcKeyFile, btcKey.ToECDSA())
 }
 
-func SaveInfuraId(user string, infuraId string) error {
-	return save(user, infuraIdFile, strings.NewReader(infuraId))
+func SaveInfuraId(infuraId string) error {
+	return save(infuraIdFile, strings.NewReader(infuraId))
 }
 
-func SaveEmail(user string, email string) error {
-	return save(user, emailFile, strings.NewReader(email))
+func SaveEmail(email string) error {
+	return save(emailFile, strings.NewReader(email))
 }
 
 //
 
-func load(user string, file string) ([]byte, error) {
-	return ioutil.ReadFile(dataPath(user, file))
+func load(file string) ([]byte, error) {
+	return ioutil.ReadFile(DataPath(file))
 }
 
-func loadKey(user string, file string) (*ecdsa.PrivateKey, error) {
-	data, err := load(user, file)
+func loadKey(file string) (*ecdsa.PrivateKey, error) {
+	data, err := load(file)
 	if err != nil {
 		return nil, err
 	}
@@ -96,24 +96,24 @@ func loadKey(user string, file string) (*ecdsa.PrivateKey, error) {
 	return ksKey.PrivateKey, nil
 }
 
-func loadEthKey(user string) (*ecdsa.PrivateKey, error) {
-	return loadKey(user, ethKeyFile)
+func loadEthKey() (*ecdsa.PrivateKey, error) {
+	return loadKey(ethKeyFile)
 }
 
-func loadBtcKey(user string) (*btcec.PrivateKey, error) {
-	privateKey, err := loadKey(user, btcKeyFile)
+func loadBtcKey() (*btcec.PrivateKey, error) {
+	privateKey, err := loadKey(btcKeyFile)
 	if err != nil {
 		return nil, err
 	}
 	return (*btcec.PrivateKey)(privateKey), nil
 }
 
-func loadInfuraId(user string) (string, error) {
-	data, err := load(user, infuraIdFile)
+func loadInfuraId() (string, error) {
+	data, err := load(infuraIdFile)
 	return string(data), err
 }
 
-func loadEmail(user string) (string, error) {
-	data, err := load(user, emailFile)
+func loadEmail() (string, error) {
+	data, err := load(emailFile)
 	return string(data), err
 }

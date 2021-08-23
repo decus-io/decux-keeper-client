@@ -35,7 +35,7 @@ type IKeeperRegistryKeeperData struct {
 }
 
 // KeeperRegistryABI is the input ABI used to generate the binding from.
-const KeeperRegistryABI = "[{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_assets\",\"type\":\"address[]\"},{\"internalType\":\"address\",\"name\":\"_sats\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_btcRater\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"AssetAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"treasury\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Confiscated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"bps\",\"type\":\"uint8\"}],\"name\":\"EarlyExitFeeBpsUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"KeeperAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"KeeperAssetSwapped\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"KeeperDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"KeeperImported\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"collateral\",\"type\":\"uint256\"}],\"name\":\"KeeperPunished\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"KeeperRefCount\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"MinCollateralUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"satsAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"remainingOverissueAmount\",\"type\":\"uint256\"}],\"name\":\"OffsetOverissued\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"added\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"deduction\",\"type\":\"uint256\"}],\"name\":\"OverissueAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldSystem\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newSystem\",\"type\":\"address\"}],\"name\":\"SystemUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousTreasury\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newTreasury\",\"type\":\"address\"}],\"name\":\"TreasuryTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"MIN_KEEPER_PERIOD\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"addAsset\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"addKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"overissuedAmount\",\"type\":\"uint256\"}],\"name\":\"addOverissue\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"btcRater\",\"outputs\":[{\"internalType\":\"contractIBtcRater\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"assets\",\"type\":\"address[]\"}],\"name\":\"confiscate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"confiscations\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"name\":\"decreaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"decrementRefCount\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deleteKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"earlyExitFeeBps\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCollateralWei\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getKeeper\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"refCount\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"joinTimestamp\",\"type\":\"uint32\"}],\"internalType\":\"structIKeeperRegistry.KeeperData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"importKeepers\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"addedValue\",\"type\":\"uint256\"}],\"name\":\"increaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"incrementRefCount\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"isKeeperQualified\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"keeperData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"refCount\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"joinTimestamp\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minKeeperCollateral\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"satsAmount\",\"type\":\"uint256\"}],\"name\":\"offsetOverissue\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"overissuedTotal\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"punishKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sats\",\"outputs\":[{\"internalType\":\"contractSATS\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_system\",\"type\":\"address\"}],\"name\":\"setSystem\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"swapAsset\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"system\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"treasury\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"bps\",\"type\":\"uint8\"}],\"name\":\"updateEarlyExitFeeBps\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"updateMinKeeperCollateral\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newTreasury\",\"type\":\"address\"}],\"name\":\"updateTreasury\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const KeeperRegistryABI = "[{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_assets\",\"type\":\"address[]\"},{\"internalType\":\"address\",\"name\":\"_sats\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_btcRater\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"AssetAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"liquidation\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Confiscated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"bps\",\"type\":\"uint8\"}],\"name\":\"EarlyExitFeeBpsUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"KeeperAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"KeeperAssetSwapped\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"cAmount\",\"type\":\"uint256\"}],\"name\":\"KeeperDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"KeeperImported\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"collateral\",\"type\":\"uint256\"}],\"name\":\"KeeperPunished\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"KeeperRefCount\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousLiquidation\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newLiquidation\",\"type\":\"address\"}],\"name\":\"LiquidationUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"MinCollateralUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"satsAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"remainingOverissueAmount\",\"type\":\"uint256\"}],\"name\":\"OffsetOverissued\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"added\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"deduction\",\"type\":\"uint256\"}],\"name\":\"OverissueAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldSystem\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newSystem\",\"type\":\"address\"}],\"name\":\"SystemUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"MIN_KEEPER_PERIOD\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"addAsset\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"addKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"overissuedAmount\",\"type\":\"uint256\"}],\"name\":\"addOverissue\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"btcRater\",\"outputs\":[{\"internalType\":\"contractIBtcRater\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"assets\",\"type\":\"address[]\"}],\"name\":\"confiscate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"confiscations\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"name\":\"decreaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"decrementRefCount\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"cAmount\",\"type\":\"uint256\"}],\"name\":\"deleteKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"earlyExitFeeBps\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCollateralWei\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getKeeper\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"refCount\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"joinTimestamp\",\"type\":\"uint32\"}],\"internalType\":\"structIKeeperRegistry.KeeperData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"importKeepers\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"addedValue\",\"type\":\"uint256\"}],\"name\":\"increaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"incrementRefCount\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"isKeeperQualified\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"keeperData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"refCount\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"joinTimestamp\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"liquidation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minKeeperCollateral\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"satsAmount\",\"type\":\"uint256\"}],\"name\":\"offsetOverissue\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"overissuedTotal\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"punishKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sats\",\"outputs\":[{\"internalType\":\"contractSATS\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_system\",\"type\":\"address\"}],\"name\":\"setSystem\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"swapAsset\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"system\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"bps\",\"type\":\"uint8\"}],\"name\":\"updateEarlyExitFeeBps\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newLiquidation\",\"type\":\"address\"}],\"name\":\"updateLiquidation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"updateMinKeeperCollateral\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // KeeperRegistry is an auto generated Go binding around an Ethereum contract.
 type KeeperRegistry struct {
@@ -544,6 +544,37 @@ func (_KeeperRegistry *KeeperRegistryCallerSession) KeeperData(arg0 common.Addre
 	return _KeeperRegistry.Contract.KeeperData(&_KeeperRegistry.CallOpts, arg0)
 }
 
+// Liquidation is a free data retrieval call binding the contract method 0xf2dfbf66.
+//
+// Solidity: function liquidation() view returns(address)
+func (_KeeperRegistry *KeeperRegistryCaller) Liquidation(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _KeeperRegistry.contract.Call(opts, &out, "liquidation")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Liquidation is a free data retrieval call binding the contract method 0xf2dfbf66.
+//
+// Solidity: function liquidation() view returns(address)
+func (_KeeperRegistry *KeeperRegistrySession) Liquidation() (common.Address, error) {
+	return _KeeperRegistry.Contract.Liquidation(&_KeeperRegistry.CallOpts)
+}
+
+// Liquidation is a free data retrieval call binding the contract method 0xf2dfbf66.
+//
+// Solidity: function liquidation() view returns(address)
+func (_KeeperRegistry *KeeperRegistryCallerSession) Liquidation() (common.Address, error) {
+	return _KeeperRegistry.Contract.Liquidation(&_KeeperRegistry.CallOpts)
+}
+
 // MinKeeperCollateral is a free data retrieval call binding the contract method 0xf4f8c025.
 //
 // Solidity: function minKeeperCollateral() view returns(uint256)
@@ -792,37 +823,6 @@ func (_KeeperRegistry *KeeperRegistryCallerSession) TotalSupply() (*big.Int, err
 	return _KeeperRegistry.Contract.TotalSupply(&_KeeperRegistry.CallOpts)
 }
 
-// Treasury is a free data retrieval call binding the contract method 0x61d027b3.
-//
-// Solidity: function treasury() view returns(address)
-func (_KeeperRegistry *KeeperRegistryCaller) Treasury(opts *bind.CallOpts) (common.Address, error) {
-	var out []interface{}
-	err := _KeeperRegistry.contract.Call(opts, &out, "treasury")
-
-	if err != nil {
-		return *new(common.Address), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-
-	return out0, err
-
-}
-
-// Treasury is a free data retrieval call binding the contract method 0x61d027b3.
-//
-// Solidity: function treasury() view returns(address)
-func (_KeeperRegistry *KeeperRegistrySession) Treasury() (common.Address, error) {
-	return _KeeperRegistry.Contract.Treasury(&_KeeperRegistry.CallOpts)
-}
-
-// Treasury is a free data retrieval call binding the contract method 0x61d027b3.
-//
-// Solidity: function treasury() view returns(address)
-func (_KeeperRegistry *KeeperRegistryCallerSession) Treasury() (common.Address, error) {
-	return _KeeperRegistry.Contract.Treasury(&_KeeperRegistry.CallOpts)
-}
-
 // AddAsset is a paid mutator transaction binding the contract method 0x298410e5.
 //
 // Solidity: function addAsset(address asset) returns()
@@ -970,25 +970,25 @@ func (_KeeperRegistry *KeeperRegistryTransactorSession) DecrementRefCount(keeper
 	return _KeeperRegistry.Contract.DecrementRefCount(&_KeeperRegistry.TransactOpts, keeper)
 }
 
-// DeleteKeeper is a paid mutator transaction binding the contract method 0x38d8b4ba.
+// DeleteKeeper is a paid mutator transaction binding the contract method 0xcc2be1e4.
 //
-// Solidity: function deleteKeeper() returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) DeleteKeeper(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "deleteKeeper")
+// Solidity: function deleteKeeper(uint256 cAmount) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) DeleteKeeper(opts *bind.TransactOpts, cAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "deleteKeeper", cAmount)
 }
 
-// DeleteKeeper is a paid mutator transaction binding the contract method 0x38d8b4ba.
+// DeleteKeeper is a paid mutator transaction binding the contract method 0xcc2be1e4.
 //
-// Solidity: function deleteKeeper() returns()
-func (_KeeperRegistry *KeeperRegistrySession) DeleteKeeper() (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.DeleteKeeper(&_KeeperRegistry.TransactOpts)
+// Solidity: function deleteKeeper(uint256 cAmount) returns()
+func (_KeeperRegistry *KeeperRegistrySession) DeleteKeeper(cAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.DeleteKeeper(&_KeeperRegistry.TransactOpts, cAmount)
 }
 
-// DeleteKeeper is a paid mutator transaction binding the contract method 0x38d8b4ba.
+// DeleteKeeper is a paid mutator transaction binding the contract method 0xcc2be1e4.
 //
-// Solidity: function deleteKeeper() returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) DeleteKeeper() (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.DeleteKeeper(&_KeeperRegistry.TransactOpts)
+// Solidity: function deleteKeeper(uint256 cAmount) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) DeleteKeeper(cAmount *big.Int) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.DeleteKeeper(&_KeeperRegistry.TransactOpts, cAmount)
 }
 
 // ImportKeepers is a paid mutator transaction binding the contract method 0xd67f23a9.
@@ -1243,6 +1243,27 @@ func (_KeeperRegistry *KeeperRegistryTransactorSession) UpdateEarlyExitFeeBps(bp
 	return _KeeperRegistry.Contract.UpdateEarlyExitFeeBps(&_KeeperRegistry.TransactOpts, bps)
 }
 
+// UpdateLiquidation is a paid mutator transaction binding the contract method 0xcb303fbd.
+//
+// Solidity: function updateLiquidation(address newLiquidation) returns()
+func (_KeeperRegistry *KeeperRegistryTransactor) UpdateLiquidation(opts *bind.TransactOpts, newLiquidation common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.contract.Transact(opts, "updateLiquidation", newLiquidation)
+}
+
+// UpdateLiquidation is a paid mutator transaction binding the contract method 0xcb303fbd.
+//
+// Solidity: function updateLiquidation(address newLiquidation) returns()
+func (_KeeperRegistry *KeeperRegistrySession) UpdateLiquidation(newLiquidation common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.UpdateLiquidation(&_KeeperRegistry.TransactOpts, newLiquidation)
+}
+
+// UpdateLiquidation is a paid mutator transaction binding the contract method 0xcb303fbd.
+//
+// Solidity: function updateLiquidation(address newLiquidation) returns()
+func (_KeeperRegistry *KeeperRegistryTransactorSession) UpdateLiquidation(newLiquidation common.Address) (*types.Transaction, error) {
+	return _KeeperRegistry.Contract.UpdateLiquidation(&_KeeperRegistry.TransactOpts, newLiquidation)
+}
+
 // UpdateMinKeeperCollateral is a paid mutator transaction binding the contract method 0xeef36af0.
 //
 // Solidity: function updateMinKeeperCollateral(uint256 amount) returns()
@@ -1262,27 +1283,6 @@ func (_KeeperRegistry *KeeperRegistrySession) UpdateMinKeeperCollateral(amount *
 // Solidity: function updateMinKeeperCollateral(uint256 amount) returns()
 func (_KeeperRegistry *KeeperRegistryTransactorSession) UpdateMinKeeperCollateral(amount *big.Int) (*types.Transaction, error) {
 	return _KeeperRegistry.Contract.UpdateMinKeeperCollateral(&_KeeperRegistry.TransactOpts, amount)
-}
-
-// UpdateTreasury is a paid mutator transaction binding the contract method 0x7f51bb1f.
-//
-// Solidity: function updateTreasury(address newTreasury) returns()
-func (_KeeperRegistry *KeeperRegistryTransactor) UpdateTreasury(opts *bind.TransactOpts, newTreasury common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.contract.Transact(opts, "updateTreasury", newTreasury)
-}
-
-// UpdateTreasury is a paid mutator transaction binding the contract method 0x7f51bb1f.
-//
-// Solidity: function updateTreasury(address newTreasury) returns()
-func (_KeeperRegistry *KeeperRegistrySession) UpdateTreasury(newTreasury common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.UpdateTreasury(&_KeeperRegistry.TransactOpts, newTreasury)
-}
-
-// UpdateTreasury is a paid mutator transaction binding the contract method 0x7f51bb1f.
-//
-// Solidity: function updateTreasury(address newTreasury) returns()
-func (_KeeperRegistry *KeeperRegistryTransactorSession) UpdateTreasury(newTreasury common.Address) (*types.Transaction, error) {
-	return _KeeperRegistry.Contract.UpdateTreasury(&_KeeperRegistry.TransactOpts, newTreasury)
 }
 
 // KeeperRegistryApprovalIterator is returned from FilterApproval and is used to iterate over the raw logs and unpacked data for Approval events raised by the KeeperRegistry contract.
@@ -1652,23 +1652,23 @@ func (it *KeeperRegistryConfiscatedIterator) Close() error {
 
 // KeeperRegistryConfiscated represents a Confiscated event raised by the KeeperRegistry contract.
 type KeeperRegistryConfiscated struct {
-	Treasury common.Address
-	Asset    common.Address
-	Amount   *big.Int
-	Raw      types.Log // Blockchain specific contextual infos
+	Liquidation common.Address
+	Asset       common.Address
+	Amount      *big.Int
+	Raw         types.Log // Blockchain specific contextual infos
 }
 
 // FilterConfiscated is a free log retrieval operation binding the contract event 0x1d47c187095aefccfdebc8a872d270e98511c7814959be6a804c25428d7fff79.
 //
-// Solidity: event Confiscated(address indexed treasury, address asset, uint256 amount)
-func (_KeeperRegistry *KeeperRegistryFilterer) FilterConfiscated(opts *bind.FilterOpts, treasury []common.Address) (*KeeperRegistryConfiscatedIterator, error) {
+// Solidity: event Confiscated(address indexed liquidation, address asset, uint256 amount)
+func (_KeeperRegistry *KeeperRegistryFilterer) FilterConfiscated(opts *bind.FilterOpts, liquidation []common.Address) (*KeeperRegistryConfiscatedIterator, error) {
 
-	var treasuryRule []interface{}
-	for _, treasuryItem := range treasury {
-		treasuryRule = append(treasuryRule, treasuryItem)
+	var liquidationRule []interface{}
+	for _, liquidationItem := range liquidation {
+		liquidationRule = append(liquidationRule, liquidationItem)
 	}
 
-	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "Confiscated", treasuryRule)
+	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "Confiscated", liquidationRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1677,15 +1677,15 @@ func (_KeeperRegistry *KeeperRegistryFilterer) FilterConfiscated(opts *bind.Filt
 
 // WatchConfiscated is a free log subscription operation binding the contract event 0x1d47c187095aefccfdebc8a872d270e98511c7814959be6a804c25428d7fff79.
 //
-// Solidity: event Confiscated(address indexed treasury, address asset, uint256 amount)
-func (_KeeperRegistry *KeeperRegistryFilterer) WatchConfiscated(opts *bind.WatchOpts, sink chan<- *KeeperRegistryConfiscated, treasury []common.Address) (event.Subscription, error) {
+// Solidity: event Confiscated(address indexed liquidation, address asset, uint256 amount)
+func (_KeeperRegistry *KeeperRegistryFilterer) WatchConfiscated(opts *bind.WatchOpts, sink chan<- *KeeperRegistryConfiscated, liquidation []common.Address) (event.Subscription, error) {
 
-	var treasuryRule []interface{}
-	for _, treasuryItem := range treasury {
-		treasuryRule = append(treasuryRule, treasuryItem)
+	var liquidationRule []interface{}
+	for _, liquidationItem := range liquidation {
+		liquidationRule = append(liquidationRule, liquidationItem)
 	}
 
-	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "Confiscated", treasuryRule)
+	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "Confiscated", liquidationRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1719,7 +1719,7 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchConfiscated(opts *bind.Watch
 
 // ParseConfiscated is a log parse operation binding the contract event 0x1d47c187095aefccfdebc8a872d270e98511c7814959be6a804c25428d7fff79.
 //
-// Solidity: event Confiscated(address indexed treasury, address asset, uint256 amount)
+// Solidity: event Confiscated(address indexed liquidation, address asset, uint256 amount)
 func (_KeeperRegistry *KeeperRegistryFilterer) ParseConfiscated(log types.Log) (*KeeperRegistryConfiscated, error) {
 	event := new(KeeperRegistryConfiscated)
 	if err := _KeeperRegistry.contract.UnpackLog(event, "Confiscated", log); err != nil {
@@ -2224,15 +2224,16 @@ func (it *KeeperRegistryKeeperDeletedIterator) Close() error {
 
 // KeeperRegistryKeeperDeleted represents a KeeperDeleted event raised by the KeeperRegistry contract.
 type KeeperRegistryKeeperDeleted struct {
-	Keeper common.Address
-	Asset  common.Address
-	Amount *big.Int
-	Raw    types.Log // Blockchain specific contextual infos
+	Keeper  common.Address
+	Asset   common.Address
+	Amount  *big.Int
+	CAmount *big.Int
+	Raw     types.Log // Blockchain specific contextual infos
 }
 
-// FilterKeeperDeleted is a free log retrieval operation binding the contract event 0xfdc8a2eb47574b279003faacaf3b604c32989745953f005dc58c5b39f541b44f.
+// FilterKeeperDeleted is a free log retrieval operation binding the contract event 0x06b7631533b900b7ead1e432d65a3527f75c28916090fc83ea68796a8150cea0.
 //
-// Solidity: event KeeperDeleted(address indexed keeper, address asset, uint256 amount)
+// Solidity: event KeeperDeleted(address indexed keeper, address asset, uint256 amount, uint256 cAmount)
 func (_KeeperRegistry *KeeperRegistryFilterer) FilterKeeperDeleted(opts *bind.FilterOpts, keeper []common.Address) (*KeeperRegistryKeeperDeletedIterator, error) {
 
 	var keeperRule []interface{}
@@ -2247,9 +2248,9 @@ func (_KeeperRegistry *KeeperRegistryFilterer) FilterKeeperDeleted(opts *bind.Fi
 	return &KeeperRegistryKeeperDeletedIterator{contract: _KeeperRegistry.contract, event: "KeeperDeleted", logs: logs, sub: sub}, nil
 }
 
-// WatchKeeperDeleted is a free log subscription operation binding the contract event 0xfdc8a2eb47574b279003faacaf3b604c32989745953f005dc58c5b39f541b44f.
+// WatchKeeperDeleted is a free log subscription operation binding the contract event 0x06b7631533b900b7ead1e432d65a3527f75c28916090fc83ea68796a8150cea0.
 //
-// Solidity: event KeeperDeleted(address indexed keeper, address asset, uint256 amount)
+// Solidity: event KeeperDeleted(address indexed keeper, address asset, uint256 amount, uint256 cAmount)
 func (_KeeperRegistry *KeeperRegistryFilterer) WatchKeeperDeleted(opts *bind.WatchOpts, sink chan<- *KeeperRegistryKeeperDeleted, keeper []common.Address) (event.Subscription, error) {
 
 	var keeperRule []interface{}
@@ -2289,9 +2290,9 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchKeeperDeleted(opts *bind.Wat
 	}), nil
 }
 
-// ParseKeeperDeleted is a log parse operation binding the contract event 0xfdc8a2eb47574b279003faacaf3b604c32989745953f005dc58c5b39f541b44f.
+// ParseKeeperDeleted is a log parse operation binding the contract event 0x06b7631533b900b7ead1e432d65a3527f75c28916090fc83ea68796a8150cea0.
 //
-// Solidity: event KeeperDeleted(address indexed keeper, address asset, uint256 amount)
+// Solidity: event KeeperDeleted(address indexed keeper, address asset, uint256 amount, uint256 cAmount)
 func (_KeeperRegistry *KeeperRegistryFilterer) ParseKeeperDeleted(log types.Log) (*KeeperRegistryKeeperDeleted, error) {
 	event := new(KeeperRegistryKeeperDeleted)
 	if err := _KeeperRegistry.contract.UnpackLog(event, "KeeperDeleted", log); err != nil {
@@ -2733,6 +2734,159 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchKeeperRefCount(opts *bind.Wa
 func (_KeeperRegistry *KeeperRegistryFilterer) ParseKeeperRefCount(log types.Log) (*KeeperRegistryKeeperRefCount, error) {
 	event := new(KeeperRegistryKeeperRefCount)
 	if err := _KeeperRegistry.contract.UnpackLog(event, "KeeperRefCount", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// KeeperRegistryLiquidationUpdatedIterator is returned from FilterLiquidationUpdated and is used to iterate over the raw logs and unpacked data for LiquidationUpdated events raised by the KeeperRegistry contract.
+type KeeperRegistryLiquidationUpdatedIterator struct {
+	Event *KeeperRegistryLiquidationUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *KeeperRegistryLiquidationUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(KeeperRegistryLiquidationUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(KeeperRegistryLiquidationUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *KeeperRegistryLiquidationUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *KeeperRegistryLiquidationUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// KeeperRegistryLiquidationUpdated represents a LiquidationUpdated event raised by the KeeperRegistry contract.
+type KeeperRegistryLiquidationUpdated struct {
+	PreviousLiquidation common.Address
+	NewLiquidation      common.Address
+	Raw                 types.Log // Blockchain specific contextual infos
+}
+
+// FilterLiquidationUpdated is a free log retrieval operation binding the contract event 0x960ce90a19dfa3c809fb677d4929ae04bfacc9138539566f398b02ac16b6b31e.
+//
+// Solidity: event LiquidationUpdated(address indexed previousLiquidation, address indexed newLiquidation)
+func (_KeeperRegistry *KeeperRegistryFilterer) FilterLiquidationUpdated(opts *bind.FilterOpts, previousLiquidation []common.Address, newLiquidation []common.Address) (*KeeperRegistryLiquidationUpdatedIterator, error) {
+
+	var previousLiquidationRule []interface{}
+	for _, previousLiquidationItem := range previousLiquidation {
+		previousLiquidationRule = append(previousLiquidationRule, previousLiquidationItem)
+	}
+	var newLiquidationRule []interface{}
+	for _, newLiquidationItem := range newLiquidation {
+		newLiquidationRule = append(newLiquidationRule, newLiquidationItem)
+	}
+
+	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "LiquidationUpdated", previousLiquidationRule, newLiquidationRule)
+	if err != nil {
+		return nil, err
+	}
+	return &KeeperRegistryLiquidationUpdatedIterator{contract: _KeeperRegistry.contract, event: "LiquidationUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchLiquidationUpdated is a free log subscription operation binding the contract event 0x960ce90a19dfa3c809fb677d4929ae04bfacc9138539566f398b02ac16b6b31e.
+//
+// Solidity: event LiquidationUpdated(address indexed previousLiquidation, address indexed newLiquidation)
+func (_KeeperRegistry *KeeperRegistryFilterer) WatchLiquidationUpdated(opts *bind.WatchOpts, sink chan<- *KeeperRegistryLiquidationUpdated, previousLiquidation []common.Address, newLiquidation []common.Address) (event.Subscription, error) {
+
+	var previousLiquidationRule []interface{}
+	for _, previousLiquidationItem := range previousLiquidation {
+		previousLiquidationRule = append(previousLiquidationRule, previousLiquidationItem)
+	}
+	var newLiquidationRule []interface{}
+	for _, newLiquidationItem := range newLiquidation {
+		newLiquidationRule = append(newLiquidationRule, newLiquidationItem)
+	}
+
+	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "LiquidationUpdated", previousLiquidationRule, newLiquidationRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(KeeperRegistryLiquidationUpdated)
+				if err := _KeeperRegistry.contract.UnpackLog(event, "LiquidationUpdated", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseLiquidationUpdated is a log parse operation binding the contract event 0x960ce90a19dfa3c809fb677d4929ae04bfacc9138539566f398b02ac16b6b31e.
+//
+// Solidity: event LiquidationUpdated(address indexed previousLiquidation, address indexed newLiquidation)
+func (_KeeperRegistry *KeeperRegistryFilterer) ParseLiquidationUpdated(log types.Log) (*KeeperRegistryLiquidationUpdated, error) {
+	event := new(KeeperRegistryLiquidationUpdated)
+	if err := _KeeperRegistry.contract.UnpackLog(event, "LiquidationUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -3591,159 +3745,6 @@ func (_KeeperRegistry *KeeperRegistryFilterer) WatchTransfer(opts *bind.WatchOpt
 func (_KeeperRegistry *KeeperRegistryFilterer) ParseTransfer(log types.Log) (*KeeperRegistryTransfer, error) {
 	event := new(KeeperRegistryTransfer)
 	if err := _KeeperRegistry.contract.UnpackLog(event, "Transfer", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
-}
-
-// KeeperRegistryTreasuryTransferredIterator is returned from FilterTreasuryTransferred and is used to iterate over the raw logs and unpacked data for TreasuryTransferred events raised by the KeeperRegistry contract.
-type KeeperRegistryTreasuryTransferredIterator struct {
-	Event *KeeperRegistryTreasuryTransferred // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *KeeperRegistryTreasuryTransferredIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(KeeperRegistryTreasuryTransferred)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(KeeperRegistryTreasuryTransferred)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *KeeperRegistryTreasuryTransferredIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *KeeperRegistryTreasuryTransferredIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// KeeperRegistryTreasuryTransferred represents a TreasuryTransferred event raised by the KeeperRegistry contract.
-type KeeperRegistryTreasuryTransferred struct {
-	PreviousTreasury common.Address
-	NewTreasury      common.Address
-	Raw              types.Log // Blockchain specific contextual infos
-}
-
-// FilterTreasuryTransferred is a free log retrieval operation binding the contract event 0xebebcc22237fa047dcfebf54b185ec126c9b24d45f4bd2a18e4fa02e07308c40.
-//
-// Solidity: event TreasuryTransferred(address indexed previousTreasury, address indexed newTreasury)
-func (_KeeperRegistry *KeeperRegistryFilterer) FilterTreasuryTransferred(opts *bind.FilterOpts, previousTreasury []common.Address, newTreasury []common.Address) (*KeeperRegistryTreasuryTransferredIterator, error) {
-
-	var previousTreasuryRule []interface{}
-	for _, previousTreasuryItem := range previousTreasury {
-		previousTreasuryRule = append(previousTreasuryRule, previousTreasuryItem)
-	}
-	var newTreasuryRule []interface{}
-	for _, newTreasuryItem := range newTreasury {
-		newTreasuryRule = append(newTreasuryRule, newTreasuryItem)
-	}
-
-	logs, sub, err := _KeeperRegistry.contract.FilterLogs(opts, "TreasuryTransferred", previousTreasuryRule, newTreasuryRule)
-	if err != nil {
-		return nil, err
-	}
-	return &KeeperRegistryTreasuryTransferredIterator{contract: _KeeperRegistry.contract, event: "TreasuryTransferred", logs: logs, sub: sub}, nil
-}
-
-// WatchTreasuryTransferred is a free log subscription operation binding the contract event 0xebebcc22237fa047dcfebf54b185ec126c9b24d45f4bd2a18e4fa02e07308c40.
-//
-// Solidity: event TreasuryTransferred(address indexed previousTreasury, address indexed newTreasury)
-func (_KeeperRegistry *KeeperRegistryFilterer) WatchTreasuryTransferred(opts *bind.WatchOpts, sink chan<- *KeeperRegistryTreasuryTransferred, previousTreasury []common.Address, newTreasury []common.Address) (event.Subscription, error) {
-
-	var previousTreasuryRule []interface{}
-	for _, previousTreasuryItem := range previousTreasury {
-		previousTreasuryRule = append(previousTreasuryRule, previousTreasuryItem)
-	}
-	var newTreasuryRule []interface{}
-	for _, newTreasuryItem := range newTreasury {
-		newTreasuryRule = append(newTreasuryRule, newTreasuryItem)
-	}
-
-	logs, sub, err := _KeeperRegistry.contract.WatchLogs(opts, "TreasuryTransferred", previousTreasuryRule, newTreasuryRule)
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(KeeperRegistryTreasuryTransferred)
-				if err := _KeeperRegistry.contract.UnpackLog(event, "TreasuryTransferred", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseTreasuryTransferred is a log parse operation binding the contract event 0xebebcc22237fa047dcfebf54b185ec126c9b24d45f4bd2a18e4fa02e07308c40.
-//
-// Solidity: event TreasuryTransferred(address indexed previousTreasury, address indexed newTreasury)
-func (_KeeperRegistry *KeeperRegistryFilterer) ParseTreasuryTransferred(log types.Log) (*KeeperRegistryTreasuryTransferred, error) {
-	event := new(KeeperRegistryTreasuryTransferred)
-	if err := _KeeperRegistry.contract.UnpackLog(event, "TreasuryTransferred", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

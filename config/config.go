@@ -14,15 +14,19 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-var C Config
+var (
+	Version string = "v0.0.1"
+	C       Config
+)
 
 type Config struct {
 	Keeper struct {
-		Id     common.Address    `yaml:"-"`
-		Email  string            `yaml:"-"`
-		BtcKey *btcec.PrivateKey `yaml:"-"`
-		EthKey *ecdsa.PrivateKey `yaml:"-"`
-	} `yaml:"keeper"`
+		User   string
+		Id     common.Address
+		Email  string
+		BtcKey *btcec.PrivateKey
+		EthKey *ecdsa.PrivateKey
+	} `yaml:"-"`
 	Btc struct {
 		Network       string           `yaml:"network"`
 		NetworkParams *chaincfg.Params `yaml:"-"`
@@ -48,6 +52,8 @@ func Init(user string) error {
 		return err
 	}
 
+	C.Keeper.User = user
+
 	log.Print("contract DeCusSystem: ", C.Contract.DeCusSystem)
 	log.Print("contract KeeperRegistry: ", C.Contract.KeeperRegistry)
 
@@ -60,15 +66,15 @@ func Init(user string) error {
 		return fmt.Errorf("unknown btc networkd: %v", C.Btc.Network)
 	}
 
-	if C.Keeper.BtcKey, err = loadBtcKey(user); err != nil {
+	if C.Keeper.BtcKey, err = loadBtcKey(); err != nil {
 		return err
 	}
-	if C.Keeper.EthKey, err = loadEthKey(user); err != nil {
+	if C.Keeper.EthKey, err = loadEthKey(); err != nil {
 		return err
 	}
 
 	if strings.Contains(C.Url.EthClient, "infura") {
-		infuraId, err := loadInfuraId(user)
+		infuraId, err := loadInfuraId()
 		if err != nil {
 			return err
 		}
@@ -77,7 +83,7 @@ func Init(user string) error {
 	}
 
 	// optional
-	email, err := loadEmail(user)
+	email, err := loadEmail()
 	if err != nil {
 		email = ""
 	}

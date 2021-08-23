@@ -17,8 +17,9 @@ import (
 type EventHandler func(types.Log)
 
 type EventService struct {
-	pastEvents bool
-	fromBlock  uint64
+	pastEvents   bool
+	fromBlock    uint64
+	lastSyncTime int64
 }
 
 func NewEventService() *EventService {
@@ -58,6 +59,8 @@ func (s *EventService) Sync(handler EventHandler) error {
 		}
 
 		s.fromBlock = toBlock + 1
+		s.lastSyncTime = time.Now().Unix()
+
 		if time.Since(startTime) > time.Minute*2 {
 			return nil
 		}
@@ -68,6 +71,20 @@ func (s *EventService) Sync(handler EventHandler) error {
 		log.Print("past events finished")
 	}
 	return nil
+}
+
+func (s *EventService) SyncMinutes() *uint64 {
+	if s.lastSyncTime == 0 {
+		return nil
+	}
+
+	now := time.Now().Unix()
+	if now < s.lastSyncTime {
+		now = s.lastSyncTime
+	}
+
+	syncMinutes := uint64((now - s.lastSyncTime) / 60)
+	return &syncMinutes
 }
 
 func (s *EventService) filterLogs(topics [][]common.Hash, fromBlock uint64, toBlock uint64) ([]types.Log, error) {
