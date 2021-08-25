@@ -20,10 +20,10 @@ import (
 const (
 	userDir = "./user"
 
-	ethKeyFile   = "eth-key"
-	btcKeyFile   = "btc-key"
-	infuraIdFile = "infura-id"
-	emailFile    = "email"
+	ethKeyFile = "eth-key"
+	btcKeyFile = "btc-key"
+	rpcUrlFile = "rpc-url"
+	emailFile  = "email"
 )
 
 func DataPath(file string) string {
@@ -69,8 +69,8 @@ func SaveBtcKey(btcKey *btcec.PrivateKey) error {
 	return saveKey(btcKeyFile, btcKey.ToECDSA())
 }
 
-func SaveInfuraId(infuraId string) error {
-	return save(infuraIdFile, strings.NewReader(infuraId))
+func SaveRpcUrl(rpcUrl string) error {
+	return save(rpcUrlFile, strings.NewReader(rpcUrl))
 }
 
 func SaveEmail(email string) error {
@@ -108,8 +108,8 @@ func loadBtcKey() (*btcec.PrivateKey, error) {
 	return (*btcec.PrivateKey)(privateKey), nil
 }
 
-func loadInfuraId() (string, error) {
-	data, err := load(infuraIdFile)
+func loadRpcUrl() (string, error) {
+	data, err := load(rpcUrlFile)
 	return string(data), err
 }
 

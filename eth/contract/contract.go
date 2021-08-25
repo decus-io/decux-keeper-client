@@ -61,7 +61,7 @@ func MakeCallOpts() (*bind.CallOpts, context.CancelFunc) {
 
 func Init() error {
 	var err error
-	Client, err = ethclient.Dial(config.C.Url.EthClient)
+	Client, err = ethclient.Dial(config.C.Url.NetworkRpc)
 	if err != nil {
 		return err
 	}

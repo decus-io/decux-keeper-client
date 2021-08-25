@@ -1,10 +1,9 @@
 btc:
   network: testnet
 url:
-  coordinator: http://coordinator.decus.io/api/
-  ethclient: wss://kovan.infura.io/ws/v3/
+  coordinator: http://127.0.0.1:5000/api/
   btcesplora: https://blockstream.info/testnet/api/
 contract:
-  decus_system: "0x367Dc8B13Ca07F301122B436D204E2c52B76025C"
-  keeper_registry: "0x5e77B65E9b78d66056C7048C773C81327bc79Fd6"
-  decus_system_start_block: 24931457
+  decus_system: "0x58CE570B940BdB9597a6399A15AB3eE6634B59Eb"
+  keeper_registry: "0x5b7ea705a49e70dbc749323d41C1ac3e35703827"
+  decus_system_start_block: 11546136

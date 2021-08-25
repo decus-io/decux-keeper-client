@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"strings"
 
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/chaincfg"
@@ -33,7 +32,7 @@ type Config struct {
 	} `yaml:"btc"`
 	Url struct {
 		Coordinator string `yaml:"coordinator"`
-		EthClient   string `yaml:"ethclient"`
+		NetworkRpc  string `yaml:"-"`
 		BtcEsplora  string `yaml:"btcesplora"`
 	} `yaml:"url"`
 	Contract struct {
@@ -73,14 +72,10 @@ func Init(user string) error {
 		return err
 	}
 
-	if strings.Contains(C.Url.EthClient, "infura") {
-		infuraId, err := loadInfuraId()
-		if err != nil {
-			return err
-		}
-		C.Url.EthClient += infuraId
-		log.Print("infura id: ", infuraId)
+	if C.Url.NetworkRpc, err = loadRpcUrl(); err != nil {
+		return err
 	}
+	log.Print("network rpc url: ", C.Url.NetworkRpc)
 
 	// optional
 	email, err := loadEmail()

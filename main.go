@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/mail"
+	"net/url"
 
 	"github.com/btcsuite/btcutil"
 	"github.com/decus-io/decus-keeper-client/config"
@@ -16,11 +17,14 @@ import (
 func initSetting() error {
 	var str string
 
-	fmt.Println("Paste infura project id:")
+	fmt.Println("Paste network RPC URL:")
 	if _, err := fmt.Scanln(&str); err != nil {
 		return err
 	}
-	if err := config.SaveInfuraId(str); err != nil {
+	if _, err := url.ParseRequestURI(str); err != nil {
+		return err
+	}
+	if err := config.SaveRpcUrl(str); err != nil {
 		return err
 	}
 
