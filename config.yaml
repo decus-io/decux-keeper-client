@@ -1,5 +1,6 @@
 btc:
   network: testnet
+  confirmations: 6
 url:
   coordinator: http://127.0.0.1:5000/api/
   btcesplora: https://blockstream.info/testnet/api/

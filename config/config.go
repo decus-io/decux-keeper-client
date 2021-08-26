@@ -29,6 +29,7 @@ type Config struct {
 	Btc struct {
 		Network       string           `yaml:"network"`
 		NetworkParams *chaincfg.Params `yaml:"-"`
+		Confirmations uint32
 	} `yaml:"btc"`
 	Url struct {
 		Coordinator string `yaml:"coordinator"`

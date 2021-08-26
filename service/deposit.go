@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/decus-io/decus-keeper-client/btc"
+	"github.com/decus-io/decus-keeper-client/config"
 	"github.com/decus-io/decus-keeper-client/coordinator"
 	"github.com/decus-io/decus-keeper-client/eth"
 	"github.com/decus-io/decus-keeper-client/eth/contract"
@@ -55,11 +56,21 @@ func (s *DepositService) ProcessDeposit(receipt *contract.Receipt) error {
 		return nil
 	}
 
+	height, err := btc.QueryHeight()
+	if err != nil {
+		return err
+	}
+	confirmations := height - utxo.Status.Block_Height + 1
+	if confirmations < config.C.Btc.Confirmations {
+		return nil
+	}
+
 	if err := s.signDeposit(receipt, utxo); err != nil {
 		return err
 	}
 	s.processed[receipt.ReceiptId] = true
-	log.Print("deposit signed: ", receipt.ReceiptId, " txid: ", utxo.Txid)
+	log.Print("deposit signed: ", receipt.ReceiptId, " txid: ", utxo.Txid,
+		" confirmations: ", confirmations)
 
 	return nil
 }

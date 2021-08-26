@@ -46,7 +46,8 @@ func (s *WithdrawService) ProcessWithdraw(opts *bind.CallOpts, receipt *contract
 		s.txBlockNum[receipt.ReceiptId] = curBlockNum
 		return nil
 	}
-	if curBlockNum < txBlockNum+12 {
+	confirmations := curBlockNum - txBlockNum + 1
+	if confirmations < 12 {
 		return nil
 	}
 
@@ -64,7 +65,7 @@ func (s *WithdrawService) ProcessWithdraw(opts *bind.CallOpts, receipt *contract
 	}
 
 	s.processed[receipt.ReceiptId] = true
-	log.Print("withdraw signed: ", receipt.ReceiptId)
+	log.Print("withdraw signed: ", receipt.ReceiptId, " confirmations: ", confirmations)
 	return nil
 }
 

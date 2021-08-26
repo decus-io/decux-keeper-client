@@ -61,3 +61,9 @@ func QueryTx(txId string) (*Tx, error) {
 	}
 	return &tx, nil
 }
+
+func QueryHeight() (uint32, error) {
+	var height uint32
+	err := request("blocks/tip/height", &height)
+	return height, err
+}
