@@ -53,7 +53,7 @@ type IDeCusSystemReceipt struct {
 }
 
 // DeCusSystemABI is the input ABI used to generate the binding from.
-const DeCusSystemABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"expiryTimestamp\",\"type\":\"uint32\"}],\"name\":\"BtcRefunded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"endTime\",\"type\":\"uint32\"}],\"name\":\"Cooldown\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"required\",\"type\":\"uint32\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"maxSatoshi\",\"type\":\"uint32\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"amountInSatoshi\",\"type\":\"uint32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"name\":\"MintRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"MintRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"btcTxId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"btcTxHeight\",\"type\":\"uint32\"}],\"name\":\"MintVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_REUSING_GAP\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_COOLDOWN\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"REFUND_GAP\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WITHDRAW_VERIFICATION_END\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"required\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"maxSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"chillTime\",\"type\":\"uint32\"}],\"name\":\"chill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"fee\",\"outputs\":[{\"internalType\":\"contractISwapFee\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"amountInSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"nonce\",\"type\":\"uint32\"}],\"name\":\"forceRequestMint\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"}],\"name\":\"getCooldownTime\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroup\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"required\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"maxSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"currSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"nonce\",\"type\":\"uint32\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32\",\"name\":\"workingReceiptId\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint32\",\"name\":\"amountInSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"updateTimestamp\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"height\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"enumIDeCusSystem.Status\",\"name\":\"status\",\"type\":\"uint8\"}],\"internalType\":\"structIDeCusSystem.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"getReceiptId\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRefundData\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"expiryTimestamp\",\"type\":\"uint32\"}],\"internalType\":\"structIDeCusSystem.BtcRefundData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractIToken\",\"name\":\"_sats\",\"type\":\"address\"},{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"_registry\",\"type\":\"address\"},{\"internalType\":\"contractISwapRewarder\",\"name\":\"_rewarder\",\"type\":\"address\"},{\"internalType\":\"contractISwapFee\",\"name\":\"_fee\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperRegistry\",\"outputs\":[{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"recoverBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"}],\"name\":\"refundBtc\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"name\":\"requestBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"amountInSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"nonce\",\"type\":\"uint32\"}],\"name\":\"requestMint\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"revokeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rewarder\",\"outputs\":[{\"internalType\":\"contractISwapRewarder\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sats\",\"outputs\":[{\"internalType\":\"contractIToken\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"verifyBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint32\",\"name\":\"height\",\"type\":\"uint32\"}],\"internalType\":\"structIDeCusSystem.MintRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"r\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"s\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256\",\"name\":\"packedV\",\"type\":\"uint256\"}],\"name\":\"verifyMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const DeCusSystemABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"AllowKeeperExit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"expiryTimestamp\",\"type\":\"uint32\"}],\"name\":\"BtcRefunded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"BurnVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"endTime\",\"type\":\"uint32\"}],\"name\":\"Cooldown\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"required\",\"type\":\"uint32\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"maxSatoshi\",\"type\":\"uint32\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"GroupAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"GroupDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"amountInSatoshi\",\"type\":\"uint32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"}],\"name\":\"MintRequested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"MintRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"btcTxId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"btcTxHeight\",\"type\":\"uint32\"}],\"name\":\"MintVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"isExit\",\"type\":\"bool\"}],\"name\":\"ToggleExitKeeper\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_REUSING_GAP\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GROUP_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GUARD_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KEEPER_COOLDOWN\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINT_REQUEST_GRACE_PERIOD\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"REFUND_GAP\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WITHDRAW_VERIFICATION_END\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"required\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"maxSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"}],\"name\":\"addGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"allowKeeperExit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"keeper\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"chillTime\",\"type\":\"uint32\"}],\"name\":\"chill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"cooldownUntil\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"deleteGroup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string[]\",\"name\":\"btcAddresses\",\"type\":\"string[]\"}],\"name\":\"deleteGroups\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"fee\",\"outputs\":[{\"internalType\":\"contractISwapFee\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"amountInSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"nonce\",\"type\":\"uint32\"}],\"name\":\"forceRequestMint\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"btcAddress\",\"type\":\"string\"}],\"name\":\"getGroup\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"required\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"maxSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"currSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"nonce\",\"type\":\"uint32\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32\",\"name\":\"workingReceiptId\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint32\",\"name\":\"amountInSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"updateTimestamp\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"height\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"enumIDeCusSystem.Status\",\"name\":\"status\",\"type\":\"uint8\"}],\"internalType\":\"structIDeCusSystem.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"getReceiptId\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRefundData\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"expiryTimestamp\",\"type\":\"uint32\"}],\"internalType\":\"structIDeCusSystem.BtcRefundData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractSATS\",\"name\":\"_sats\",\"type\":\"address\"},{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"_registry\",\"type\":\"address\"},{\"internalType\":\"contractISwapRewarder\",\"name\":\"_rewarder\",\"type\":\"address\"},{\"internalType\":\"contractISwapFee\",\"name\":\"_fee\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperExitAllowed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"keeperExiting\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperRegistry\",\"outputs\":[{\"internalType\":\"contractIKeeperRegistry\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"recoverBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"}],\"name\":\"refundBtc\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"withdrawBtcAddress\",\"type\":\"string\"}],\"name\":\"requestBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"groupBtcAddress\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"amountInSatoshi\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"nonce\",\"type\":\"uint32\"}],\"name\":\"requestMint\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"revokeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rewarder\",\"outputs\":[{\"internalType\":\"contractISwapRewarder\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sats\",\"outputs\":[{\"internalType\":\"contractSATS\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"toggleExitKeeper\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"}],\"name\":\"verifyBurn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"receiptId\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"txId\",\"type\":\"bytes32\"},{\"internalType\":\"uint32\",\"name\":\"height\",\"type\":\"uint32\"}],\"internalType\":\"structIDeCusSystem.MintRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"keepers\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"r\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"s\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256\",\"name\":\"packedV\",\"type\":\"uint256\"}],\"name\":\"verifyMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // DeCusSystem is an auto generated Go binding around an Ethereum contract.
 type DeCusSystem struct {
@@ -290,6 +290,37 @@ func (_DeCusSystem *DeCusSystemCallerSession) GROUPROLE() ([32]byte, error) {
 	return _DeCusSystem.Contract.GROUPROLE(&_DeCusSystem.CallOpts)
 }
 
+// GUARDROLE is a free data retrieval call binding the contract method 0x03ed0ee5.
+//
+// Solidity: function GUARD_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCaller) GUARDROLE(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "GUARD_ROLE")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// GUARDROLE is a free data retrieval call binding the contract method 0x03ed0ee5.
+//
+// Solidity: function GUARD_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemSession) GUARDROLE() ([32]byte, error) {
+	return _DeCusSystem.Contract.GUARDROLE(&_DeCusSystem.CallOpts)
+}
+
+// GUARDROLE is a free data retrieval call binding the contract method 0x03ed0ee5.
+//
+// Solidity: function GUARD_ROLE() view returns(bytes32)
+func (_DeCusSystem *DeCusSystemCallerSession) GUARDROLE() ([32]byte, error) {
+	return _DeCusSystem.Contract.GUARDROLE(&_DeCusSystem.CallOpts)
+}
+
 // KEEPERCOOLDOWN is a free data retrieval call binding the contract method 0x7f7bcb62.
 //
 // Solidity: function KEEPER_COOLDOWN() view returns(uint32)
@@ -414,6 +445,37 @@ func (_DeCusSystem *DeCusSystemCallerSession) WITHDRAWVERIFICATIONEND() (uint32,
 	return _DeCusSystem.Contract.WITHDRAWVERIFICATIONEND(&_DeCusSystem.CallOpts)
 }
 
+// CooldownUntil is a free data retrieval call binding the contract method 0x25d40e3c.
+//
+// Solidity: function cooldownUntil(address ) view returns(uint32)
+func (_DeCusSystem *DeCusSystemCaller) CooldownUntil(opts *bind.CallOpts, arg0 common.Address) (uint32, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "cooldownUntil", arg0)
+
+	if err != nil {
+		return *new(uint32), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
+
+	return out0, err
+
+}
+
+// CooldownUntil is a free data retrieval call binding the contract method 0x25d40e3c.
+//
+// Solidity: function cooldownUntil(address ) view returns(uint32)
+func (_DeCusSystem *DeCusSystemSession) CooldownUntil(arg0 common.Address) (uint32, error) {
+	return _DeCusSystem.Contract.CooldownUntil(&_DeCusSystem.CallOpts, arg0)
+}
+
+// CooldownUntil is a free data retrieval call binding the contract method 0x25d40e3c.
+//
+// Solidity: function cooldownUntil(address ) view returns(uint32)
+func (_DeCusSystem *DeCusSystemCallerSession) CooldownUntil(arg0 common.Address) (uint32, error) {
+	return _DeCusSystem.Contract.CooldownUntil(&_DeCusSystem.CallOpts, arg0)
+}
+
 // Fee is a free data retrieval call binding the contract method 0xddca3f43.
 //
 // Solidity: function fee() view returns(address)
@@ -443,37 +505,6 @@ func (_DeCusSystem *DeCusSystemSession) Fee() (common.Address, error) {
 // Solidity: function fee() view returns(address)
 func (_DeCusSystem *DeCusSystemCallerSession) Fee() (common.Address, error) {
 	return _DeCusSystem.Contract.Fee(&_DeCusSystem.CallOpts)
-}
-
-// GetCooldownTime is a free data retrieval call binding the contract method 0x85c95a1e.
-//
-// Solidity: function getCooldownTime(address keeper) view returns(uint32)
-func (_DeCusSystem *DeCusSystemCaller) GetCooldownTime(opts *bind.CallOpts, keeper common.Address) (uint32, error) {
-	var out []interface{}
-	err := _DeCusSystem.contract.Call(opts, &out, "getCooldownTime", keeper)
-
-	if err != nil {
-		return *new(uint32), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(uint32)).(*uint32)
-
-	return out0, err
-
-}
-
-// GetCooldownTime is a free data retrieval call binding the contract method 0x85c95a1e.
-//
-// Solidity: function getCooldownTime(address keeper) view returns(uint32)
-func (_DeCusSystem *DeCusSystemSession) GetCooldownTime(keeper common.Address) (uint32, error) {
-	return _DeCusSystem.Contract.GetCooldownTime(&_DeCusSystem.CallOpts, keeper)
-}
-
-// GetCooldownTime is a free data retrieval call binding the contract method 0x85c95a1e.
-//
-// Solidity: function getCooldownTime(address keeper) view returns(uint32)
-func (_DeCusSystem *DeCusSystemCallerSession) GetCooldownTime(keeper common.Address) (uint32, error) {
-	return _DeCusSystem.Contract.GetCooldownTime(&_DeCusSystem.CallOpts, keeper)
 }
 
 // GetGroup is a free data retrieval call binding the contract method 0xabef281e.
@@ -758,6 +789,68 @@ func (_DeCusSystem *DeCusSystemCallerSession) HasRole(role [32]byte, account com
 	return _DeCusSystem.Contract.HasRole(&_DeCusSystem.CallOpts, role, account)
 }
 
+// KeeperExitAllowed is a free data retrieval call binding the contract method 0x7188ac00.
+//
+// Solidity: function keeperExitAllowed() view returns(bool)
+func (_DeCusSystem *DeCusSystemCaller) KeeperExitAllowed(opts *bind.CallOpts) (bool, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "keeperExitAllowed")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// KeeperExitAllowed is a free data retrieval call binding the contract method 0x7188ac00.
+//
+// Solidity: function keeperExitAllowed() view returns(bool)
+func (_DeCusSystem *DeCusSystemSession) KeeperExitAllowed() (bool, error) {
+	return _DeCusSystem.Contract.KeeperExitAllowed(&_DeCusSystem.CallOpts)
+}
+
+// KeeperExitAllowed is a free data retrieval call binding the contract method 0x7188ac00.
+//
+// Solidity: function keeperExitAllowed() view returns(bool)
+func (_DeCusSystem *DeCusSystemCallerSession) KeeperExitAllowed() (bool, error) {
+	return _DeCusSystem.Contract.KeeperExitAllowed(&_DeCusSystem.CallOpts)
+}
+
+// KeeperExiting is a free data retrieval call binding the contract method 0x2f7f636a.
+//
+// Solidity: function keeperExiting(address ) view returns(bool)
+func (_DeCusSystem *DeCusSystemCaller) KeeperExiting(opts *bind.CallOpts, arg0 common.Address) (bool, error) {
+	var out []interface{}
+	err := _DeCusSystem.contract.Call(opts, &out, "keeperExiting", arg0)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// KeeperExiting is a free data retrieval call binding the contract method 0x2f7f636a.
+//
+// Solidity: function keeperExiting(address ) view returns(bool)
+func (_DeCusSystem *DeCusSystemSession) KeeperExiting(arg0 common.Address) (bool, error) {
+	return _DeCusSystem.Contract.KeeperExiting(&_DeCusSystem.CallOpts, arg0)
+}
+
+// KeeperExiting is a free data retrieval call binding the contract method 0x2f7f636a.
+//
+// Solidity: function keeperExiting(address ) view returns(bool)
+func (_DeCusSystem *DeCusSystemCallerSession) KeeperExiting(arg0 common.Address) (bool, error) {
+	return _DeCusSystem.Contract.KeeperExiting(&_DeCusSystem.CallOpts, arg0)
+}
+
 // KeeperRegistry is a free data retrieval call binding the contract method 0x83e22774.
 //
 // Solidity: function keeperRegistry() view returns(address)
@@ -903,6 +996,27 @@ func (_DeCusSystem *DeCusSystemTransactorSession) AddGroup(btcAddress string, re
 	return _DeCusSystem.Contract.AddGroup(&_DeCusSystem.TransactOpts, btcAddress, required, maxSatoshi, keepers)
 }
 
+// AllowKeeperExit is a paid mutator transaction binding the contract method 0xa965476d.
+//
+// Solidity: function allowKeeperExit() returns()
+func (_DeCusSystem *DeCusSystemTransactor) AllowKeeperExit(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "allowKeeperExit")
+}
+
+// AllowKeeperExit is a paid mutator transaction binding the contract method 0xa965476d.
+//
+// Solidity: function allowKeeperExit() returns()
+func (_DeCusSystem *DeCusSystemSession) AllowKeeperExit() (*types.Transaction, error) {
+	return _DeCusSystem.Contract.AllowKeeperExit(&_DeCusSystem.TransactOpts)
+}
+
+// AllowKeeperExit is a paid mutator transaction binding the contract method 0xa965476d.
+//
+// Solidity: function allowKeeperExit() returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) AllowKeeperExit() (*types.Transaction, error) {
+	return _DeCusSystem.Contract.AllowKeeperExit(&_DeCusSystem.TransactOpts)
+}
+
 // Chill is a paid mutator transaction binding the contract method 0x3d701d00.
 //
 // Solidity: function chill(address keeper, uint32 chillTime) returns()
@@ -943,6 +1057,27 @@ func (_DeCusSystem *DeCusSystemSession) DeleteGroup(btcAddress string) (*types.T
 // Solidity: function deleteGroup(string btcAddress) returns()
 func (_DeCusSystem *DeCusSystemTransactorSession) DeleteGroup(btcAddress string) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.DeleteGroup(&_DeCusSystem.TransactOpts, btcAddress)
+}
+
+// DeleteGroups is a paid mutator transaction binding the contract method 0x5cabd667.
+//
+// Solidity: function deleteGroups(string[] btcAddresses) returns()
+func (_DeCusSystem *DeCusSystemTransactor) DeleteGroups(opts *bind.TransactOpts, btcAddresses []string) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "deleteGroups", btcAddresses)
+}
+
+// DeleteGroups is a paid mutator transaction binding the contract method 0x5cabd667.
+//
+// Solidity: function deleteGroups(string[] btcAddresses) returns()
+func (_DeCusSystem *DeCusSystemSession) DeleteGroups(btcAddresses []string) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.DeleteGroups(&_DeCusSystem.TransactOpts, btcAddresses)
+}
+
+// DeleteGroups is a paid mutator transaction binding the contract method 0x5cabd667.
+//
+// Solidity: function deleteGroups(string[] btcAddresses) returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) DeleteGroups(btcAddresses []string) (*types.Transaction, error) {
+	return _DeCusSystem.Contract.DeleteGroups(&_DeCusSystem.TransactOpts, btcAddresses)
 }
 
 // ForceRequestMint is a paid mutator transaction binding the contract method 0x72df0e38.
@@ -1176,6 +1311,27 @@ func (_DeCusSystem *DeCusSystemTransactorSession) RevokeRole(role [32]byte, acco
 	return _DeCusSystem.Contract.RevokeRole(&_DeCusSystem.TransactOpts, role, account)
 }
 
+// ToggleExitKeeper is a paid mutator transaction binding the contract method 0x1aa8517c.
+//
+// Solidity: function toggleExitKeeper() returns()
+func (_DeCusSystem *DeCusSystemTransactor) ToggleExitKeeper(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _DeCusSystem.contract.Transact(opts, "toggleExitKeeper")
+}
+
+// ToggleExitKeeper is a paid mutator transaction binding the contract method 0x1aa8517c.
+//
+// Solidity: function toggleExitKeeper() returns()
+func (_DeCusSystem *DeCusSystemSession) ToggleExitKeeper() (*types.Transaction, error) {
+	return _DeCusSystem.Contract.ToggleExitKeeper(&_DeCusSystem.TransactOpts)
+}
+
+// ToggleExitKeeper is a paid mutator transaction binding the contract method 0x1aa8517c.
+//
+// Solidity: function toggleExitKeeper() returns()
+func (_DeCusSystem *DeCusSystemTransactorSession) ToggleExitKeeper() (*types.Transaction, error) {
+	return _DeCusSystem.Contract.ToggleExitKeeper(&_DeCusSystem.TransactOpts)
+}
+
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
 // Solidity: function unpause() returns()
@@ -1237,6 +1393,150 @@ func (_DeCusSystem *DeCusSystemSession) VerifyMint(request IDeCusSystemMintReque
 // Solidity: function verifyMint((bytes32,bytes32,uint32) request, address[] keepers, bytes32[] r, bytes32[] s, uint256 packedV) returns()
 func (_DeCusSystem *DeCusSystemTransactorSession) VerifyMint(request IDeCusSystemMintRequest, keepers []common.Address, r [][32]byte, s [][32]byte, packedV *big.Int) (*types.Transaction, error) {
 	return _DeCusSystem.Contract.VerifyMint(&_DeCusSystem.TransactOpts, request, keepers, r, s, packedV)
+}
+
+// DeCusSystemAllowKeeperExitIterator is returned from FilterAllowKeeperExit and is used to iterate over the raw logs and unpacked data for AllowKeeperExit events raised by the DeCusSystem contract.
+type DeCusSystemAllowKeeperExitIterator struct {
+	Event *DeCusSystemAllowKeeperExit // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemAllowKeeperExitIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemAllowKeeperExit)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemAllowKeeperExit)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemAllowKeeperExitIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemAllowKeeperExitIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemAllowKeeperExit represents a AllowKeeperExit event raised by the DeCusSystem contract.
+type DeCusSystemAllowKeeperExit struct {
+	Operator common.Address
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterAllowKeeperExit is a free log retrieval operation binding the contract event 0x0ff3bf87a808983b14400cade429c3e8e3ee8459a32a33de6f3f8b1cd2845dea.
+//
+// Solidity: event AllowKeeperExit(address indexed operator)
+func (_DeCusSystem *DeCusSystemFilterer) FilterAllowKeeperExit(opts *bind.FilterOpts, operator []common.Address) (*DeCusSystemAllowKeeperExitIterator, error) {
+
+	var operatorRule []interface{}
+	for _, operatorItem := range operator {
+		operatorRule = append(operatorRule, operatorItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "AllowKeeperExit", operatorRule)
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemAllowKeeperExitIterator{contract: _DeCusSystem.contract, event: "AllowKeeperExit", logs: logs, sub: sub}, nil
+}
+
+// WatchAllowKeeperExit is a free log subscription operation binding the contract event 0x0ff3bf87a808983b14400cade429c3e8e3ee8459a32a33de6f3f8b1cd2845dea.
+//
+// Solidity: event AllowKeeperExit(address indexed operator)
+func (_DeCusSystem *DeCusSystemFilterer) WatchAllowKeeperExit(opts *bind.WatchOpts, sink chan<- *DeCusSystemAllowKeeperExit, operator []common.Address) (event.Subscription, error) {
+
+	var operatorRule []interface{}
+	for _, operatorItem := range operator {
+		operatorRule = append(operatorRule, operatorItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "AllowKeeperExit", operatorRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemAllowKeeperExit)
+				if err := _DeCusSystem.contract.UnpackLog(event, "AllowKeeperExit", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAllowKeeperExit is a log parse operation binding the contract event 0x0ff3bf87a808983b14400cade429c3e8e3ee8459a32a33de6f3f8b1cd2845dea.
+//
+// Solidity: event AllowKeeperExit(address indexed operator)
+func (_DeCusSystem *DeCusSystemFilterer) ParseAllowKeeperExit(log types.Log) (*DeCusSystemAllowKeeperExit, error) {
+	event := new(DeCusSystemAllowKeeperExit)
+	if err := _DeCusSystem.contract.UnpackLog(event, "AllowKeeperExit", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
 }
 
 // DeCusSystemBtcRefundedIterator is returned from FilterBtcRefunded and is used to iterate over the raw logs and unpacked data for BtcRefunded events raised by the DeCusSystem contract.
@@ -3294,6 +3594,151 @@ func (_DeCusSystem *DeCusSystemFilterer) WatchRoleRevoked(opts *bind.WatchOpts, 
 func (_DeCusSystem *DeCusSystemFilterer) ParseRoleRevoked(log types.Log) (*DeCusSystemRoleRevoked, error) {
 	event := new(DeCusSystemRoleRevoked)
 	if err := _DeCusSystem.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// DeCusSystemToggleExitKeeperIterator is returned from FilterToggleExitKeeper and is used to iterate over the raw logs and unpacked data for ToggleExitKeeper events raised by the DeCusSystem contract.
+type DeCusSystemToggleExitKeeperIterator struct {
+	Event *DeCusSystemToggleExitKeeper // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *DeCusSystemToggleExitKeeperIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(DeCusSystemToggleExitKeeper)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(DeCusSystemToggleExitKeeper)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *DeCusSystemToggleExitKeeperIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *DeCusSystemToggleExitKeeperIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// DeCusSystemToggleExitKeeper represents a ToggleExitKeeper event raised by the DeCusSystem contract.
+type DeCusSystemToggleExitKeeper struct {
+	Keeper common.Address
+	IsExit bool
+	Raw    types.Log // Blockchain specific contextual infos
+}
+
+// FilterToggleExitKeeper is a free log retrieval operation binding the contract event 0x83cc6c1fe93786e75c247528820fb8e5def97df72d6233ff0afaad2b46e54a21.
+//
+// Solidity: event ToggleExitKeeper(address indexed keeper, bool isExit)
+func (_DeCusSystem *DeCusSystemFilterer) FilterToggleExitKeeper(opts *bind.FilterOpts, keeper []common.Address) (*DeCusSystemToggleExitKeeperIterator, error) {
+
+	var keeperRule []interface{}
+	for _, keeperItem := range keeper {
+		keeperRule = append(keeperRule, keeperItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.FilterLogs(opts, "ToggleExitKeeper", keeperRule)
+	if err != nil {
+		return nil, err
+	}
+	return &DeCusSystemToggleExitKeeperIterator{contract: _DeCusSystem.contract, event: "ToggleExitKeeper", logs: logs, sub: sub}, nil
+}
+
+// WatchToggleExitKeeper is a free log subscription operation binding the contract event 0x83cc6c1fe93786e75c247528820fb8e5def97df72d6233ff0afaad2b46e54a21.
+//
+// Solidity: event ToggleExitKeeper(address indexed keeper, bool isExit)
+func (_DeCusSystem *DeCusSystemFilterer) WatchToggleExitKeeper(opts *bind.WatchOpts, sink chan<- *DeCusSystemToggleExitKeeper, keeper []common.Address) (event.Subscription, error) {
+
+	var keeperRule []interface{}
+	for _, keeperItem := range keeper {
+		keeperRule = append(keeperRule, keeperItem)
+	}
+
+	logs, sub, err := _DeCusSystem.contract.WatchLogs(opts, "ToggleExitKeeper", keeperRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(DeCusSystemToggleExitKeeper)
+				if err := _DeCusSystem.contract.UnpackLog(event, "ToggleExitKeeper", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseToggleExitKeeper is a log parse operation binding the contract event 0x83cc6c1fe93786e75c247528820fb8e5def97df72d6233ff0afaad2b46e54a21.
+//
+// Solidity: event ToggleExitKeeper(address indexed keeper, bool isExit)
+func (_DeCusSystem *DeCusSystemFilterer) ParseToggleExitKeeper(log types.Log) (*DeCusSystemToggleExitKeeper, error) {
+	event := new(DeCusSystemToggleExitKeeper)
+	if err := _DeCusSystem.contract.UnpackLog(event, "ToggleExitKeeper", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

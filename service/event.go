@@ -45,7 +45,7 @@ func (s *EventService) Sync(handler EventHandler) error {
 	startTime := time.Now()
 
 	for s.fromBlock < curBlock {
-		toBlock := s.fromBlock + 20000 - 1
+		toBlock := s.fromBlock + 2000 - 1
 		if toBlock > curBlock {
 			toBlock = curBlock
 		}
