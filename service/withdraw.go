@@ -11,19 +11,19 @@ import (
 )
 
 type WithdrawService struct {
-	processed  map[string]bool
-	txBlockNum map[string]uint64
+	taskManager *helper.TaskManager
+	txBlockNum  map[string]uint64
 }
 
 func NewWithdrawService() *WithdrawService {
 	return &WithdrawService{
-		processed:  map[string]bool{},
-		txBlockNum: map[string]uint64{},
+		taskManager: helper.NewTaskManager(),
+		txBlockNum:  map[string]uint64{},
 	}
 }
 
 func (s *WithdrawService) ProcessWithdraw(opts *bind.CallOpts, receipt *contract.Receipt) error {
-	if s.processed[receipt.ReceiptId] {
+	if !s.taskManager.Available(receipt.ReceiptId) {
 		return nil
 	}
 
@@ -32,7 +32,7 @@ func (s *WithdrawService) ProcessWithdraw(opts *bind.CallOpts, receipt *contract
 		return err
 	}
 	if utxo == nil {
-		s.processed[receipt.ReceiptId] = true
+		s.taskManager.Finish(receipt.ReceiptId)
 		log.Print("withdrawing should have been finished for uxto not found: ", receipt.ReceiptId)
 		return nil
 	}
@@ -64,7 +64,7 @@ func (s *WithdrawService) ProcessWithdraw(opts *bind.CallOpts, receipt *contract
 		return err
 	}
 
-	s.processed[receipt.ReceiptId] = true
+	s.taskManager.CheckLater(receipt.ReceiptId)
 	log.Print("withdraw signed: ", receipt.ReceiptId, " confirmations: ", confirmations)
 	return nil
 }

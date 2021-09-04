@@ -6,7 +6,6 @@ import (
 	"log"
 	"strings"
 
-	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/decus-io/decus-keeper-client/btc"
 	"github.com/decus-io/decus-keeper-client/coordinator"
 	"github.com/decus-io/decus-keeper-client/eth/abi"
@@ -17,19 +16,20 @@ import (
 )
 
 type RefundService struct {
-	processed    map[chainhash.Hash]bool
+	taskManager  *helper.TaskManager
 	groupService *GroupService
 }
 
 func NewRefundService(groupService *GroupService) *RefundService {
 	return &RefundService{
-		processed:    map[chainhash.Hash]bool{},
+		taskManager:  helper.NewTaskManager(),
 		groupService: groupService,
 	}
 }
 
 func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCusSystemBtcRefundData) error {
-	if s.processed[refundData.TxId] {
+	task := hex.EncodeToString(refundData.TxId[:])
+	if !s.taskManager.Available(task) {
 		return nil
 	}
 
@@ -38,9 +38,8 @@ func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCu
 		return err
 	}
 	if utxo == nil {
-		s.processed[refundData.TxId] = true
-		log.Print("refund should have been finished for uxto not found: ",
-			hex.EncodeToString(refundData.TxId[:]))
+		s.taskManager.Finish(task)
+		log.Print("refund should have been finished for uxto not found: ", task)
 		return nil
 	}
 
@@ -49,7 +48,7 @@ func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCu
 		return err
 	}
 	if receipt.TxId == refundData.TxId {
-		s.processed[refundData.TxId] = true
+		s.taskManager.Finish(task)
 		return fmt.Errorf("refund error, utxo is used by receipt: %v", receipt.ReceiptId)
 	}
 
@@ -59,7 +58,7 @@ func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCu
 			return err
 		}
 		if receiptUtxo != nil && strings.EqualFold(utxo.Txid, receiptUtxo.Txid) {
-			s.processed[refundData.TxId] = true
+			s.taskManager.CheckLater(task)
 			return fmt.Errorf("refund error, utxo is the candidate of receipt: %v", receipt.ReceiptId)
 		}
 	}
@@ -77,7 +76,7 @@ func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCu
 		return err
 	}
 
-	s.processed[refundData.TxId] = true
+	s.taskManager.CheckLater(task)
 	log.Print("refund signed: ", refundData.GroupBtcAddress, " - ", utxo.Txid)
 	return nil
 }

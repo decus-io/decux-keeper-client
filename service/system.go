@@ -10,6 +10,8 @@ import (
 )
 
 type System struct {
+	heartbeatOK bool
+
 	eventService    *EventService
 	keeperService   *KeeperService
 	groupService    *GroupService
@@ -22,6 +24,7 @@ func NewSystem() *System {
 	groupService := NewGroupService()
 
 	return &System{
+		heartbeatOK:     true,
 		eventService:    NewEventService(),
 		keeperService:   NewKeeperService(),
 		groupService:    groupService,
@@ -147,7 +150,7 @@ func (s *System) checkBtcRefund() {
 func (s *System) Run() {
 	heartbeatTicker := time.NewTicker(time.Minute * 2)
 	minuteTicker := time.NewTicker(time.Minute)
-	checkContractTicker := time.NewTicker(time.Minute * 5)
+	checkContractTicker := time.NewTicker(time.Minute * 3)
 
 	s.syncEvents()
 
@@ -156,15 +159,19 @@ func (s *System) Run() {
 		case <-heartbeatTicker.C:
 			groupNum := uint64(len(s.groupService.MyGroups()))
 			syncMinutes := s.eventService.SyncMinutes()
-			if err := s.keeperService.Heartbeat(&groupNum, syncMinutes); err != nil {
+			err := s.keeperService.Heartbeat(&groupNum, syncMinutes)
+			s.heartbeatOK = (err == nil)
+			if err != nil {
 				log.Print("error sending heartbeat: ", err)
 			}
 		case <-minuteTicker.C:
 			s.syncEvents()
 			s.groupService.OnTimer()
 		case <-checkContractTicker.C:
-			s.checkAllReceipt()
-			s.checkBtcRefund()
+			if s.heartbeatOK {
+				s.checkAllReceipt()
+				s.checkBtcRefund()
+			}
 		}
 	}
 }

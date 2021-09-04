@@ -14,12 +14,12 @@ import (
 )
 
 type DepositService struct {
-	processed map[string]bool
+	taskManager *helper.TaskManager
 }
 
 func NewDepositService() *DepositService {
 	return &DepositService{
-		processed: map[string]bool{},
+		taskManager: helper.NewTaskManager(),
 	}
 }
 
@@ -44,7 +44,7 @@ func (s *DepositService) signDeposit(receipt *contract.Receipt, utxo *btc.Utxo) 
 }
 
 func (s *DepositService) ProcessDeposit(receipt *contract.Receipt) error {
-	if s.processed[receipt.ReceiptId] {
+	if !s.taskManager.Available(receipt.ReceiptId) {
 		return nil
 	}
 
@@ -68,7 +68,7 @@ func (s *DepositService) ProcessDeposit(receipt *contract.Receipt) error {
 	if err := s.signDeposit(receipt, utxo); err != nil {
 		return err
 	}
-	s.processed[receipt.ReceiptId] = true
+	s.taskManager.CheckLater(receipt.ReceiptId)
 	log.Print("deposit signed: ", receipt.ReceiptId, " txid: ", utxo.Txid,
 		" confirmations: ", confirmations)
 
