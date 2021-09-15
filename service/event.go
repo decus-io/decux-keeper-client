@@ -43,6 +43,7 @@ func (s *EventService) Sync(handler EventHandler) error {
 	}
 
 	startTime := time.Now()
+	lastProgressTime := startTime
 
 	for s.fromBlock < curBlock {
 		toBlock := s.fromBlock + 2000 - 1
@@ -50,18 +51,19 @@ func (s *EventService) Sync(handler EventHandler) error {
 			toBlock = curBlock
 		}
 
-		logs, err := s.filterLogs(topics, s.fromBlock, toBlock)
-		if err != nil {
+		if err := s.syncImpl(topics, s.fromBlock, toBlock, handler); err != nil {
 			return err
-		}
-		for _, l := range logs {
-			handler(l)
 		}
 
 		s.fromBlock = toBlock + 1
-		s.lastSyncTime = time.Now().Unix()
 
-		if time.Since(startTime) > time.Minute*2 {
+		if s.pastEvents && time.Since(lastProgressTime) > time.Second*20 {
+			lastProgressTime = time.Now()
+			startBlock := config.C.Contract.DeCusSystemStartBlock
+			log.Print("sync progress: ", 100*(toBlock-startBlock+1)/(curBlock-startBlock+1), "%")
+		}
+
+		if time.Since(startTime) > time.Minute {
 			return nil
 		}
 	}
@@ -85,6 +87,31 @@ func (s *EventService) SyncMinutes() *uint64 {
 
 	syncMinutes := uint64((now - s.lastSyncTime) / 60)
 	return &syncMinutes
+}
+
+func (s *EventService) syncImpl(topics [][]common.Hash, fromBlock uint64, toBlock uint64, handler EventHandler) error {
+	tryTimes := 1
+	if s.pastEvents {
+		tryTimes = 3
+	}
+
+	for i := 0; i < tryTimes; i++ {
+		logs, err := s.filterLogs(topics, fromBlock, toBlock)
+		if err != nil {
+			if i+1 == tryTimes {
+				return err
+			}
+		} else {
+			for _, l := range logs {
+				handler(l)
+			}
+
+			s.lastSyncTime = time.Now().Unix()
+			break
+		}
+	}
+
+	return nil
 }
 
 func (s *EventService) filterLogs(topics [][]common.Hash, fromBlock uint64, toBlock uint64) ([]types.Log, error) {

@@ -91,7 +91,7 @@ func (s *System) handleEventImpl(l types.Log) error {
 
 func (s *System) syncEvents() {
 	if err := s.eventService.Sync(s.handleEvent); err != nil {
-		log.Print("sync events error: ", err)
+		log.Print("sync events warning: ", err)
 	}
 }
 
