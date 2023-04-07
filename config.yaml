@@ -5,6 +5,6 @@ url:
   coordinator: http://127.0.0.1:5000/api/
   btcesplora: https://blockstream.info/testnet/api/
 contract:
-  decusSystem: '0x2D387355e7Fd91581131676F9294AFF71Ca2A4c2'
-  keeperReward: '0x2D387355e7Fd91581131676F9294AFF71Ca2A4c2'
-  decusSystemStartBlock: 28687259
+  decus_system: "0x2D387355e7Fd91581131676F9294AFF71Ca2A4c2"
+  keeper_registry: "0xEA2422125F850D08c6C3017a13885eB69D16A791"
+  decus_system_start_block: 28687259
