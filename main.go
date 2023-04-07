@@ -7,7 +7,7 @@ import (
 	"net/mail"
 	"net/url"
 
-	"github.com/btcsuite/btcutil"
+	"github.com/btcsuite/btcd/btcutil"
 	"github.com/decux-io/decux-keeper-client/config"
 	"github.com/decux-io/decux-keeper-client/eth/contract"
 	"github.com/decux-io/decux-keeper-client/service"
