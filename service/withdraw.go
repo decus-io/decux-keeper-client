@@ -3,10 +3,10 @@ package service
 import (
 	"log"
 
-	"github.com/decus-io/decus-keeper-client/coordinator"
-	"github.com/decus-io/decus-keeper-client/eth/contract"
-	"github.com/decus-io/decus-keeper-client/service/helper"
-	"github.com/decus-io/decus-keeper-proto/golang/message"
+	"github.com/decux-io/decux-keeper-client/coordinator"
+	"github.com/decux-io/decux-keeper-client/eth/contract"
+	"github.com/decux-io/decux-keeper-client/service/helper"
+	"github.com/decux-io/decux-keeper-proto/golang/message"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 

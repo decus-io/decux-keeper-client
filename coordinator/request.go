@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/decus-io/decus-keeper-client/config"
-	"github.com/decus-io/decus-keeper-client/eth"
-	"github.com/decus-io/decus-keeper-proto/golang/message"
+	"github.com/decux-io/decux-keeper-client/config"
+	"github.com/decux-io/decux-keeper-client/eth"
+	"github.com/decux-io/decux-keeper-proto/golang/message"
 	"google.golang.org/protobuf/proto"
 )
 

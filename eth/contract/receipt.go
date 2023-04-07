@@ -3,7 +3,7 @@ package contract
 import (
 	"encoding/hex"
 
-	"github.com/decus-io/decus-keeper-client/eth/abi"
+	"github.com/decux-io/decux-keeper-client/eth/abi"
 )
 
 const (

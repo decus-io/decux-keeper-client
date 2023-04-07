@@ -8,9 +8,9 @@ import (
 	"net/url"
 
 	"github.com/btcsuite/btcutil"
-	"github.com/decus-io/decus-keeper-client/config"
-	"github.com/decus-io/decus-keeper-client/eth/contract"
-	"github.com/decus-io/decus-keeper-client/service"
+	"github.com/decux-io/decux-keeper-client/config"
+	"github.com/decux-io/decux-keeper-client/eth/contract"
+	"github.com/decux-io/decux-keeper-client/service"
 	"github.com/ethereum/go-ethereum/crypto"
 )
 

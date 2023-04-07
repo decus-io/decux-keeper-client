@@ -6,9 +6,9 @@ import (
 	"strings"
 
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/decus-io/decus-keeper-client/btc"
-	"github.com/decus-io/decus-keeper-client/eth/abi"
-	"github.com/decus-io/decus-keeper-client/eth/contract"
+	"github.com/decux-io/decux-keeper-client/btc"
+	"github.com/decux-io/decux-keeper-client/eth/abi"
+	"github.com/decux-io/decux-keeper-client/eth/contract"
 )
 
 func txidEqual(txidStr string, txidBytes chainhash.Hash) bool {

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/decus-io/decus-keeper-client/config"
+	"github.com/decux-io/decux-keeper-client/config"
 )
 
 type Utxo struct {

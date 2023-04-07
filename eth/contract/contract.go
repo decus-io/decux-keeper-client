@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/decus-io/decus-keeper-client/config"
-	"github.com/decus-io/decus-keeper-client/eth/abi"
+	"github.com/decux-io/decux-keeper-client/config"
+	"github.com/decux-io/decux-keeper-client/eth/abi"
 	gethabi "github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
