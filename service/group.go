@@ -23,11 +23,11 @@ func NewGroupService() *GroupService {
 	}
 }
 
-func (s *GroupService) OnGroupAdded(event *abi.DeCusSystemGroupAdded) {
+func (s *GroupService) OnGroupAdded(event *abi.DecuxSystemGroupAdded) {
 	s.processGroup(event.Required, event.BtcAddress, event.Keepers)
 }
 
-func (s *GroupService) OnGroupDeleted(event *abi.DeCusSystemGroupDeleted) {
+func (s *GroupService) OnGroupDeleted(event *abi.DecuxSystemGroupDeleted) {
 	s.deleteGroup(event.BtcAddress)
 }
 
@@ -44,7 +44,7 @@ func (s *GroupService) CheckGroup(groupId string) {
 func (s *GroupService) OnTimer() {
 	for groupId := range s.unknownGroups {
 		opts, cancel := contract.MakeCallOpts()
-		group, err := contract.DeCusSystem.GetGroup(opts, groupId)
+		group, err := contract.DecuxSystem.GetGroup(opts, groupId)
 		cancel()
 
 		if err != nil {
@@ -71,7 +71,7 @@ func (s *GroupService) IsMyGroup(groupId string) bool {
 }
 
 func (s *GroupService) ReceiptByGroupId(opts *bind.CallOpts, groupId string) (*contract.Receipt, error) {
-	group, err := contract.DeCusSystem.GetGroup(opts, groupId)
+	group, err := contract.DecuxSystem.GetGroup(opts, groupId)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func (s *GroupService) ReceiptByGroupId(opts *bind.CallOpts, groupId string) (*c
 	}
 
 	receipt := contract.Receipt{ReceiptId: contract.ReceiptIdToString(group.WorkingReceiptId)}
-	if receipt.IDeCusSystemReceipt, err = contract.DeCusSystem.GetReceipt(opts,
+	if receipt.IDecuxSystemReceipt, err = contract.DecuxSystem.GetReceipt(opts,
 		group.WorkingReceiptId); err != nil {
 		return nil, err
 	}

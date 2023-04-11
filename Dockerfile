@@ -1,5 +1,5 @@
 FROM centos:7
 WORKDIR /app
-COPY decus-keeper-client .
+COPY decux-keeper-client .
 COPY config.yaml .
-ENTRYPOINT ["/app/decus-keeper-client"]
+ENTRYPOINT ["/app/decux-keeper-client"]

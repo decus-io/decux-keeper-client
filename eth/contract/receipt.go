@@ -15,7 +15,7 @@ const (
 
 type Receipt struct {
 	ReceiptId string
-	abi.IDeCusSystemReceipt
+	abi.IDecuxSystemReceipt
 }
 
 func ReceiptIdToString(receiptId [32]byte) string {

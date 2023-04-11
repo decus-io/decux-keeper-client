@@ -19,18 +19,18 @@ import (
 var (
 	Client *ethclient.Client
 
-	DeCusSystem    *abi.DeCusSystemCaller
+	DecuxSystem    *abi.DecuxSystemCaller
 	KeeperRegistry *abi.KeeperRegistryCaller
 
 	ChainId int64
 	EventID = map[string]common.Hash{}
 
-	DecusSystemFilterer *abi.DeCusSystemFilterer
+	DecuxSystemFilterer *abi.DecuxSystemFilterer
 )
 
 func initContracts() error {
 	var err error
-	DeCusSystem, err = abi.NewDeCusSystemCaller(common.HexToAddress(config.C.Contract.DeCusSystem), Client)
+	DecuxSystem, err = abi.NewDecuxSystemCaller(common.HexToAddress(config.C.Contract.DecuxSystem), Client)
 	if err != nil {
 		return err
 	}
@@ -38,12 +38,12 @@ func initContracts() error {
 	if err != nil {
 		return err
 	}
-	DecusSystemFilterer, err = abi.NewDeCusSystemFilterer(common.HexToAddress(config.C.Contract.DeCusSystem), Client)
+	DecuxSystemFilterer, err = abi.NewDecuxSystemFilterer(common.HexToAddress(config.C.Contract.DecuxSystem), Client)
 	if err != nil {
 		return err
 	}
 
-	parsed, err := gethabi.JSON(strings.NewReader(abi.DeCusSystemABI))
+	parsed, err := gethabi.JSON(strings.NewReader(abi.DecuxSystemABI))
 	if err != nil {
 		return err
 	}

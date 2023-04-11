@@ -25,7 +25,7 @@ type EventService struct {
 func NewEventService() *EventService {
 	return &EventService{
 		pastEvents: true,
-		fromBlock:  config.C.Contract.DeCusSystemStartBlock,
+		fromBlock:  config.C.Contract.DecuxSystemStartBlock,
 	}
 }
 
@@ -59,7 +59,7 @@ func (s *EventService) Sync(handler EventHandler) error {
 
 		if s.pastEvents && time.Since(lastProgressTime) > time.Second*20 {
 			lastProgressTime = time.Now()
-			startBlock := config.C.Contract.DeCusSystemStartBlock
+			startBlock := config.C.Contract.DecuxSystemStartBlock
 			log.Print("sync progress: ", 100*(toBlock-startBlock+1)/(curBlock-startBlock+1), "%")
 		}
 
@@ -119,7 +119,7 @@ func (s *EventService) filterLogs(topics [][]common.Hash, fromBlock uint64, toBl
 	defer cancel()
 
 	query := ethereum.FilterQuery{
-		Addresses: []common.Address{common.HexToAddress(config.C.Contract.DeCusSystem)},
+		Addresses: []common.Address{common.HexToAddress(config.C.Contract.DecuxSystem)},
 		Topics:    topics,
 		FromBlock: new(big.Int).SetUint64(fromBlock),
 		ToBlock:   new(big.Int).SetUint64(toBlock),

@@ -49,7 +49,7 @@ func (s *System) handleEvent(l types.Log) {
 
 func (s *System) handleEventImpl(l types.Log) error {
 	eventId := contract.EventID
-	filterer := contract.DecusSystemFilterer
+	filterer := contract.DecuxSystemFilterer
 
 	switch l.Topics[0] {
 	case eventId["GroupAdded"]:
@@ -129,7 +129,7 @@ func (s *System) checkBtcRefundImpl() error {
 	opts, cancel := contract.MakeCallOpts()
 	defer cancel()
 
-	refundData, err := contract.DeCusSystem.GetRefundData(opts)
+	refundData, err := contract.DecuxSystem.GetRefundData(opts)
 	if err != nil {
 		return err
 	}

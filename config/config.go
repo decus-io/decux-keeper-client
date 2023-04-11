@@ -37,9 +37,9 @@ type Config struct {
 		BtcEsplora  string `yaml:"btcesplora"`
 	} `yaml:"url"`
 	Contract struct {
-		DeCusSystem           string `yaml:"decus_system"`
+		DecuxSystem           string `yaml:"decux_system"`
 		KeeperRegistry        string `yaml:"keeper_registry"`
-		DeCusSystemStartBlock uint64 `yaml:"decus_system_start_block"`
+		DecuxSystemStartBlock uint64 `yaml:"decux_system_start_block"`
 	} `yaml:"contract"`
 }
 
@@ -54,7 +54,7 @@ func Init(user string) error {
 
 	C.Keeper.User = user
 
-	log.Print("contract DeCusSystem: ", C.Contract.DeCusSystem)
+	log.Print("contract DecuxSystem: ", C.Contract.DecuxSystem)
 	log.Print("contract KeeperRegistry: ", C.Contract.KeeperRegistry)
 
 	switch C.Btc.Network {

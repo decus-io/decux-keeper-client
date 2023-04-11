@@ -29,7 +29,7 @@ func (s *KeeperService) Heartbeat(groupNum *uint64, syncMinutes *uint64) error {
 	clientInfo := strings.Join([]string{
 		config.Version,
 		strconv.FormatInt(contract.ChainId, 10),
-		config.C.Contract.DeCusSystem,
+		config.C.Contract.DecuxSystem,
 	}, "|")
 
 	op := &message.Operation{

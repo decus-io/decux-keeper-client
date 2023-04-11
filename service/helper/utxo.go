@@ -47,7 +47,7 @@ func UtxoByReceipt(receipt *contract.Receipt) (*btc.Utxo, error) {
 	return nil, nil
 }
 
-func UtxoByRefundData(refundData *abi.IDeCusSystemBtcRefundData) (*btc.Utxo, error) {
+func UtxoByRefundData(refundData *abi.IDecuxSystemBtcRefundData) (*btc.Utxo, error) {
 	utxo, err := btc.QueryUtxo(refundData.GroupBtcAddress)
 	if err != nil {
 		return nil, err

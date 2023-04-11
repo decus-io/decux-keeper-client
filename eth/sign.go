@@ -56,10 +56,10 @@ func SignDeposit(receiptId, txId, height string) (hexutil.Bytes, error) {
 		},
 	}
 	domainStandard := core.TypedDataDomain{
-		Name:              "DeCus",
+		Name:              "Decux",
 		Version:           "1.0",
 		ChainId:           math.NewHexOrDecimal256(contract.ChainId),
-		VerifyingContract: config.C.Contract.DeCusSystem,
+		VerifyingContract: config.C.Contract.DecuxSystem,
 		Salt:              "",
 	}
 	messageStandard := map[string]interface{}{

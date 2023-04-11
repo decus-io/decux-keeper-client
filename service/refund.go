@@ -27,7 +27,7 @@ func NewRefundService(groupService *GroupService) *RefundService {
 	}
 }
 
-func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCusSystemBtcRefundData) error {
+func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDecuxSystemBtcRefundData) error {
 	task := hex.EncodeToString(refundData.TxId[:])
 	if !s.taskManager.Available(task) {
 		return nil
@@ -81,7 +81,7 @@ func (s *RefundService) ProcessRefund(opts *bind.CallOpts, refundData *abi.IDeCu
 	return nil
 }
 
-func (s *RefundService) processRefundImpl(refundData *abi.IDeCusSystemBtcRefundData,
+func (s *RefundService) processRefundImpl(refundData *abi.IDecuxSystemBtcRefundData,
 	utxo *btc.Utxo, psbt string) error {
 	tx, err := btc.QueryTx(utxo.Txid)
 	if err != nil {

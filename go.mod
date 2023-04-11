@@ -1,13 +1,13 @@
 module github.com/decux-io/decux-keeper-client
 
-go 1.20
+go 1.16
 
 require (
 	github.com/btcsuite/btcd v0.22.1
 	github.com/btcsuite/btcd/chaincfg/chainhash v1.0.1
 	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce
 	github.com/btcsuite/btcutil/psbt v1.0.2
-	github.com/decux-io/decux-keeper-proto v0.0.15
+	github.com/decux-io/decux-keeper-proto v0.0.19
 	github.com/ethereum/go-ethereum v1.10.1
 	github.com/google/uuid v1.1.5
 	github.com/natefinch/atomic v0.0.0-20200526193002-18c0533a5b09
