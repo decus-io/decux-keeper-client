@@ -90,19 +90,21 @@ func main() {
 
 	fmt.Println("Enter password for private keys:")
 	pwd, err := term.ReadPassword(int(syscall.Stdin))
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	config.C.Keeper.Password = string(pwd)
+	if err == nil {
+		config.C.Keeper.Password = string(pwd)
 
-	if !config.UserSettingReady() {
-		err = initSetting()
+		if !config.UserSettingReady() {
+			err = initSetting()
+		}
 	}
 	if err == nil {
 		err = run()
 	}
 
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Print(err.Error())
+		fmt.Println("Press Enter to exit.")
+		var input string
+		fmt.Scanln(&input)
 	}
 }
