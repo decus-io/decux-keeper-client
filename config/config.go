@@ -20,11 +20,12 @@ var (
 
 type Config struct {
 	Keeper struct {
-		User   string
-		Id     common.Address
-		Email  string
-		BtcKey *btcec.PrivateKey
-		EthKey *ecdsa.PrivateKey
+		User     string
+		Password string
+		Id       common.Address
+		Email    string
+		BtcKey   *btcec.PrivateKey
+		EthKey   *ecdsa.PrivateKey
 	} `yaml:"-"`
 	Btc struct {
 		Network       string           `yaml:"network"`
@@ -33,7 +34,7 @@ type Config struct {
 	} `yaml:"btc"`
 	Url struct {
 		Coordinator string `yaml:"coordinator"`
-		NetworkRpc  string `yaml:"-"`
+		NetworkRpc  string `yaml:"rpc"`
 		BtcEsplora  string `yaml:"btcesplora"`
 	} `yaml:"url"`
 	Contract struct {
@@ -43,7 +44,7 @@ type Config struct {
 	} `yaml:"contract"`
 }
 
-func Init(user string) error {
+func Init() error {
 	fb, err := ioutil.ReadFile("config.yaml")
 	if err != nil {
 		return err
@@ -51,8 +52,6 @@ func Init(user string) error {
 	if err := yaml.UnmarshalStrict(fb, &C); err != nil {
 		return err
 	}
-
-	C.Keeper.User = user
 
 	log.Print("contract DecuxSystem: ", C.Contract.DecuxSystem)
 	log.Print("contract KeeperRegistry: ", C.Contract.KeeperRegistry)
@@ -72,11 +71,6 @@ func Init(user string) error {
 	if C.Keeper.EthKey, err = loadEthKey(); err != nil {
 		return err
 	}
-
-	if C.Url.NetworkRpc, err = loadRpcUrl(); err != nil {
-		return err
-	}
-	log.Print("network rpc url: ", C.Url.NetworkRpc)
 
 	// optional
 	email, err := loadEmail()

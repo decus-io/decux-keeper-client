@@ -5,35 +5,25 @@ import (
 	"fmt"
 	"log"
 	"net/mail"
-	"net/url"
+	"syscall"
 
 	"github.com/btcsuite/btcutil"
 	"github.com/decux-io/decux-keeper-client/config"
 	"github.com/decux-io/decux-keeper-client/eth/contract"
 	"github.com/decux-io/decux-keeper-client/service"
 	"github.com/ethereum/go-ethereum/crypto"
+	"golang.org/x/term"
 )
 
 func initSetting() error {
-	var str string
+	var data []byte
+	var err error
 
-	fmt.Println("Paste network RPC URL:")
-	if _, err := fmt.Scanln(&str); err != nil {
-		return err
-	}
-	if _, err := url.ParseRequestURI(str); err != nil {
-		return err
-	}
-	if err := config.SaveRpcUrl(str); err != nil {
-		return err
-	}
-
-	//
 	fmt.Println("Paste ETH private key:")
-	if _, err := fmt.Scanln(&str); err != nil {
+	if data, err = term.ReadPassword(int(syscall.Stdin)); err != nil {
 		return err
 	}
-	ethKey, err := crypto.HexToECDSA(str)
+	ethKey, err := crypto.HexToECDSA(string(data))
 	if err != nil {
 		return err
 	}
@@ -43,10 +33,10 @@ func initSetting() error {
 
 	//
 	fmt.Println("Paste BTC private key (WIF):")
-	if _, err := fmt.Scanln(&str); err != nil {
+	if data, err = term.ReadPassword(int(syscall.Stdin)); err != nil {
 		return err
 	}
-	btcKey, err := btcutil.DecodeWIF(str)
+	btcKey, err := btcutil.DecodeWIF(string(data))
 	if err != nil {
 		return err
 	}
@@ -56,7 +46,7 @@ func initSetting() error {
 
 	//
 	fmt.Println("Email to receive notification when the client is offline:")
-	str = ""
+	str := ""
 	if _, err := fmt.Scanln(&str); err != nil && err.Error() != "unexpected newline" {
 		return err
 	}
@@ -73,8 +63,8 @@ func initSetting() error {
 	return nil
 }
 
-func run(user string) error {
-	if err := config.Init(user); err != nil {
+func run() error {
+	if err := config.Init(); err != nil {
 		return fmt.Errorf("init config error: %v", err)
 	}
 	if err := contract.Init(); err != nil {
@@ -96,19 +86,25 @@ func main() {
 	user := flag.String("user", "default", "user name")
 	flag.Parse()
 
-	var err error
-	if flag.NArg() > 0 {
-		if flag.Arg(0) == "init" {
-			config.C.Keeper.User = *user
+	config.C.Keeper.User = *user
+
+	fmt.Println("Enter password for private keys:")
+	pwd, err := term.ReadPassword(int(syscall.Stdin))
+	if err == nil {
+		config.C.Keeper.Password = string(pwd)
+
+		if !config.UserSettingReady() {
 			err = initSetting()
-		} else {
-			err = fmt.Errorf("unkown arguments: %v", flag.Args())
 		}
-	} else {
-		err = run(*user)
+	}
+	if err == nil {
+		err = run()
 	}
 
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Print(err.Error())
+		fmt.Println("Press Enter to exit.")
+		var input string
+		fmt.Scanln(&input)
 	}
 }

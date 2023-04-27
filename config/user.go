@@ -14,7 +14,6 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/google/uuid"
 	"github.com/natefinch/atomic"
-	"github.com/ququzone/go-common/env"
 )
 
 const (
@@ -22,12 +21,21 @@ const (
 
 	ethKeyFile = "eth-key"
 	btcKeyFile = "btc-key"
-	rpcUrlFile = "rpc-url"
 	emailFile  = "email"
 )
 
 func DataPath(file string) string {
 	return filepath.Join(userDir, C.Keeper.User, file)
+}
+
+func UserSettingReady() bool {
+	files := []string{ethKeyFile, btcKeyFile}
+	for _, v := range files {
+		if _, err := os.Stat(DataPath(v)); os.IsNotExist(err) {
+			return false
+		}
+	}
+	return true
 }
 
 func save(file string, r io.Reader) error {
@@ -36,10 +44,6 @@ func save(file string, r io.Reader) error {
 		return err
 	}
 	return atomic.WriteFile(path, r)
-}
-
-func password() string {
-	return env.GetNonEmpty("PASSWORD")
 }
 
 func saveKey(file string, privateKey *ecdsa.PrivateKey) error {
@@ -53,7 +57,7 @@ func saveKey(file string, privateKey *ecdsa.PrivateKey) error {
 		PrivateKey: privateKey,
 	}
 
-	data, err := keystore.EncryptKey(ksKey, password(), keystore.StandardScryptN,
+	data, err := keystore.EncryptKey(ksKey, C.Keeper.Password, keystore.StandardScryptN,
 		keystore.StandardScryptP)
 	if err != nil {
 		return err
@@ -67,10 +71,6 @@ func SaveEthKey(ethKey *ecdsa.PrivateKey) error {
 
 func SaveBtcKey(btcKey *btcec.PrivateKey) error {
 	return saveKey(btcKeyFile, btcKey.ToECDSA())
-}
-
-func SaveRpcUrl(rpcUrl string) error {
-	return save(rpcUrlFile, strings.NewReader(rpcUrl))
 }
 
 func SaveEmail(email string) error {
@@ -88,7 +88,7 @@ func loadKey(file string) (*ecdsa.PrivateKey, error) {
 	if err != nil {
 		return nil, err
 	}
-	ksKey, err := keystore.DecryptKey(data, password())
+	ksKey, err := keystore.DecryptKey(data, C.Keeper.Password)
 	if err != nil {
 		return nil, err
 	}
@@ -106,11 +106,6 @@ func loadBtcKey() (*btcec.PrivateKey, error) {
 		return nil, err
 	}
 	return (*btcec.PrivateKey)(privateKey), nil
-}
-
-func loadRpcUrl() (string, error) {
-	data, err := load(rpcUrlFile)
-	return string(data), err
 }
 
 func loadEmail() (string, error) {
