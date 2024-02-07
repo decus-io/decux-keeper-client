@@ -6,12 +6,12 @@ import (
 	"log"
 	"strings"
 
-	"github.com/decux-io/decux-keeper-client/btc"
-	"github.com/decux-io/decux-keeper-client/coordinator"
-	"github.com/decux-io/decux-keeper-client/eth/abi"
-	"github.com/decux-io/decux-keeper-client/eth/contract"
-	"github.com/decux-io/decux-keeper-client/service/helper"
-	"github.com/decux-io/decux-keeper-proto/golang/message"
+	"github.com/block-well/decux-keeper-client/btc"
+	"github.com/block-well/decux-keeper-client/coordinator"
+	"github.com/block-well/decux-keeper-client/eth/abi"
+	"github.com/block-well/decux-keeper-client/eth/contract"
+	"github.com/block-well/decux-keeper-client/service/helper"
+	"github.com/block-well/decux-keeper-proto/golang/message"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 

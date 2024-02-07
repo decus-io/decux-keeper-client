@@ -9,7 +9,7 @@ import (
 	"github.com/btcsuite/btcd/txscript"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/psbt"
-	"github.com/decux-io/decux-keeper-client/config"
+	"github.com/block-well/decux-keeper-client/config"
 )
 
 type TxInfo struct {

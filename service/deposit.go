@@ -4,13 +4,13 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/decux-io/decux-keeper-client/btc"
-	"github.com/decux-io/decux-keeper-client/config"
-	"github.com/decux-io/decux-keeper-client/coordinator"
-	"github.com/decux-io/decux-keeper-client/eth"
-	"github.com/decux-io/decux-keeper-client/eth/contract"
-	"github.com/decux-io/decux-keeper-client/service/helper"
-	"github.com/decux-io/decux-keeper-proto/golang/message"
+	"github.com/block-well/decux-keeper-client/btc"
+	"github.com/block-well/decux-keeper-client/config"
+	"github.com/block-well/decux-keeper-client/coordinator"
+	"github.com/block-well/decux-keeper-client/eth"
+	"github.com/block-well/decux-keeper-client/eth/contract"
+	"github.com/block-well/decux-keeper-client/service/helper"
+	"github.com/block-well/decux-keeper-proto/golang/message"
 )
 
 type DepositService struct {

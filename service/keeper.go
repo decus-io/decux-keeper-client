@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/decux-io/decux-keeper-client/config"
-	"github.com/decux-io/decux-keeper-client/coordinator"
-	"github.com/decux-io/decux-keeper-client/eth/contract"
-	"github.com/decux-io/decux-keeper-proto/golang/message"
+	"github.com/block-well/decux-keeper-client/config"
+	"github.com/block-well/decux-keeper-client/coordinator"
+	"github.com/block-well/decux-keeper-client/eth/contract"
+	"github.com/block-well/decux-keeper-proto/golang/message"
 )
 
 type KeeperService struct {

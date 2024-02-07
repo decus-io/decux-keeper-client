@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/decux-io/decux-keeper-client/config"
-	"github.com/decux-io/decux-keeper-client/eth/contract"
+	"github.com/block-well/decux-keeper-client/config"
+	"github.com/block-well/decux-keeper-client/eth/contract"
 	"github.com/ethereum/go-ethereum"
 	gethabi "github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"

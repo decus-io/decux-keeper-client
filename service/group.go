@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/decux-io/decux-keeper-client/config"
-	"github.com/decux-io/decux-keeper-client/eth/abi"
-	"github.com/decux-io/decux-keeper-client/eth/contract"
+	"github.com/block-well/decux-keeper-client/config"
+	"github.com/block-well/decux-keeper-client/eth/abi"
+	"github.com/block-well/decux-keeper-client/eth/contract"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 )

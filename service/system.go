@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/decux-io/decux-keeper-client/eth/contract"
+	"github.com/block-well/decux-keeper-client/eth/contract"
 	"github.com/ethereum/go-ethereum/core/types"
 )
 
