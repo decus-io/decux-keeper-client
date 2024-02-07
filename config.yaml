@@ -3,9 +3,9 @@ btc:
   confirmations: 6
 url:
   rpc: https://mainnet.infura.io/v3/77b02af5cd834a42b08004b6e3a83791
-  coordinator: https://coordinator.decux.io/api/
+  coordinator: https://coordinator.mirrorl2.io/api/
   btcesplora: https://blockstream.info/api/
 contract:
-  decux_system: "0x61a6784726B8D34042d50Eac42eBFE128eE89845"
-  keeper_registry: "0x750F90bB0764139568383AbE0784565a3cD6a318"
+  decux_system: "0xE904b755Cc24cB968E740B73e937FE7cAf1eA530"
+  keeper_registry: "0xcd20454C0eE236C8CBD5b310Ad29b5769957755A"
   decux_system_start_block: 17077746
