@@ -1,4 +1,4 @@
-module github.com/decux-io/decux-keeper-client
+module github.com/block-well/decux-keeper-client
 
 go 1.16
 
